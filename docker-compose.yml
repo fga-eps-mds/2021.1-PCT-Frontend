@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  pcts-front:
+    container_name: pcts-front
+    build: .
+    image: pcts-front
+    # restart: unless-stopped
+    ports:
+        - 8080:8080
+    command: "echo 'React, Vue or Angular?'"
+    networks:
+      - pcts-network
+    volumes:
+      - .:/app
+      - yarn-cache:/app/node_modules
+
+networks:
+  pcts-network:
+    external: true
+
+volumes:
+  yarn-cache:
+    name: pcts-front-yarn-cache
