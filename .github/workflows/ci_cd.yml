@@ -22,7 +22,12 @@ jobs:
 
       - name: Build image
         run: docker build -t pcts-front .
-        # run: docker-compose up
+
+      - name: Build yarn
+        run: docker run pcts-front yarn build
+
+      - name: Run tests
+        run: docker run --volume ${PWD}/:/app task-manager-front bash -c "yarn install && yarn coverage"
 
   deploy:
     if: github.ref == 'refs/heads/main'

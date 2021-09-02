@@ -6,8 +6,8 @@ services:
     image: pcts-front
     # restart: unless-stopped
     ports:
-        - 8080:8080
-    command: "echo 'React, Vue or Angular?'"
+        - 3000:3000
+    command: ["sh", "./scripts/start_dev.sh"]
     networks:
       - pcts-network
     volumes:
