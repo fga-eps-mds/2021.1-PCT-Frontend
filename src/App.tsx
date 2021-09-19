@@ -3,13 +3,13 @@ import GlobalStyle from "./styles/global";
 
 import HomeScreen from "./Pages/HomeScreen";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <HomeScreen />
       <GlobalStyle />
     </>
   );
-}
+};
 
 export default App;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: #fdfeff;
   max-width: 832px;
+  width: 40%;
   max-height: 60px;
   height: 40px;
   border: 1px solid black;
@@ -14,6 +15,7 @@ export const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-top: 20px;
 `;
 
 export const SearchInput = styled.input`
