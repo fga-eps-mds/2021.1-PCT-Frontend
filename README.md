@@ -29,4 +29,5 @@ Repositório do frontend do projeto "Povos e Comunidades Tradicionais"
 ```shell
 docker-compose build
 docker-compose up
+
 ```
