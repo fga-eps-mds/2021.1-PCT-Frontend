@@ -8,13 +8,17 @@ import {
   ProfileButton,
   PersonIcon,
   ProfileCotainer,
+  LogoImage,
 } from "./styles";
 import personIcon from "./../../assets/images/person.png";
+import logoImage from "./../../assets/images/LogoPCT.png";
 
 const Header: React.FC = () => {
   return (
     <Container>
-      <Title>Projeto PCT</Title>
+      <Title>
+        <LogoImage src={logoImage} />
+      </Title>
       <>
         <ButtonsContainer>
           <HeaderButton>Início</HeaderButton>

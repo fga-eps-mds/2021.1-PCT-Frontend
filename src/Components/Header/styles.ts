@@ -14,19 +14,27 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   width: 40%;
-  border: none;
-  color: #1bc47d;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
   height: 100%;
-  align-items: center;
   display: flex;
+  align-items: center;
+  text-align: center;
+  border: none;
+  color: #004346;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Rokkitt, sans-serif;
+`;
+
+export const LogoImage = styled.img`
+  width: 60%;
+  margin-left: 5%;
 `;
 
 export const ButtonsContainer = styled.div`
   width: 50%;
   height: 100%;
+  border: none;
+  font-family: Rokkitt, sans-serif;
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -45,7 +53,8 @@ export const HeaderButton = styled.button`
   border: none;
   color: #1bc47d;
   text-align: center;
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: bold;
   height: 100%;
   align-items: center;
   width: 33.2%;
@@ -57,7 +66,7 @@ export const ProfileButton = styled.button`
   display: flex;
   color: white;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   height: 100%;
   align-items: center;
   justify-content: center;
