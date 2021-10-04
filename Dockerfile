@@ -1,7 +1,11 @@
-FROM node:14
-
-COPY . /app
+FROM node:alpine
 
 WORKDIR /app
 
+COPY package*.json ./
+
 RUN yarn install
+
+COPY . /app
+
+EXPOSE 3000
