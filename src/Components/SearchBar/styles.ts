@@ -19,9 +19,17 @@ export const Container = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  flex: auto;
-  background-color: #fdfeff;
+  flex: 1;
+  width: 100%;
   border: 0px solid black;
+  background-color: #fdfeff;
+`;
+
+export const SearchButton = styled.button`
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background-color: transparent;
 `;
 
 export const SearchIcon = styled.img`
