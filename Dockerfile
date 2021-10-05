@@ -6,4 +6,5 @@ WORKDIR /app
 
 RUN yarn install
 
-CMD yarn start
+# Executar em homologacao/producao (heroku)
+CMD npm run build && npm run start_prod

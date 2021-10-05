@@ -19,6 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start_prod": "npx serve build",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject"
