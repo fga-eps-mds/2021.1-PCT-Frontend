@@ -10,6 +10,7 @@ import {
   ProfileCotainer,
   LogoImage,
 } from "./styles";
+
 import personIcon from "./../../assets/images/person.png";
 import logoImage from "./../../assets/images/LogoPCT.png";
 
@@ -21,13 +22,19 @@ const Header: React.FC = () => {
       </Title>
       <>
         <ButtonsContainer>
-          <HeaderButton>Início</HeaderButton>
-          <HeaderButton>Busca Avançada</HeaderButton>
-          <HeaderButton>Sobre Nós</HeaderButton>
+          <HeaderButton>
+            <p onClick={() => alert("teste")}>Início</p>
+          </HeaderButton>
+          <HeaderButton>
+            <p onClick={() => alert("teste")}>Busca Avançada</p>
+          </HeaderButton>
+          <HeaderButton>
+            <p onClick={() => alert("teste")}>Sobre Nós</p>
+          </HeaderButton>
         </ButtonsContainer>
         <ProfileCotainer>
-          <ProfileButton>
-            Login <PersonIcon src={personIcon} />{" "}
+          <ProfileButton onClick={() => alert("teste")}>
+            Login <PersonIcon src={personIcon} />
           </ProfileButton>
         </ProfileCotainer>
       </>

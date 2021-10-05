@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   padding-right: 20px;
-  padding-left: 30px;
+  padding-left: 20px;
   max-height: 60px;
   height: 40px;
   display: flex;
@@ -52,13 +52,19 @@ export const ProfileCotainer = styled.div`
 export const HeaderButton = styled.button`
   border: none;
   color: #1bc47d;
-  text-align: center;
-  font-size: 22px;
-  font-weight: bold;
-  height: 100%;
-  align-items: center;
   width: 33.2%;
+  height: 100%;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
   background-color: #edffd3;
+
+  p {
+    font-size: 22px;
+    cursor: pointer;
+    text-align: center;
+  }
 `;
 
 export const ProfileButton = styled.button`
