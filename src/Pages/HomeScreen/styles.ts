@@ -17,6 +17,7 @@ export const NewResultsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-bottom: 20px;
+  overflow: auto;
 
   p {
     align-self: flex-start;
