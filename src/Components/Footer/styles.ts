@@ -11,7 +11,7 @@ export const Container = styled.div`
   padding-left: 20%;
   padding-right: 20%;
   background-color: #0f210a;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 `;
 export const CopyrightContainer = styled.div`
