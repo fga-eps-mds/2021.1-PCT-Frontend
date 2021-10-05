@@ -42,11 +42,14 @@ export const CarouselImage = styled.img`
 
 export const CarouselTextContainer = styled.div`
   display: flex;
+  color: white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lightgray;
+  background-color: #000000;
   position: absolute;
   left: 5%;
   bottom: 50%;
+  opacity: 50%;
+  padding: 5%;
 `;

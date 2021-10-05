@@ -25,5 +25,11 @@ export const CarouselTextContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: lightgray;
+  background-color: #000000;
+  padding: 20px;
+  color: white;
+  opacity: 30%;
+  h3, h4 {
+    opacity: 0;
+  }
 `;

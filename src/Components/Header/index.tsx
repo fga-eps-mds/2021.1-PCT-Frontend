@@ -30,14 +30,14 @@ const Header: React.FC = () => {
             <MyLink to={"/"}>Pesquisa Avançada</MyLink>
           </HeaderButton>
           <HeaderButton>
-            <MyLink to={"/sobreNos"}>Sobre Nós</MyLink>
+            <MyLink to={"/"}>Sobre Nós</MyLink>
           </HeaderButton>
         </ButtonsContainer>
-        <ProfileCotainer>
+        {/* <ProfileCotainer>
           <ProfileButton onClick={() => alert("teste")}>
             Login <PersonIcon src={personIcon} />
           </ProfileButton>
-        </ProfileCotainer>
+        </ProfileCotainer> */}
       </>
     </Container>
   );
