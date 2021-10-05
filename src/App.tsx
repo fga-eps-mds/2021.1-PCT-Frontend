@@ -1,21 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import GlobalStyle from "./styles/global";
+
+import HomeScreen from "./Pages/HomeScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          PCTs
-        </a>
-      </header>
-    </div>
+    <>
+      <HomeScreen />
+      <GlobalStyle />
+    </>
   );
 }
 
