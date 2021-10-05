@@ -1,22 +1,22 @@
 version: '3.5'
 services:
   pcts-front:
-    container_name: pcts-front
     build: .
+    container_name: pcts-front
     image: pcts-front
     # restart: unless-stopped
     ports:
         - 3000:3000
     command: ["sh", "./scripts/start_dev.sh"]
-    networks:
-      - pcts-network
+    # networks:
+      # - pcts-network
     volumes:
       - .:/app
       - yarn-cache:/app/node_modules
 
-networks:
-  pcts-network:
-    external: true
+#networks:
+  #pcts-network:
+    # external: true
 
 volumes:
   yarn-cache:
