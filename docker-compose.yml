@@ -8,15 +8,16 @@ services:
     ports:
         - 3000:3000
     command: ["sh", "./scripts/start_dev.sh"]
-    # networks:
-      # - pcts-network
+    networks:
+      - pcts-network
     volumes:
       - .:/app
       - yarn-cache:/app/node_modules
 
-#networks:
-  #pcts-network:
-    # external: true
+networks:
+  pcts-network:
+    name: pcts-network
+    driver: bridge
 
 volumes:
   yarn-cache:
