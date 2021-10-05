@@ -9,6 +9,7 @@ import {
   PersonIcon,
   ProfileCotainer,
   LogoImage,
+  MyLink,
 } from "./styles";
 
 import personIcon from "./../../assets/images/person.png";
@@ -23,13 +24,13 @@ const Header: React.FC = () => {
       <>
         <ButtonsContainer>
           <HeaderButton>
-            <p onClick={() => alert("teste")}>Início</p>
+            <MyLink to={"/"}>Início</MyLink>
           </HeaderButton>
           <HeaderButton>
-            <p onClick={() => alert("teste")}>Busca Avançada</p>
+            <MyLink to={"/"}>Pesquisa Avançada</MyLink>
           </HeaderButton>
           <HeaderButton>
-            <p onClick={() => alert("teste")}>Sobre Nós</p>
+            <MyLink to={"/sobreNos"}>Sobre Nós</MyLink>
           </HeaderButton>
         </ButtonsContainer>
         <ProfileCotainer>

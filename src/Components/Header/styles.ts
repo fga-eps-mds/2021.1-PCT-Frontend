@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
@@ -65,6 +66,14 @@ export const HeaderButton = styled.button`
     cursor: pointer;
     text-align: center;
   }
+`;
+
+export const MyLink = styled(Link)`
+  color: #1bc47d;
+  font-size: 22px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 `;
 
 export const ProfileButton = styled.button`
