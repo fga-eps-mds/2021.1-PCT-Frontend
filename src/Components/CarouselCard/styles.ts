@@ -14,16 +14,24 @@ export const Container = styled.div`
 
 export const CarouselImage = styled.img`
   width: 100%;
-  object-fit: cover;
+  /* object-fit: contain; */
 `;
 
 export const CarouselTextContainer = styled.div`
   left: 5%;
+  width: 75%;
+  max-height: 50%;
+  padding: 1%;
   bottom: 15%;
-  width: 50%;
+
+  border-radius: 5px;
   position: absolute;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   background-color: lightgray;
+
+  overflow: auto;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
 `;

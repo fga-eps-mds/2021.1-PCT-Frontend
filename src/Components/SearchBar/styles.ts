@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: #fdfeff;
@@ -37,4 +38,12 @@ export const SearchIcon = styled.img`
   max-height: 40px;
   width: 22px;
   max-width: 40px;
+`;
+
+export const MyLink = styled(Link)`
+  color: #1bc47d;
+  font-size: 22px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 `;

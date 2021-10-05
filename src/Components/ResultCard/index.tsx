@@ -1,4 +1,5 @@
 import React from "react";
+import { ButtonProps } from "react-bootstrap";
 
 import {
   Container,
@@ -11,7 +12,22 @@ import {
   TitleDateContainer,
 } from "./styles";
 
-const ResultCard: React.FC = () => {
+interface documentResult {
+  id: number;
+  source: string;
+  url: string;
+  slug: string;
+  title: string;
+  content: string;
+  checksum: string;
+  updated_at: string;
+  created_at: string;
+}
+interface ResultCardProps extends ButtonProps {
+  item: documentResult;
+}
+
+const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
   const categories = [1, 2, 3]; //receber as categorias
 
   const openLink = () => {
@@ -21,11 +37,11 @@ const ResultCard: React.FC = () => {
   return (
     <Container onClick={() => openLink()}>
       <TitleDateContainer>
-        <ResultTitle>Teste teste teste teste </ResultTitle>
-        <ResultDate>04/10/2021</ResultDate>
+        <ResultTitle>{item.title}</ResultTitle>
+        <ResultDate>{item.updated_at}</ResultDate>
       </TitleDateContainer>
-      <ResultLink href="https://www.google.com" target="_blank">
-        www.google.com
+      <ResultLink href={item.url} target="_blank">
+        {item.url}
       </ResultLink>
 
       <ResultCategoriesText>Categorias</ResultCategoriesText>

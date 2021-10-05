@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import api from "../../services/api";
-
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-import MyCarousel from "../../Components/Carousel";
 import ResultCard from "../../Components/ResultCard";
 
 import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
 import { Container, NewResultsContainer } from "./styles";
+import api from "../../services/api";
 
 interface documentResult {
   id: number;
@@ -32,9 +30,13 @@ type DocumentsReponse = {
   results: Array<documentResult>;
 };
 
-const HomeScreen: React.FC = () => {
+const Results: React.FC = () => {
   const [documentsReponse, setDocumentsResponse] = useState<DocumentsReponse>();
   const [isLoading, setIsLoading] = useState(false);
+
+  const renderResultCard = (result: documentResult) => {
+    return <ResultCard key={result?.id} item={result} />;
+  };
 
   useEffect(() => {
     getDocuments();
@@ -70,17 +72,12 @@ const HomeScreen: React.FC = () => {
     console.log(data);
   };
 
-  const renderResultCard = (result: documentResult) => {
-    return <ResultCard key={result?.id} item={result} />;
-  };
-
   return (
     <Container>
       <Header />
-      <MyCarousel />
-      <SearchBar />
       <NewResultsContainer>
         <p>Últimas Atualizações</p>
+        <SearchBar />
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
@@ -113,4 +110,4 @@ const HomeScreen: React.FC = () => {
   );
 };
 
-export default HomeScreen;
+export default Results;

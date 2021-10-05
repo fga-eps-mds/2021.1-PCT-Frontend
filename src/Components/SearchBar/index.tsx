@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Container, SearchButton, SearchIcon, SearchInput } from "./styles";
+import {
+  Container,
+  MyLink,
+  SearchButton,
+  SearchIcon,
+  SearchInput,
+} from "./styles";
 
 import searchIcon from "./../../assets/images/searchIcon.png";
 
@@ -9,7 +15,9 @@ const SearchBar: React.FC = () => {
     <Container>
       <SearchInput placeholder="Digite sua pesquisa" />
       <SearchButton>
-        <SearchIcon src={searchIcon} />
+        <MyLink to={"/resultados"}>
+          <SearchIcon src={searchIcon} />
+        </MyLink>
       </SearchButton>
     </Container>
   );
