@@ -4,7 +4,7 @@ services:
     container_name: pcts-front
     build: .
     image: pcts-front
-    # restart: unless-stopped
+    restart: unless-stopped
     ports:
         - 3000:3000
     command: ["sh", "./scripts/start_dev.sh"]
@@ -16,7 +16,8 @@ services:
 
 networks:
   pcts-network:
-    external: true
+    name: pcts-network
+    driver: bridge
 
 volumes:
   yarn-cache:
