@@ -30,3 +30,11 @@ Repositório do frontend do projeto "Povos e Comunidades Tradicionais"
 docker-compose build
 docker-compose up
 ```
+
+### Testar Frontend no Heroku (Deploy Manual)
+
+```shell
+heroku container:login
+heroku container:push web -a pcts-frontend-dev
+heroku container:release web -a pcts-frontend-dev
+```
