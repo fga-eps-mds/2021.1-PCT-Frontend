@@ -6,6 +6,7 @@ export default createGlobalStyle`
         padding: 0;
         outline: 0;
         box-sizing: border-box;
+        max-width: 100vw;
     }
 
     body {
@@ -22,5 +23,21 @@ export default createGlobalStyle`
         margin: 0 auto;
         padding: 35px 0px;
     }
-    
+
+    //Botões do carousel
+    /* .rec.rec-arrow{
+        height: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: center;
+        align-self: center;
+        /* background-color: green; */
+        /* height: 20px;
+        width: 20px; */
+    }
+    /* .rec.rec-arrow:disabled {
+        visibility: hidden;
+    } */
+     
 `;
