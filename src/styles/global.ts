@@ -15,13 +15,16 @@ export default createGlobalStyle`
     }
 
     body, input, button {
-        font: 16px sans-serif;
+        font: 10px sans-serif;
+        /* font-size:15px;
+        line-height:1.6; */
     }
 
     #root {
         max-width: 1900px;
         margin: 0 auto;
-        padding: 35px 0px;
+        padding: 0.2rem ;
+        font: 10px sans-serif;
     }
 
     //Botões do carousel

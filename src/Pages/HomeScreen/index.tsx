@@ -8,10 +8,14 @@ import Footer from "../../Components/Footer";
 import MyCarousel from "../../Components/Carousel";
 import ResultCard from "../../Components/ResultCard";
 
-import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
-import { Container, NewResultsContainer } from "./styles";
+import {
+  Container,
+  MyFlatlist,
+  NewResultsContainer,
+  NewsTitle,
+} from "./styles";
 
 interface documentResult {
   id: number;
@@ -25,7 +29,7 @@ interface documentResult {
   created_at: string;
 }
 
-type DocumentsReponse = {
+type documentsResponse = {
   count: number;
   next: string;
   previous: string;
@@ -33,8 +37,10 @@ type DocumentsReponse = {
 };
 
 const HomeScreen: React.FC = () => {
-  const [documentsReponse, setDocumentsResponse] = useState<DocumentsReponse>();
+  const [documentsResponse, setDocumentsResponse] =
+    useState<documentsResponse>();
   const [isLoading, setIsLoading] = useState(false);
+  const [mySearch, setMySearch] = useState("");
 
   useEffect(() => {
     getDocuments();
@@ -54,13 +60,21 @@ const HomeScreen: React.FC = () => {
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<DocumentsReponse>(``);
-    if (documentsReponse?.results) {
-      let myDocuments: Array<documentResult> = documentsReponse?.results;
+    const { data } = await api.get<documentsResponse>(
+      `${documentsResponse?.next}`
+    );
+    console.log(
+      "nova chamada: ",
+      await api.get<documentsResponse>(`${documentsResponse?.next}`)
+    );
+    if (documentsResponse?.results) {
+      let myDocuments: Array<documentResult> = documentsResponse?.results;
       myDocuments = [...myDocuments, ...data.results];
 
       const newDocumentsResponse = {
-        ...documentsReponse,
+        count: data.count,
+        next: data.next,
+        previous: data.previous,
         results: myDocuments,
       };
 
@@ -78,9 +92,15 @@ const HomeScreen: React.FC = () => {
     <Container>
       <Header />
       <MyCarousel />
-      <SearchBar />
+      <SearchBar
+        ableToSearch={mySearch === "" ? false : true}
+        searchTerm={mySearch}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setMySearch(e.target.value);
+        }}
+      />
+      <NewsTitle>Últimas Atualizações</NewsTitle>
       <NewResultsContainer>
-        <p>Resultados</p>
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
@@ -90,11 +110,13 @@ const HomeScreen: React.FC = () => {
             // timeout={1000} //3 secs
           />
         ) : (
-          <Flatlist
-            list={documentsReponse?.results}
+          <MyFlatlist
+            list={documentsResponse?.results}
             renderItem={(item: documentResult) => renderResultCard(item)}
-            renderWhenEmpty={() => <div>List is empty!</div>}
-            hasMoreItems={documentsReponse?.next === null ? false : true}
+            renderWhenEmpty={() => (
+              <div>Não foi possível encontrar resultados!</div>
+            )}
+            hasMoreItems={documentsResponse?.next === null ? false : true}
             loadMoreItems={() => getMoreDocuments()}
             paginationLoadingIndicator={
               <Loader
