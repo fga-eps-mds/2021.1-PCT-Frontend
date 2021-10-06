@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRouteMatch, NavLinkProps } from "react-router-dom";
 
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
@@ -23,30 +24,33 @@ interface documentResult {
   created_at: string;
 }
 
-type DocumentsReponse = {
+type documentsResponse = {
   count: number;
   next: string;
   previous: string;
   results: Array<documentResult>;
 };
 
-const Results: React.FC = () => {
-  const [documentsReponse, setDocumentsResponse] = useState<DocumentsReponse>();
-  const [isLoading, setIsLoading] = useState(false);
+interface ResultsParams {
+  searchTerm: string;
+}
 
-  const renderResultCard = (result: documentResult) => {
-    return <ResultCard key={result?.id} item={result} />;
-  };
+const Results: React.FC = () => {
+  const [documentsResponse, setDocumentsResponse] =
+    useState<documentsResponse>();
+  const [isLoading, setIsLoading] = useState(false);
+  // const [mySearch, setMySearch] = useState("");
+
+  const { params } = useRouteMatch<ResultsParams>();
 
   useEffect(() => {
     getDocuments();
-    console.log("olá");
   }, []);
 
   const getDocuments = async () => {
     setIsLoading(true);
     try {
-      const { data } = await api.get(``);
+      const { data } = await api.get(`?q=${params.searchTerm}`);
       setDocumentsResponse(data);
       console.log(data);
     } catch (error) {
@@ -56,13 +60,21 @@ const Results: React.FC = () => {
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<DocumentsReponse>(``);
-    if (documentsReponse?.results) {
-      let myDocuments: Array<documentResult> = documentsReponse?.results;
+    const { data } = await api.get<documentsResponse>(
+      `${documentsResponse?.next}`
+    );
+    console.log(
+      "nova chamada: ",
+      await api.get<documentsResponse>(`${documentsResponse?.next}`)
+    );
+    if (documentsResponse?.results) {
+      let myDocuments: Array<documentResult> = documentsResponse?.results;
       myDocuments = [...myDocuments, ...data.results];
 
       const newDocumentsResponse = {
-        ...documentsReponse,
+        count: data.count,
+        next: data.next,
+        previous: data.previous,
         results: myDocuments,
       };
 
@@ -72,12 +84,22 @@ const Results: React.FC = () => {
     console.log(data);
   };
 
+  const renderResultCard = (result: documentResult) => {
+    return <ResultCard key={result?.id} item={result} />;
+  };
+
   return (
     <Container>
       <Header />
       <NewResultsContainer>
-        <p>Últimas Atualizações</p>
-        <SearchBar />
+        <p>Resultados</p>
+        {/* <SearchBar
+          ableToSearch={mySearch === "" ? false : true}
+          searchTerm={mySearch}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setMySearch(e.target.value);
+          }}
+        /> */}
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
@@ -88,10 +110,14 @@ const Results: React.FC = () => {
           />
         ) : (
           <Flatlist
-            list={documentsReponse?.results}
+            list={documentsResponse?.results}
             renderItem={(item: documentResult) => renderResultCard(item)}
-            renderWhenEmpty={() => <div>List is empty!</div>}
-            hasMoreItems={documentsReponse?.next === null ? false : true}
+            renderWhenEmpty={() => (
+              <div>
+                <h2>Não foi possível encontrar resultados!</h2>
+              </div>
+            )}
+            hasMoreItems={documentsResponse?.next === null ? false : true}
             loadMoreItems={() => getMoreDocuments()}
             paginationLoadingIndicator={
               <Loader

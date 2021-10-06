@@ -20,14 +20,23 @@ export const NewResultsContainer = styled.div`
   overflow: auto;
 
   p {
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    font-style: normal;
     align-self: flex-start;
     font-family: Rokkitt, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 42px;
-    line-height: 50px;
-    /* identical to box height */
 
     color: #004346;
+  }
+
+  @media screen and (max-width: 1024px) {
+    p {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
   }
 `;
