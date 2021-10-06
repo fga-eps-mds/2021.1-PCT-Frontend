@@ -1,113 +1,150 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.div`
+  flex: 1;
   display: flex;
-  padding-left: 1%;
-  padding-right: 1%;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #172a3a;
   justify-content: space-around;
+
+  background-color: #172a3a;
+
   width: 80%;
-  height: 90px;
-  max-height: 20%;
-  margin-top: 10px;
+  padding: 1%;
+
+  margin-top: 0.7rem;
   border-radius: 10px;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 2%;
+  }
 `;
 
 export const TitleDateContainer = styled.div`
   flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const ResultTitle = styled.text`
-  font-family: Rokkitt, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
   font-style: normal;
-  font-weight: 900;
-  font-size: 26px;
-  line-height: 28px;
+  font-family: Rokkitt, sans-serif;
+
+  width: 80%;
+  height: 1rem;
+
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   color: #ffffff;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @media screen and (max-width: 1024px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const ResultDate = styled.text`
-  font-family: Rokkitt, sans-serif;
-  font-style: normal;
+  font-size: 1rem;
   font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
+  font-style: normal;
+  font-family: Rokkitt, sans-serif;
+
+  width: 20%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   color: #ffffff;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @media screen and (max-width: 1024px) {
+    font-size: 0.5rem;
+  }
 `;
 
 export const ResultLink = styled.a`
-  font-family: Rokkitt, sans-serif;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 0px;
+  font-family: Rokkitt, sans-serif;
+  /* line-height: 0px; */
   /* identical to box height */
-  flex: 1;
+
+  width: 80%;
   color: #1bc47d;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* margin-top: 5px; */
+
+  text-align: left;
+
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const ResultCategoriesText = styled.text`
-  font-family: Rokkitt, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
   font-style: normal;
-  font-weight: 900;
-  font-size: 22px;
-  line-height: 28px;
-  flex: 1;
+  font-family: Rokkitt, sans-serif;
+  /* line-height: 28px; */
 
   color: #ffffff;
+  margin-top: 5px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const ResultCategories = styled.div`
-  width: 5%;
-  height: 100%;
+  /* width: 5%; */
   display: flex;
-  margin-right: 5px;
   align-items: center;
-  border-radius: 10px;
   justify-content: center;
-  background-color: #1bc47d;
-  /* flex: 1; */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  padding: 0.2rem;
+  margin-top: 5px;
+  margin-right: 5px;
   margin-bottom: 2px;
+  border-radius: 10px;
+  background-color: #1bc47d;
 
   text {
-    font-family: Rokkitt, sans-serif;
-    font-style: italic;
+    font-size: 0.8rem;
     font-weight: bold;
-    font-size: 12px;
-    line-height: 16px;
+    font-style: italic;
+    font-family: Rokkitt, sans-serif;
+    /* line-height: 16px; */
 
     color: #172a3a;
+  }
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.7rem;
+
+    text {
+      font-size: 0.6rem;
+    }
   }
 `;
 
 export const ResultCategoriesContainer = styled.div`
-  display: flex;
   flex: 1;
+  width: 100%;
+  display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
 `;

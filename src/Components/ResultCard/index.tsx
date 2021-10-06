@@ -28,10 +28,10 @@ interface ResultCardProps extends ButtonProps {
 }
 
 const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
-  const categories = [1, 2, 3]; //receber as categorias
+  const categories = [1]; //receber as categorias
 
   const openLink = () => {
-    window.open("https://google.com", "_blank");
+    window.open(item.url, "_blank");
   };
 
   return (
@@ -47,7 +47,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
       <ResultCategoriesText>Categorias</ResultCategoriesText>
       <ResultCategoriesContainer>
         {categories.map((i) => (
-          <ResultCategories key={i}>Justiça</ResultCategories>
+          <ResultCategories key={i}>
+            <text>Documento</text>
+          </ResultCategories>
         ))}
       </ResultCategoriesContainer>
     </Container>
