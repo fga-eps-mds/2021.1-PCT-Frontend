@@ -2,97 +2,120 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  width: 100%;
-  padding-right: 20px;
-  padding-left: 20px;
-  max-height: 60px;
-  height: 40px;
+  flex: 1;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: row;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  justify-content: space-evenly;
+
+  /* top: 0;
+  position: fixed;
+  background-color: #edffd3; */
+
+  @media screen and (max-width: 1024px) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
 `;
 
 export const Title = styled.div`
-  width: 40%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  flex: 0.7;
   border: none;
+  display: flex;
   color: #004346;
-  font-size: 20px;
-  font-weight: bold;
-  font-family: Rokkitt, sans-serif;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const LogoImage = styled.img`
-  width: 60%;
-  margin-left: 5%;
+  width: 100%;
 `;
 
 export const ButtonsContainer = styled.div`
-  width: 50%;
-  height: 100%;
+  flex: 4;
   border: none;
-  font-family: Rokkitt, sans-serif;
-  align-items: center;
-  justify-content: space-between;
   display: flex;
+  align-items: center;
   flex-direction: row;
-  background-color: black;
+  justify-content: space-evenly;
 `;
 
 export const ProfileCotainer = styled.div`
-  width: 10%;
-  height: 100%;
-  align-items: center;
+  flex: 0.3;
   display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const HeaderButton = styled.button`
+  flex: 1;
+  height: 2rem;
   border: none;
   color: #1bc47d;
-  width: 33.2%;
-  height: 100%;
   display: flex;
   font-weight: bold;
   align-items: center;
   justify-content: center;
   background-color: #edffd3;
-
-  p {
-    font-size: 22px;
-    cursor: pointer;
-    text-align: center;
-  }
 `;
 
 export const MyLink = styled(Link)`
   color: #1bc47d;
-  font-size: 22px;
+  font-size: 1.2rem;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const ProfileButton = styled.button`
-  border-radius: 8px;
-  display: flex;
+  flex: 1;
+  height: 2rem;
   color: white;
+  display: flex;
   text-align: center;
-  font-size: 20px;
-  height: 100%;
   align-items: center;
-  justify-content: center;
-  width: 80%;
+  border-radius: 0.5rem;
+  justify-content: space-evenly;
   background-color: #004346;
+  font-size: 1.1rem;
+  padding: 5%;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1rem;
+    padding: 5%;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.8rem;
+    padding: 5%;
+  }
 `;
 
 export const PersonIcon = styled.img`
-  height: 22px;
-  max-height: 40px;
-  width: 22px;
-  max-width: 40px;
-  margin-left: 5px;
+  height: 1.1rem;
+  max-height: 1rem;
+  width: 1rem;
+  max-width: 1rem;
+  @media screen and (max-width: 1024px) {
+    height: 1rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    height: 0.8rem;
+  }
 `;

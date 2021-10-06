@@ -21,24 +21,23 @@ const Header: React.FC = () => {
       <Title>
         <LogoImage src={logoImage} />
       </Title>
-      <>
-        <ButtonsContainer>
-          <HeaderButton>
-            <MyLink to={"/"}>Início</MyLink>
-          </HeaderButton>
-          <HeaderButton>
-            <MyLink to={"/"}>Pesquisa Avançada</MyLink>
-          </HeaderButton>
-          <HeaderButton>
-            <MyLink to={"/"}>Sobre Nós</MyLink>
-          </HeaderButton>
-        </ButtonsContainer>
-        {/* <ProfileCotainer>
-          <ProfileButton onClick={() => alert("teste")}>
-            Login <PersonIcon src={personIcon} />
-          </ProfileButton>
-        </ProfileCotainer> */}
-      </>
+
+      <ButtonsContainer>
+        <HeaderButton>
+          <MyLink to={"/"}>Início</MyLink>
+        </HeaderButton>
+        <HeaderButton>
+          <MyLink to={"/"}>Pesquisa Avançada</MyLink>
+        </HeaderButton>
+        <HeaderButton>
+          <MyLink to={"/"}>Sobre Nós</MyLink>
+        </HeaderButton>
+      </ButtonsContainer>
+      <ProfileCotainer>
+        <ProfileButton onClick={() => alert("teste")}>
+          Login <PersonIcon src={personIcon} />
+        </ProfileButton>
+      </ProfileCotainer>
     </Container>
   );
 };
