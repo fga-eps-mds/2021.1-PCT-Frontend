@@ -80,7 +80,7 @@ const HomeScreen: React.FC = () => {
       <MyCarousel />
       <SearchBar />
       <NewResultsContainer>
-        <p>Últimas Atualizações</p>
+        <p>Resultados</p>
         {isLoading === true ? (
           <Loader
             type="ThreeDots"

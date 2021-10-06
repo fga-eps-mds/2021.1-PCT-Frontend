@@ -16,7 +16,8 @@ export const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 70px;
+  margin-bottom: 70px;
 `;
 
 export const SearchInput = styled.input`
