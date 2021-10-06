@@ -2,54 +2,47 @@ import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 
 export const Container = styled.div`
+  flex: 2;
+  width: 99%;
   display: flex;
+  margin-top: 0.5rem;
   flex-direction: row;
-  width: 98%;
-  height: 30vh;
-  margin-top: 60px;
-  max-height: 300px;
-  position: relative;
   align-items: center;
   justify-content: center;
   /* background-color: pink; */
 `;
 
 export const StyledCarousel = styled(Carousel)`
-  /* flex: 1; */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-color: aliceblue; */
-`;
-
-export const CardContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex: 1;
-  width: 100%;
-  height: 100%;
-  max-height: 25vh;
-  background-color: aliceblue;
-`;
-
-export const CarouselImage = styled.img`
-  width: 100%;
-  object-fit: cover;
-`;
-
-export const CarouselTextContainer = styled.div`
   display: flex;
-  color: white;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: #000000;
-  position: absolute;
-  left: 5%;
-  bottom: 50%;
-  opacity: 50%;
-  padding: 5%;
+  justify-content: center;
+`;
+
+export const ArrowButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-self: center;
+  border-radius: 50%;
+  background-color: #172a3a;
+
+  img {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
 `;
