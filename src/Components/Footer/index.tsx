@@ -14,8 +14,8 @@ const Footer: React.FC = () => {
   return (
     <Container>
       <CopyrightContainer>
-        <Copyright> @2021 </Copyright>
-        <Copyright> Povos e Comunidades Tradicionais</Copyright>
+        <Copyright>@2021</Copyright>
+        <Copyright>Povos e Comunidades Tradicionais</Copyright>
       </CopyrightContainer>
       <FooterButtonsContainer>
         <FooterButtons src={unbLogo} />
