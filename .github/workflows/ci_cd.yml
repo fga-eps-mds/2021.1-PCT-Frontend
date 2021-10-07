@@ -25,7 +25,7 @@ jobs:
         run: docker run pcts-front yarn build
 
       - name: Run tests
-        run: docker run --volume ${PWD}/:/app pcts-front bash -c "yarn install && CI=true yarn coverage"
+        run: docker run --volume ${PWD}/:/app pcts-front bash -c "yarn install && CI=false yarn coverage"
 
       - name: SonarCloud Report coverage
         uses: SonarSource/sonarcloud-github-action@master
@@ -36,15 +36,68 @@ jobs:
   deploy_dev:
     if: github.ref == 'refs/heads/dev'
     needs: integration
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP_NAME_DEV: ${{ 'pcts-frontend-dev' }}
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Deploy to Heroku
+        run: |
+          heroku container:login
+          heroku container:push web -a $HEROKU_APP_NAME_DEV
+          heroku container:release web -a $HEROKU_APP_NAME_DEV
 
   deploy_main:
     if: github.ref == 'refs/heads/main'
     needs: integration
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      HEROKU_APP_NAME_PROD: ${{ 'pcts-frontend-prod' }}
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Deploy to Heroku
+        run: |
+          heroku container:login
+          heroku container:push web -a $HEROKU_APP_NAME_PROD
+          heroku container:release web -a $HEROKU_APP_NAME_PROD
+
+  # deploy_dev:
+  #   if: github.ref == 'refs/heads/dev'
+  #   needs: integration
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Deploy to Staging
+  #       id: deploy-vercel-staging
+  #       uses: amondnet/vercel-action@v20
+  #       with:
+  #         vercel-token: ${{ secrets.VERCEL_TOKEN }}
+  #         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+  #         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+  #         scope: ${{ secrets.VERCEL_ORG_ID }}
+
+  # deploy_main:
+  #   if: github.ref == 'refs/heads/main'
+  #   needs: integration
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Deploy to Production
+  #       uses: amondnet/vercel-action@v20
+  #       id: deploy-vercel-production
+  #       with:
+  #         vercel-token: ${{ secrets.VERCEL_TOKEN }}
+  #         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+  #         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+  #         vercel-args: '--prod'
+  #         scope: ${{ secrets.VERCEL_ORG_ID }}

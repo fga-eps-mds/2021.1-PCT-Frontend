@@ -22,7 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={searchTerm}
         onChange={onChange}
       />
-      <MyLink to={ableToSearch ? `/resultados/${searchTerm}` : "#"}>
+      <MyLink to={"#"}>
         <SearchIcon src={searchIcon} />
       </MyLink>
     </Container>

@@ -76,8 +76,8 @@ const Results: React.FC = () => {
     <Container>
       <Header />
       <NewResultsContainer>
-        <p>Últimas Atualizações</p>
-        <SearchBar />
+        <p>Resultados</p>
+        {/* <SearchBar /> */}
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
