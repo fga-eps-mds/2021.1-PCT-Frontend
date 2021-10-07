@@ -1,30 +1,41 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  background-color: #fdfeff;
-  max-width: 832px;
-  max-height: 60px;
-  height: 40px;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-color: black;
+  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+
+  width: 40%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: #fdfeff;
+
+  border-radius: 5px;
+  border-color: black;
+  border: 1px solid black;
 `;
 
 export const SearchInput = styled.input`
-  flex: auto;
-  background-color: #fdfeff;
+  flex: 1;
+  width: 100%;
+  font-size: 1rem;
   border: 0px solid black;
 `;
 
+export const MyLink = styled(Link)`
+  color: #1bc47d;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+`;
+
 export const SearchIcon = styled.img`
-  height: 22px;
-  max-height: 40px;
-  width: 22px;
-  max-width: 40px;
+  width: 1rem;
+  height: 1rem;
 `;

@@ -1,11 +1,16 @@
-FROM node:14
-
-COPY . /app
+FROM node:alpine
 
 WORKDIR /app
 
+COPY package*.json ./
+
 RUN yarn install
-RUN npm run build
+
+COPY . /app
+
+EXPOSE 3000
+
+#RUN npm run build
 
 # Executar em homologacao/producao (heroku)
-CMD npm run start_prod
+#CMD npm run start_prod

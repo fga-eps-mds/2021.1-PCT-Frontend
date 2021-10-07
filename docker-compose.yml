@@ -1,8 +1,8 @@
 version: '3.5'
 services:
   pcts-front:
-    container_name: pcts-front
     build: .
+    container_name: pcts-front
     image: pcts-front
     restart: unless-stopped
     ports:

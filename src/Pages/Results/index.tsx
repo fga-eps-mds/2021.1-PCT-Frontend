@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import api from "../../services/api";
-
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-import MyCarousel from "../../Components/Carousel";
 import ResultCard from "../../Components/ResultCard";
 
+import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
-import {
-  Container,
-  MyFlatlist,
-  NewResultsContainer,
-  NewsTitle,
-} from "./styles";
+import { Container, NewResultsContainer } from "./styles";
+import api from "../../services/api";
 
 interface documentResult {
   id: number;
@@ -29,18 +23,20 @@ interface documentResult {
   created_at: string;
 }
 
-type documentsResponse = {
+type DocumentsReponse = {
   count: number;
   next: string;
   previous: string;
   results: Array<documentResult>;
 };
 
-const HomeScreen: React.FC = () => {
-  const [documentsResponse, setDocumentsResponse] =
-    useState<documentsResponse>();
+const Results: React.FC = () => {
+  const [documentsReponse, setDocumentsResponse] = useState<DocumentsReponse>();
   const [isLoading, setIsLoading] = useState(false);
-  const [mySearch, setMySearch] = useState("");
+
+  const renderResultCard = (result: documentResult) => {
+    return <ResultCard key={result?.id} item={result} />;
+  };
 
   useEffect(() => {
     getDocuments();
@@ -60,21 +56,13 @@ const HomeScreen: React.FC = () => {
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<documentsResponse>(
-      `${documentsResponse?.next}`
-    );
-    console.log(
-      "nova chamada: ",
-      await api.get<documentsResponse>(`${documentsResponse?.next}`)
-    );
-    if (documentsResponse?.results) {
-      let myDocuments: Array<documentResult> = documentsResponse?.results;
+    const { data } = await api.get<DocumentsReponse>(``);
+    if (documentsReponse?.results) {
+      let myDocuments: Array<documentResult> = documentsReponse?.results;
       myDocuments = [...myDocuments, ...data.results];
 
       const newDocumentsResponse = {
-        count: data.count,
-        next: data.next,
-        previous: data.previous,
+        ...documentsReponse,
         results: myDocuments,
       };
 
@@ -84,23 +72,12 @@ const HomeScreen: React.FC = () => {
     console.log(data);
   };
 
-  const renderResultCard = (result: documentResult) => {
-    return <ResultCard key={result?.id} item={result} />;
-  };
-
   return (
     <Container>
       <Header />
-      <MyCarousel />
-      <SearchBar
-        ableToSearch={mySearch === "" ? false : true}
-        searchTerm={mySearch}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setMySearch(e.target.value);
-        }}
-      />
-      <NewsTitle>Últimas Atualizações</NewsTitle>
       <NewResultsContainer>
+        <p>Resultados</p>
+        {/* <SearchBar /> */}
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
@@ -110,13 +87,11 @@ const HomeScreen: React.FC = () => {
             // timeout={1000} //3 secs
           />
         ) : (
-          <MyFlatlist
-            list={documentsResponse?.results}
+          <Flatlist
+            list={documentsReponse?.results}
             renderItem={(item: documentResult) => renderResultCard(item)}
-            renderWhenEmpty={() => (
-              <div>Não foi possível encontrar resultados!</div>
-            )}
-            hasMoreItems={documentsResponse?.next === null ? false : true}
+            renderWhenEmpty={() => <div>List is empty!</div>}
+            hasMoreItems={documentsReponse?.next === null ? false : true}
             loadMoreItems={() => getMoreDocuments()}
             paginationLoadingIndicator={
               <Loader
@@ -135,4 +110,4 @@ const HomeScreen: React.FC = () => {
   );
 };
 
-export default HomeScreen;
+export default Results;

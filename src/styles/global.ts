@@ -6,6 +6,7 @@ export default createGlobalStyle`
         padding: 0;
         outline: 0;
         box-sizing: border-box;
+        max-width: 100vw;
     }
 
     body {
@@ -14,13 +15,32 @@ export default createGlobalStyle`
     }
 
     body, input, button {
-        font: 16px sans-serif;
+        font: 10px sans-serif;
+        /* font-size:15px;
+        line-height:1.6; */
     }
 
     #root {
         max-width: 1900px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 0.2rem ;
+        font: 10px sans-serif;
     }
-    
+
+    //Botões do carousel
+    /* .rec.rec-arrow{
+        height: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-self: center;
+        align-self: center;
+        /* background-color: green; */
+        /* height: 20px;
+        width: 20px; */
+    }
+    /* .rec.rec-arrow:disabled {
+        visibility: hidden;
+    } */
+     
 `;

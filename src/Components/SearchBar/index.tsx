@@ -1,14 +1,30 @@
 import React from "react";
 
-import { Container, SearchIcon, SearchInput } from "./styles";
+import { Container, MyLink, SearchIcon, SearchInput } from "./styles";
 
 import searchIcon from "./../../assets/images/searchIcon.png";
+import { InputGroupProps } from "react-bootstrap";
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps extends InputGroupProps {
+  searchTerm: string;
+  ableToSearch: boolean;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  searchTerm,
+  onChange,
+  ableToSearch,
+}) => {
   return (
     <Container>
-      <SearchInput placeholder="Digite sua pesquisa" />
-      <SearchIcon src={searchIcon} />
+      <SearchInput
+        placeholder="Pesquisar"
+        value={searchTerm}
+        onChange={onChange}
+      />
+      <MyLink to={"#"}>
+        <SearchIcon src={searchIcon} />
+      </MyLink>
     </Container>
   );
 };
