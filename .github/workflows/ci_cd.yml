@@ -25,7 +25,7 @@ jobs:
         run: docker run pcts-front yarn build
 
       - name: Run tests
-        run: docker run --volume ${PWD}/:/app pcts-front bash -c "yarn install && CI=false yarn coverage"
+        run: docker run --volume ${PWD}/:/app pcts-front bash -c "CI=false yarn coverage"
 
       - name: SonarCloud Report coverage
         uses: SonarSource/sonarcloud-github-action@master
