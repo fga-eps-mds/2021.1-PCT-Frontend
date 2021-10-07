@@ -33,11 +33,11 @@ const Header: React.FC = () => {
           <MyLink to={"/"}>Sobre Nós</MyLink>
         </HeaderButton>
       </ButtonsContainer>
-      <ProfileCotainer>
+      {/* <ProfileCotainer>
         <ProfileButton onClick={() => alert("teste")}>
           Login <PersonIcon src={personIcon} />
         </ProfileButton>
-      </ProfileCotainer>
+      </ProfileCotainer> */}
     </Container>
   );
 };
