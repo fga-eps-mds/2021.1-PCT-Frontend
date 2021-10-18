@@ -32,6 +32,7 @@ export const LoginForm = styled.div `
     width: 50%;
     height: 60%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
     align-items: center;
     justify-content: center;
 
@@ -76,12 +77,13 @@ export const Input = styled.input `
 `;
 
 export const BotaoLogar = styled.button `
-    width: 30%;
+    width: 100%;
     height: auto;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1.5%;
     margin: 2%;
-    margin-left: 35%;
+    margin-top: 5%;
+    margin-left: 0;
     border: none;
     cursor: pointer;
     font-weight: 600;
@@ -93,6 +95,7 @@ export const BotaoLogar = styled.button `
 export const EsqueciSenha = styled.div `
     color: #0062cc;
     font-weight: 600;
+    margin-top: 5%;
     text-decoration: none;
-    margin-left: 41%;
+    text-align: center;
 `;

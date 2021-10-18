@@ -6,13 +6,19 @@ import AboutUs from "../Pages/AboutUs";
 import Results from "../Pages/Results";
 import Login from "../Pages/Login";
 
-const Routes: React.FC = () => (
-  <Switch>
-    <Route path="/" exact component={HomeScreen} />
-    <Route path="/sobreNos" component={AboutUs} />
-    <Route path="/resultados/:searchTerm+" component={Results} />
-    <Route path="/login" component={Login} />
-  </Switch>
-);
+const Routes: React.FC = () => {
+
+  const isLoggedIn = localStorage.getItem('@user');
+
+  return (
+    <Switch>
+      <Route path="/" exact component={HomeScreen} />
+      <Route path="/sobreNos" component={AboutUs} />
+      <Route path="/resultados/:searchTerm+" component={Results} />
+      <Route path="/login" component={Login} />
+      {/* Exemplo isLoggedIn: {isLoggedIn && <Route path="/login" component={Login} />} */}
+    </Switch>
+  );
+};
 
 export default Routes;

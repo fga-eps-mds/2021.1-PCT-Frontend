@@ -9,6 +9,7 @@ export const Container = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1rem;
+  margin-bottom: 1rem;
   justify-content: space-evenly;
 
   /* top: 0;
@@ -48,11 +49,13 @@ export const ButtonsContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-export const ProfileCotainer = styled.div`
+export const ProfileContainer = styled.div`
   flex: 0.3;
+  width: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 1.5rem;
 `;
 
 export const HeaderButton = styled.button`
@@ -105,6 +108,33 @@ export const ProfileButton = styled.button`
     font-size: 0.8rem;
     padding: 5%;
   }
+`;
+
+export const UserButton = styled.div`
+  flex: 1;
+  width: 10rem;
+  color: #004346;
+  display: flex;
+  font-size: 1.1rem;
+  padding: 5%;
+  margin-right: 2rem;
+  text-align: center;
+`;
+
+export const LogoutButton = styled.button`
+  flex: 1;
+  height: 2rem;
+  color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  cursor: pointer; 
+  justify-content: space-evenly;
+  background-color: #004346;
+  font-size: 1.1rem;
+  padding: 5%;
+  margin-left: 2rem;
 `;
 
 export const PersonIcon = styled.img`
