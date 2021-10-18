@@ -4,12 +4,14 @@ import { Switch, Route } from "react-router-dom";
 import HomeScreen from "../Pages/HomeScreen";
 import AboutUs from "../Pages/AboutUs";
 import Results from "../Pages/Results";
+import Login from "../Pages/Login";
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={HomeScreen} />
     <Route path="/sobreNos" component={AboutUs} />
     <Route path="/resultados/:searchTerm+" component={Results} />
+    <Route path="/login" component={Login} />
   </Switch>
 );
 

@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <Title>
-        <LogoImage src={logoImage} />
+        <MyLink to="/"><LogoImage src={logoImage} /></MyLink>
       </Title>
 
       <ButtonsContainer>
@@ -33,11 +33,11 @@ const Header: React.FC = () => {
           <MyLink to={"/"}>Sobre Nós</MyLink>
         </HeaderButton>
       </ButtonsContainer>
-      {/* <ProfileCotainer>
-        <ProfileButton onClick={() => alert("teste")}>
-          Login <PersonIcon src={personIcon} />
+      <ProfileCotainer>
+        <ProfileButton>
+          <MyLink to="/login">Login <PersonIcon src={personIcon}/> </MyLink>
         </ProfileButton>
-      </ProfileCotainer> */}
+      </ProfileCotainer>
     </Container>
   );
 };

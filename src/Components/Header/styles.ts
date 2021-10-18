@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex-direction: row;
   padding-left: 1rem;
   padding-right: 1rem;
+  padding-top: 1rem;
   justify-content: space-evenly;
 
   /* top: 0;
