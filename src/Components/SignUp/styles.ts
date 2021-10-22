@@ -26,11 +26,11 @@ export const Container = styled.div`
   }
 `;
 
-export const LoginForm = styled.div `
+export const CadastroForm = styled.form `
     display: block;
     padding: 2%;
     width: 40%;
-    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 7px 26px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -39,8 +39,15 @@ export const LoginForm = styled.div `
     h3{
         text-align: center;
         color: #0c5738;
-        font-size: 27px;
+        font-size: 30px;
         margin-bottom: 3%;
+    }
+
+    p { 
+      text-align: center;
+      color: #1bc47d;
+      font-size: 14px;
+      margin-bottom: 3%;
     }
 `;
 
@@ -49,21 +56,6 @@ export const ItemForm = styled.div `
     flex: 1;
     align-items: center;
     justify-content: center;
-`;
-
-export const ItemFormOptions = styled.div `
-    width: 100%;
-    margin-top: 3%;
-    margin-bottom: 1%;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-
-    ul { 
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      list-style: none;
-    }
 `;
 
 export const MyLink = styled(Link)`
@@ -92,7 +84,7 @@ export const Input = styled.input `
     border-radius: 3px;
 `;
 
-export const BotaoLogar = styled.button `
+export const BotaoCadastrar = styled.button `
     width: 100%;
     height: auto;
     border-radius: 0.5rem;
@@ -116,6 +108,8 @@ export const OpcoesExtra = styled.li `
     color: #0062cc;
     font-weight: 600;
     margin-top: 5%;
+    margin-bottom: 2%;
     text-decoration: none;
     text-align: center;
+    list-style: none;
 `;

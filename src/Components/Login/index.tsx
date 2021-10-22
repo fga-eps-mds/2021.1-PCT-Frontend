@@ -7,9 +7,10 @@ import {
   Container,
   LoginForm,
   BotaoLogar,
-  EsqueciSenha,
+  OpcoesExtra,
   Input,
   ItemForm,
+  ItemFormOptions,
   MyLink,
 } from "./styles";
 
@@ -74,11 +75,16 @@ const TelaLogin: React.FC = () => {
               Entrar
             </BotaoLogar>
           </ItemForm>
-          <ItemForm>
-            <EsqueciSenha>
-              <MyLink to={"/"}>Esqueci minha senha</MyLink>
-            </EsqueciSenha>
-          </ItemForm>
+          <ItemFormOptions>
+            <ul>
+              <OpcoesExtra>
+                <MyLink to={"/"}>Esqueci minha senha</MyLink>
+              </OpcoesExtra>
+              <OpcoesExtra>
+                <MyLink to={"/cadastro"}>Não possuo cadastro</MyLink>
+              </OpcoesExtra>
+            </ul>
+          </ItemFormOptions>
         </>
       </LoginForm>
     </Container>
