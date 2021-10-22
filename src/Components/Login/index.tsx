@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../../services/api";
+import { useHistory } from "react-router-dom";
 
 import apiUsers from "../../services/apiUsers";
 
@@ -14,60 +14,47 @@ import {
   MyLink,
 } from "./styles";
 
-function initialState() {
-  return { email: "", password: "" };
-}
-
 const TelaLogin: React.FC = () => {
-  const [credenciais, setCredenciais] = useState(initialState);
+  const [email, setEmail] = useState();
+  const [senha, setSenha] = useState();
 
-//   const login = async () => {
-//     try {
-//         const response = await apiUsers.post('/login', credenciais);
-//         const res = response.data;
+  const history = useHistory();
 
-//         if (res.error){
-//             alert(res.message);
-//             return false;
-//         }
+  async function login(e: { preventDefault: () => void; }) {
 
-//         localStorage.setItem('@user', JSON.stringify(res.usuario));
-//         window.location.reload();
+    try {
+        const response = await apiUsers.post('COLOCAR ROTA DO LOGIN', {email, senha});
+        const res = response.data;
+
+        // localStorage.setItem('userId', response.data.id);
+        // localStorage.setItem('userNome', response.data.nome);
         
-//     }  catch (err) {
-//         alert(err.message);
-//     }  
-//   };
+        history.push('/login');
+        
+    }  catch (err) {
+        alert("Erro ao tentar realizar o login. Por favor, tente novamente mais tarde");
+    }  
+  }
 
   return (
     <Container>
-      <LoginForm>
+      <LoginForm onSubmit={login}>
         <h3>Login</h3>
         <>
           <ItemForm>
             <Input
               type="text"
               placeholder="Email"
-              name="user"
-              onChange={(e) => { 
-                setCredenciais({
-                    ...credenciais,
-                    email: e.target.value
-                  });
-              }}
+              value="email"
+              // onChange={e => setEmail(e.target.value)}
             />
           </ItemForm>
           <ItemForm>
             <Input
               type="password"
               placeholder="Senha"
-              name="password"
-              onChange={(e) => { 
-                setCredenciais({
-                  ...credenciais,
-                  password: e.target.value,
-                });
-            }}
+              value="senha"
+              // onChange={e => setSenha(e.target.value)}
             />
           </ItemForm>
           <ItemForm>

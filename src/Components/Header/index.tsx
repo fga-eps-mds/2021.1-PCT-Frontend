@@ -20,23 +20,15 @@ import logoImage from "./../../assets/images/LogoPCT.png";
 
 const Header: React.FC = () => {
 
-  const [user, setUser] = useState({});
-
   const history = useHistory();
 
-  // const isLoggedIn = localStorage.getItem('@user');
+  const userNome = localStorage.getItem('userNome');
   const isLoggedIn = true;
   
   const logout = () => {
     localStorage.clear();
     history.push("/");
   }
-
-
-  // useEffect(() => {
-  //   setUser(JSON.parse(localStorage.getItem('@user')))
-  //   }, []);
-  
 
   return (
     <Container>
@@ -57,7 +49,7 @@ const Header: React.FC = () => {
       <ProfileContainer>
         {isLoggedIn ? 
         (<UserButton>
-          {/* Olá {user.nome} - <MyLink onClick={logout}>Sair</MyLink> */}
+          {/* Olá {userNome} - <MyLink onClick={logout}>Sair</MyLink> */}
           Olá, Cliente
           <LogoutButton onClick={logout}>Sair</LogoutButton> 
         </UserButton>) : 

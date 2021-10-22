@@ -65,6 +65,11 @@ export const MyLink = styled(Link)`
   text-align: center;
   text-decoration: none;
 
+  &:hover {
+    color: #13965f;
+    font-size: 14px;
+  }
+
   @media screen and (max-width: 1024px) {
     font-size: 1rem;
   }

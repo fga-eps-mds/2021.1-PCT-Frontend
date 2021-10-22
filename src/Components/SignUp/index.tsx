@@ -21,8 +21,7 @@ const TelaCadastro: React.FC = () => {
 
   const history = useHistory();
 
-  async function realizaCadastro(e: Event) {
-    e.preventDefault();
+  const realizaCadastro = async (e: { preventDefault: () => void; }) => {
     
     const data = {
       nome,
@@ -31,11 +30,11 @@ const TelaCadastro: React.FC = () => {
     };
 
     try {
-      const response = await apiUsers.post('COLOCAR A ROTA DA API', data)
-      alert(`Cadastro realizado com sucesso! ID: ${response.data.id}`);
+      const response = await apiUsers.post('COLOCAR A ROTA DE CADASTRO', data)
+      // alert(`Cadastro realizado com sucesso! ID: ${response.data.id}`);
       history.push('/login');
     } catch (err) {
-      alert(`Houve um erro ao cadastrar. Por favor, tente novamente.`);
+      alert(`Houve um erro ao cadastrar. Por favor, tente novamente mais tarde.`);
     }
   }
 
