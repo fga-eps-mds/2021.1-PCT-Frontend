@@ -30,7 +30,7 @@ const Header: React.FC = () => {
           <MyLink to={"/"}>Pesquisa Avançada</MyLink>
         </HeaderButton>
         <HeaderButton>
-          <MyLink to={"/"}>Sobre Nós</MyLink>
+          <MyLink to={"/SobreNos"}>Sobre Nós</MyLink>
         </HeaderButton>
       </ButtonsContainer>
       {/* <ProfileCotainer>

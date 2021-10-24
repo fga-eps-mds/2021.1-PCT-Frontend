@@ -8,9 +8,9 @@ export const Container = styled.div`
   justify-content: space-evenly;
 
   width: 100%;
-  height: 3%;
-  max-height: 5%;
-  padding-left: 15%;
+  height: 6%;
+  max-height: 7%;
+  
   /* padding-right: 5%; */
   background-color: #0f210a;
 
@@ -23,16 +23,17 @@ export const Container = styled.div`
   }
 `;
 export const CopyrightContainer = styled.div`
-  flex: 3;
+  flex: 2;
   display: flex;
   flex-direction: row;
+  width: 10%;
+  padding-left: 5%;
 `;
 
 export const Copyright = styled.text`
   color: #fdfeff;
   font-size: 1rem;
   margin-left: 0.3rem;
-  margin-right: 0.3rem;
   font-family: Rokkit, sans-serif;
 
   @media screen and (max-width: 1024px) {
@@ -45,6 +46,7 @@ export const FooterButtonsContainer = styled.div`
   max-width: 25%;
   height: 100%;
   display: flex;
+  margin-left: -50%;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
