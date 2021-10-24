@@ -20,6 +20,12 @@ export const Container = styled.div`
   border: 1px solid black;
 `;
 
+export const SearchForm = styled.form`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+`;
+
 export const SearchInput = styled.input`
   flex: 1;
   width: 100%;
