@@ -44,16 +44,6 @@ export const Card = styled.div`
   margin-top: 300px;
 `;
 
-export const Title = styled.div`
-  margin-top: 80px;
-  color: #1bc47d; 
-  font-size:20px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 30px;
-  color: #FFFFFF;
-`;
-
 export const TitleInfo = styled.div`
   margin-top: 40px;
   margin-bottom: 10px;
@@ -94,6 +84,16 @@ export const Contacts = styled.div`
   flex: 1;
   display: flex;
   margin-right: 10px;
+`;
+
+export const ConfigImage = styled.img`
+  height: 4.0rem;
+  width: 4.0rem;
+
+  @media screen and (max-width: 1024px) {
+    height: 1rem;
+    width: 1rem;
+  }
 `;
 
 
