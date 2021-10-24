@@ -1,31 +1,47 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 150vh;
+  height: 130vh;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 `;
-export const CardHeader = styled.div`
-  justify-content: center; 
-  height: 100vh;
-  align-items: center;
-  text-align: center;
-`;
 
-export const Card = styled.div`
-  margin-top: 60px;
-  width: 400px;
+export const CardContainer = styled.div`
+  width: 1400px;
   border: none;
   border-radius: 15px;
-  height: 400px;
+  height: 800px;
   margin-bottom: 300px;
   flex-direction: column;
   flex: 1;
   display: flex;
   background-color: #172A3A;
+  align-items: center;
+`;
+
+export const CardHeader = styled.div`
+  justify-content: center; 
+  height: 30vh;
+  width: 130vh;
+  align-items: center;
+  text-align: center;
+`;
+
+export const Card = styled.div`
+  width: 1400px;
+  border: none;
+  border-radius: 15px;
+  height: 50px;
+  margin-bottom: 300px;
+  flex-direction: row;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-right: 30px;
+  margin-top: 300px;
 `;
 
 export const Title = styled.div`
@@ -35,6 +51,7 @@ export const Title = styled.div`
   text-align: center;
   font-weight: bold;
   font-size: 30px;
+  color: #FFFFFF;
 `;
 
 export const TitleInfo = styled.div`
@@ -43,12 +60,13 @@ export const TitleInfo = styled.div`
   text-align: justify;
   color: #1bc47d;
   font-size: 18px;
+  color: #FFFFFF;
 `;
 
 export const DescriptionInfo = styled.div`
+  color: #FFFFFF;
   margin-top: 15px;
   text-align: justify;
-  color: #1bc47d;
   font-size: 15px;
 `;
 
@@ -64,7 +82,7 @@ export const Image = styled.div`
 export const ContactsInfo = styled.div`
   text-align: justify;
   color: #FFFFFF;
-  font-size: 20px;
+  font-size: 19px;
 `;
 
 export const Contacts = styled.div`
@@ -75,34 +93,11 @@ export const Contacts = styled.div`
   flex-direction: row;
   flex: 1;
   display: flex;
+  margin-right: 10px;
 `;
 
-export const TeamCard = styled.div`
-  max-width:100%;
-  max-height:100%;
-  margin-bottom: 20px;
-  align-items: center;
-  flex-direction: row;
-  flex: 1;
-  display: flex;
-  
-`;
 
-export const Dev = styled.div`
-  max-width:100%;
-  max-height:100%;
-  margin-bottom: 20px;
-  align-items: center;
-  flex-direction: row;
-  flex: 1;
-  display: flex;
-`;
 
-export const DevInfo = styled.div`
-  text-align: justify;
-  color: #1bc47d;
-  font-size: 20px;
-`;
 
 
 
