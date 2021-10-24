@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import HomeScreen from "../Pages/HomeScreen";
 import AboutUs from "../Pages/AboutUs";
 import Results from "../Pages/Results";
+import ScrappersResults from "../Pages/Monitoring";
 
 const Routes: React.FC = () => (
   <Switch>

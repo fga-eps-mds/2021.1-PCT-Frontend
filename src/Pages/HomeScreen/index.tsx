@@ -42,6 +42,7 @@ const HomeScreen: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [mySearch, setMySearch] = useState("");
 
+
   useEffect(() => {
     getDocuments();
     console.log("olá");
