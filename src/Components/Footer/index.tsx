@@ -11,7 +11,7 @@ import {
 import unbLogo from "../../assets/images/unbLogo.png";
 import fbLogo from "../../assets/images/facebook.png";
 import email from "../../assets/images/email.png";
-import skype from "../../assets/images/skype.png";
+import skype from "../../assets/images/logoSkype.png";
 
 
 const Footer: React.FC = () => {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   height: 130vh;
@@ -7,16 +8,16 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  height: auto;
 `;
 
 export const CardContainer = styled.div`
-  width: 1400px;
+  width: 80%;
   border: none;
   border-radius: 15px;
-  height: 800px;
-  margin-bottom: 300px;
+  margin-bottom: 5%;
+  margin-top: 3%;
   flex-direction: column;
-  flex: 1;
   display: flex;
   background-color: #172A3A;
   align-items: center;
@@ -24,66 +25,58 @@ export const CardContainer = styled.div`
 
 export const CardHeader = styled.div`
   justify-content: center; 
-  height: 30vh;
-  width: 130vh;
+  padding-top: 2%;
+  margin-bottom: 4%;
+  width: 80%;
   align-items: center;
   text-align: center;
 `;
 
 export const Card = styled.div`
-  width: 1400px;
+  width: 70%;
   border: none;
   border-radius: 15px;
-  height: 50px;
-  margin-bottom: 300px;
   flex-direction: row;
+  margin-left: -12%;
   flex: 1;
   display: flex;
-  justify-content: center;
-  padding-right: 30px;
-  margin-top: 300px;
+  justify-content: space-between;
 `;
 
 export const TitleInfo = styled.div`
   margin-top: 40px;
-  margin-bottom: 10px;
   text-align: justify;
   color: #1bc47d;
   font-size: 18px;
   color: #FFFFFF;
+  text-align: center;
 `;
 
 export const DescriptionInfo = styled.div`
   color: #FFFFFF;
-  margin-top: 15px;
+  margin-top: 5%;
   text-align: justify;
   font-size: 15px;
 `;
 
 export const Image = styled.div`
   border-radius: 60%;
-  width: 60px;
-  height: 60px;
-  margin-left: 40px;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin-bottom: 5%;
 `;
 
 export const ContactsInfo = styled.div`
-  text-align: justify;
+  text-align: center;
   color: #FFFFFF;
-  font-size: 19px;
+  font-size: 15px;
+  margin-top: 15%;
 `;
 
 export const Contacts = styled.div`
-  max-width:100%;
-  max-height:100%;
-  margin-bottom: 20px;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
   display: flex;
-  margin-right: 10px;
+  margin: 5%;
 `;
 
 export const ConfigImage = styled.img`
