@@ -1,16 +1,16 @@
-import React from "react";
-import { Container } from "./styles";
+import React, { useEffect, useState } from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-import ScrappersResults from "../Monitoring"
+import { Container } from "./styles";
+
 
 const AboutUs: React.FC = () => {
-  return (
-    <Container>
-      <Header />
-      <Footer />
-    </Container>
-  );
+    return (
+        <Container>
+            <Header />                     
+            <Footer />
+        </Container>
+    );
 };
 
 export default AboutUs;

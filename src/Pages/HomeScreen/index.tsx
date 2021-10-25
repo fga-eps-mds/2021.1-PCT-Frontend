@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
 import api from "../../services/api";
-
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
