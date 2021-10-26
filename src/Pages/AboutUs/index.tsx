@@ -68,7 +68,9 @@ const AboutUs: React.FC = () => {
               com 142 entidades apoiadoras e centenas de comunidades. Desde 2005 todas as publicações em formato físico, além dos conteúdos que tem sido 
               disponibilizados para download gratuito no site do projeto, fazem essa comparação do alcance das publicações em formato impresso e em 
               formato digital. Deste modo é possível levar a informação produzida tanto para os agentes sociais que participam ativamente das produções, 
-              como para o usuário que tenha interesse nessas informações.
+              como para o usuário que tenha interesse nessas informações.<br/><br/>
+
+              Para mais informações, consulte o site oficial: <a href="http://novacartografiasocial.com.br/"> http://novacartografiasocial.com.br/</a>.
             </p>
             </DescriptionInfo>             
         </CardHeader>
