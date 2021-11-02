@@ -9,7 +9,7 @@ import Keywords from "../Pages/Keywords";
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={HomeScreen} />
-    <Route path="/sobreNos" component={AboutUs} />
+    <Route path="/sobre-nos" component={AboutUs} />
     <Route path="/resultados/:searchTerm+" component={Results} />
     <Route path="/keywords" component={Keywords} />
   </Switch>

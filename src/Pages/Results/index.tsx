@@ -12,7 +12,7 @@ import { Container, NewResultsContainer } from "./styles";
 import api from "../../services/api";
 import { useRouteMatch } from "react-router";
 
-interface documentResult {
+interface DocumentResult {
   id: number;
   source: string;
   url: string;
@@ -28,7 +28,7 @@ type documentsResponse = {
   count: number;
   next: string;
   previous: string;
-  results: Array<documentResult>;
+  results: Array<DocumentResult>;
 };
 
 interface ResultsParams {
@@ -39,9 +39,13 @@ const Results: React.FC = () => {
   const [documentsResponse, setDocumentsResponse] =
     useState<documentsResponse>();
   const [isLoading, setIsLoading] = useState(false);
-  // const [mySearch, setMySearch] = useState("");
+
+  useEffect(() => {
+    document.title = "Resultado";
+  }, []);
 
   const { params } = useRouteMatch<ResultsParams>();
+  const [searchTerm, setSearchTerm] = useState(params.searchTerm);
 
   useEffect(() => {
     getDocuments();
@@ -50,7 +54,7 @@ const Results: React.FC = () => {
   const getDocuments = async () => {
     setIsLoading(true);
     try {
-      const { data } = await api.get(`?q=${params.searchTerm}`);
+      const { data } = await api.get(`?q=${searchTerm}`);
       setDocumentsResponse(data);
       console.log(data);
     } catch (error) {
@@ -68,7 +72,7 @@ const Results: React.FC = () => {
       await api.get<documentsResponse>(`${documentsResponse?.next}`)
     );
     if (documentsResponse?.results) {
-      let myDocuments: Array<documentResult> = documentsResponse?.results;
+      let myDocuments: Array<DocumentResult> = documentsResponse?.results;
       myDocuments = [...myDocuments, ...data.results];
 
       const newDocumentsResponse = {
@@ -84,7 +88,7 @@ const Results: React.FC = () => {
     console.log(data);
   };
 
-  const renderResultCard = (result: documentResult) => {
+  const renderResultCard = (result: DocumentResult) => {
     return <ResultCard key={result?.id} item={result} />;
   };
 
@@ -93,25 +97,24 @@ const Results: React.FC = () => {
       <Header />
       <NewResultsContainer>
         <p>Resultados</p>
-        {/* <SearchBar
-          ableToSearch={mySearch === "" ? false : true}
-          searchTerm={mySearch}
+        <SearchBar
+          ableToSearch={searchTerm === "" ? false : true}
+          searchTerm={searchTerm}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setMySearch(e.target.value);
+            setSearchTerm(e.target.value);
           }}
-        /> */}
+        />
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
             color="#004346"
             height={50}
             width={50}
-            // timeout={1000} //3 secs
           />
         ) : (
           <Flatlist
             list={documentsResponse?.results}
-            renderItem={(item: documentResult) => renderResultCard(item)}
+            renderItem={(item: DocumentResult) => renderResultCard(item)}
             renderWhenEmpty={() => (
               <div>
                 <h2>Não foi possível encontrar resultados!</h2>

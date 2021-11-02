@@ -25,6 +25,10 @@ const Keywords: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    document.title = "Expressões"
+  }, []);
+
+  useEffect(() => {
     getKeywords();
   }, []);
 
