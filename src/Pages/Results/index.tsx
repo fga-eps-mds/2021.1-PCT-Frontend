@@ -96,7 +96,7 @@ const Results: React.FC = () => {
     <Container>
       <Header />
       <NewResultsContainer>
-        <p>Resultados</p>
+        <h2 className="results-title">Resultados</h2>
         <SearchBar
           ableToSearch={searchTerm === "" ? false : true}
           searchTerm={searchTerm}
@@ -105,33 +105,34 @@ const Results: React.FC = () => {
           }}
         />
         {isLoading === true ? (
-          <Loader
-            type="ThreeDots"
-            color="#004346"
-            height={50}
-            width={50}
-          />
+          <Loader type="ThreeDots" color="#004346" height={50} width={50} />
         ) : (
-          <Flatlist
-            list={documentsResponse?.results}
-            renderItem={(item: DocumentResult) => renderResultCard(item)}
-            renderWhenEmpty={() => (
-              <div>
-                <h2>Não foi possível encontrar resultados!</h2>
-              </div>
-            )}
-            hasMoreItems={documentsResponse?.next === null ? false : true}
-            loadMoreItems={() => getMoreDocuments()}
-            paginationLoadingIndicator={
-              <Loader
-                type="ThreeDots"
-                color="#004346"
-                height={50}
-                width={50}
-                // timeout={1000} //3 secs
-              />
-            }
-          />
+          <>
+            <p>
+              {documentsResponse?.count
+                ? `${documentsResponse?.count} registros encontrados`
+                : ""}
+            </p>
+            <Flatlist
+              list={documentsResponse?.results}
+              renderItem={(item: DocumentResult) => renderResultCard(item)}
+              renderWhenEmpty={() => (
+                <div>
+                  <h2>Não foi possível encontrar resultados!</h2>
+                </div>
+              )}
+              hasMoreItems={documentsResponse?.next === null ? false : true}
+              loadMoreItems={() => getMoreDocuments()}
+              paginationLoadingIndicator={
+                <Loader
+                  type="ThreeDots"
+                  color="#004346"
+                  height={50}
+                  width={50}
+                />
+              }
+            />
+          </>
         )}
       </NewResultsContainer>
       <Footer />

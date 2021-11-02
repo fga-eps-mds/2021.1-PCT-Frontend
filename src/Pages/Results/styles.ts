@@ -19,7 +19,7 @@ export const NewResultsContainer = styled.div`
   margin-bottom: 6%;
   overflow: auto;
 
-  p {
+  .results-title {
     align-self: flex-start;
     font-family: Rokkitt, sans-serif;
     font-style: normal;
