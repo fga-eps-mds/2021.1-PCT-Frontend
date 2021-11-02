@@ -43,7 +43,7 @@ const Header: React.FC = () => {
                 </CustomNavDropdown.Item>
                 <CustomNavDropdown.Item>
                   <HeaderButton>
-                    <MyLink to={"/crawlers"}>Crawlers</MyLink>
+                    <MyLink to={"/sources"}>Fontes</MyLink>
                   </HeaderButton>
                 </CustomNavDropdown.Item>
               </CustomNavDropdown>

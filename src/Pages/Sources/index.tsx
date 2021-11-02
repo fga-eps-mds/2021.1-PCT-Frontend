@@ -6,37 +6,37 @@ import Button from "react-bootstrap/Button";
 
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-import KeywordItem, { KeywordResult } from "../../Components/KeywordItem";
-import KeywordModal from "../../Components/KeywordModal";
+import SourceItem, { SourceResult } from "../../Components/SourceItem";
+import SourceModal from "../../Components/SourceModal";
 
 import { Container, NewResultsContainer, Title } from "./styles";
 
 import { apiCrawlers } from "../../services/api";
 
-type keywordsResponse = {
+type SourcesResponse = {
   count: number;
   next: string;
   previous: string;
-  results: Array<KeywordResult>;
+  results: Array<SourceResult>;
 };
 
-const Keywords: React.FC = () => {
-  const [keywordsResponse, setKeywordsResponse] = useState<keywordsResponse>();
+const Sources: React.FC = () => {
+  const [SourcesResponse, setSourcesResponse] = useState<SourcesResponse>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    document.title = "Expressões";
+    document.title = "Fontes";
   }, []);
 
   useEffect(() => {
-    getKeywords();
+    getSources();
   }, []);
 
-  const getKeywords = async () => {
+  const getSources = async () => {
     setIsLoading(true);
     try {
-      const { data } = await apiCrawlers.get(`/keywords/`);
-      setKeywordsResponse(data);
+      const { data } = await apiCrawlers.get(`/crawlers/`);
+      setSourcesResponse(data);
       console.log(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar as expressões-chave!");
@@ -44,30 +44,30 @@ const Keywords: React.FC = () => {
     setIsLoading(false);
   };
 
-  const getMoreKeywords = async () => {
-    const { data } = await apiCrawlers.get<keywordsResponse>(
-      `${keywordsResponse?.next}`
+  const getMoreSources = async () => {
+    const { data } = await apiCrawlers.get<SourcesResponse>(
+      `${SourcesResponse?.next}`
     );
-    if (keywordsResponse?.results) {
-      let myDocuments: Array<KeywordResult> = keywordsResponse?.results;
+    if (SourcesResponse?.results) {
+      let myDocuments: Array<SourceResult> = SourcesResponse?.results;
       myDocuments = [...myDocuments, ...data.results];
 
-      const newKeywordsResponse = {
+      const newSourcesResponse = {
         count: data.count,
         next: data.next,
         previous: data.previous,
         results: myDocuments,
       };
 
-      setKeywordsResponse(newKeywordsResponse);
+      setSourcesResponse(newSourcesResponse);
     }
 
     console.log(data);
   };
 
-  const renderResultCard = (result: KeywordResult) => {
+  const renderResultCard = (result: SourceResult) => {
     return (
-      <KeywordItem key={result?.id} item={result} onDelete={getKeywords} />
+      <SourceItem key={result?.id} item={result} onDelete={getSources} />
     );
   };
 
@@ -77,33 +77,33 @@ const Keywords: React.FC = () => {
 
   return (
     <>
-      <KeywordModal
+      <SourceModal
         show={show}
         handleClose={handleClose}
-        onCreated={getKeywords}
+        onCreated={getSources}
       />
       <Container>
         <Header />
         <Title>
-          <h2>Expressões de Busca</h2>
+          <h2>Fontes de Documentos</h2>
         </Title>
         <Button variant="primary" onClick={handleShowModal}>
-          Adicionar expressão
+          Adicionar fonte
         </Button>
         <NewResultsContainer>
           {isLoading === true ? (
             <Loader type="ThreeDots" color="#004346" height={50} width={50} />
           ) : (
             <Flatlist
-              list={keywordsResponse?.results}
-              renderItem={(item: KeywordResult) => renderResultCard(item)}
+              list={SourcesResponse?.results}
+              renderItem={(item: SourceResult) => renderResultCard(item)}
               renderWhenEmpty={() => (
                 <div>
                   <h2>Não foi possível encontrar resultados!</h2>
                 </div>
               )}
-              hasMoreItems={keywordsResponse?.next === null ? false : true}
-              loadMoreItems={() => getMoreKeywords()}
+              hasMoreItems={SourcesResponse?.next === null ? false : true}
+              loadMoreItems={() => getMoreSources()}
               paginationLoadingIndicator={
                 <Loader
                   type="ThreeDots"
@@ -121,4 +121,4 @@ const Keywords: React.FC = () => {
   );
 };
 
-export default Keywords;
+export default Sources;
