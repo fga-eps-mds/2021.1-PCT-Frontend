@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 
+import Flatlist from "flatlist-react";
+import Loader from "react-loader-spinner";
+import Button from "react-bootstrap/Button";
+
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import KeywordItem, { KeywordResult } from "../../Components/KeywordItem";
-
-import Flatlist from "flatlist-react";
-import Loader from "react-loader-spinner";
+import KeywordModal from "../../Components/KeywordModal";
 
 import { Container, NewResultsContainer } from "./styles";
+
 import { apiCrawlers } from "../../services/api";
 
 type keywordsResponse = {
@@ -41,10 +44,6 @@ const Keywords: React.FC = () => {
     const { data } = await apiCrawlers.get<keywordsResponse>(
       `${keywordsResponse?.next}`
     );
-    console.log(
-      "nova chamada: ",
-      await apiCrawlers.get<keywordsResponse>(`${keywordsResponse?.next}`)
-    );
     if (keywordsResponse?.results) {
       let myDocuments: Array<KeywordResult> = keywordsResponse?.results;
       myDocuments = [...myDocuments, ...data.results];
@@ -66,32 +65,51 @@ const Keywords: React.FC = () => {
     return <KeywordItem key={result?.id} item={result} />;
   };
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShowModal = () => setShow(true);
+
   return (
-    <Container>
-      <Header />
-      <NewResultsContainer>
+    <>
+      <KeywordModal
+        show={show}
+        handleClose={handleClose}
+        onCreated={getKeywords}
+      />
+      <Container>
+        <Header />
         <p>Expressões-Chave</p>
-        {isLoading === true ? (
-          <Loader type="ThreeDots" color="#004346" height={50} width={50} />
-        ) : (
-          <Flatlist
-            list={keywordsResponse?.results}
-            renderItem={(item: KeywordResult) => renderResultCard(item)}
-            renderWhenEmpty={() => (
-              <div>
-                <h2>Não foi possível encontrar resultados!</h2>
-              </div>
-            )}
-            hasMoreItems={keywordsResponse?.next === null ? false : true}
-            loadMoreItems={() => getMoreKeywords()}
-            paginationLoadingIndicator={
-              <Loader type="ThreeDots" color="#004346" height={50} width={50} />
-            }
-          />
-        )}
-      </NewResultsContainer>
-      <Footer />
-    </Container>
+        <Button variant="primary" onClick={handleShowModal}>
+          Adicionar expressão
+        </Button>
+        <NewResultsContainer>
+          {isLoading === true ? (
+            <Loader type="ThreeDots" color="#004346" height={50} width={50} />
+          ) : (
+            <Flatlist
+              list={keywordsResponse?.results}
+              renderItem={(item: KeywordResult) => renderResultCard(item)}
+              renderWhenEmpty={() => (
+                <div>
+                  <h2>Não foi possível encontrar resultados!</h2>
+                </div>
+              )}
+              hasMoreItems={keywordsResponse?.next === null ? false : true}
+              loadMoreItems={() => getMoreKeywords()}
+              paginationLoadingIndicator={
+                <Loader
+                  type="ThreeDots"
+                  color="#004346"
+                  height={50}
+                  width={50}
+                />
+              }
+            />
+          )}
+        </NewResultsContainer>
+        <Footer />
+      </Container>
+    </>
   );
 };
 
