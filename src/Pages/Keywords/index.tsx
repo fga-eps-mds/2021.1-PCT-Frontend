@@ -25,7 +25,7 @@ const Keywords: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    document.title = "Expressões"
+    document.title = "Expressões";
   }, []);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const Keywords: React.FC = () => {
   };
 
   const getMoreKeywords = async () => {
+    console.log("CONSULTAR DOCUMENTOS")
     const { data } = await apiCrawlers.get<keywordsResponse>(
       `${keywordsResponse?.next}`
     );
@@ -66,7 +67,9 @@ const Keywords: React.FC = () => {
   };
 
   const renderResultCard = (result: KeywordResult) => {
-    return <KeywordItem key={result?.id} item={result} />;
+    return (
+      <KeywordItem key={result?.id} item={result} onDelete={getKeywords} />
+    );
   };
 
   const [show, setShow] = useState(false);
