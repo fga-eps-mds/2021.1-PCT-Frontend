@@ -9,7 +9,7 @@ import Footer from "../../Components/Footer";
 import KeywordItem, { KeywordResult } from "../../Components/KeywordItem";
 import KeywordModal from "../../Components/KeywordModal";
 
-import { Container, NewResultsContainer } from "./styles";
+import { Container, NewResultsContainer, Title } from "./styles";
 
 import { apiCrawlers } from "../../services/api";
 
@@ -78,7 +78,9 @@ const Keywords: React.FC = () => {
       />
       <Container>
         <Header />
-        <p>Expressões-Chave</p>
+        <Title>
+          <h2>Expressões de Busca</h2>
+        </Title>
         <Button variant="primary" onClick={handleShowModal}>
           Adicionar expressão
         </Button>

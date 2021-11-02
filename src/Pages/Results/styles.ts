@@ -16,7 +16,7 @@ export const NewResultsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 6%;
   overflow: auto;
 
   p {
