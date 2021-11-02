@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-import KeywordItem from "../../Components/KeywordItem";
+import KeywordItem, { KeywordResult } from "../../Components/KeywordItem";
 
 import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
 import { Container, NewResultsContainer } from "./styles";
 import { apiCrawlers } from "../../services/api";
-
-interface KeywordResult {
-  id: number;
-  keyword: string;
-  created_at: string;
-}
 
 type keywordsResponse = {
   count: number;
@@ -34,7 +28,7 @@ const Results: React.FC = () => {
   const getKeywords = async () => {
     setIsLoading(true);
     try {
-      const { data } = await apiCrawlers.get(`/keywords`);
+      const { data } = await apiCrawlers.get(`/keywords/`);
       setKeywordsResponse(data);
       console.log(data);
     } catch (error) {
@@ -76,7 +70,7 @@ const Results: React.FC = () => {
     <Container>
       <Header />
       <NewResultsContainer>
-        <p>Keywords</p>
+        <p>Expressões-Chave</p>
         {isLoading === true ? (
           <Loader type="ThreeDots" color="#004346" height={50} width={50} />
         ) : (
@@ -91,13 +85,7 @@ const Results: React.FC = () => {
             hasMoreItems={keywordsResponse?.next === null ? false : true}
             loadMoreItems={() => getMoreKeywords()}
             paginationLoadingIndicator={
-              <Loader
-                type="ThreeDots"
-                color="#004346"
-                height={50}
-                width={50}
-                // timeout={1000} //3 secs
-              />
+              <Loader type="ThreeDots" color="#004346" height={50} width={50} />
             }
           />
         )}

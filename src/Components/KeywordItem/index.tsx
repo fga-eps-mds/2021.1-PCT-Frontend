@@ -1,5 +1,7 @@
 import React from "react";
 import { ButtonProps } from "react-bootstrap";
+import moment from "moment";
+
 
 import {
   Container,
@@ -8,7 +10,7 @@ import {
   TitleDateContainer,
 } from "./styles";
 
-interface KeywordResult {
+export interface KeywordResult {
   id: number;
   keyword: string;
   created_at: string;
@@ -27,7 +29,7 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item }) => {
     <Container onClick={() => openModal()}>
       <TitleDateContainer>
         <KeywordName>{item.keyword}</KeywordName>
-        <ResultDate>{item.created_at}</ResultDate>
+        <ResultDate>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</ResultDate>
       </TitleDateContainer>
     </Container>
   );
