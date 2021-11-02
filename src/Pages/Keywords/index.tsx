@@ -17,7 +17,7 @@ type keywordsResponse = {
   results: Array<KeywordResult>;
 };
 
-const Results: React.FC = () => {
+const Keywords: React.FC = () => {
   const [keywordsResponse, setKeywordsResponse] = useState<keywordsResponse>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -95,4 +95,4 @@ const Results: React.FC = () => {
   );
 };
 
-export default Results;
+export default Keywords;
