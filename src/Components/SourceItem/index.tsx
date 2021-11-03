@@ -42,14 +42,15 @@ interface SourceItemProps {
 }
 
 const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
-  const Source = async () => {
+  const deleteSource = async (e: React.SyntheticEvent) => {
+    e.stopPropagation();
     await apiCrawlers
       .delete(`/crawlers/${item.id}/`)
       .then(() => {
         onDelete();
       })
       .catch(() => {
-        alert("Ocorreu um erro inesperado ao deletar expressão!");
+        alert("Ocorreu um erro inesperado ao deletar a fonte!");
       });
   };
 
@@ -60,7 +61,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
         <ResultDate>
           {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
         </ResultDate>
-        <Button onClick={Source}>
+        <Button onClick={deleteSource}>
           <FiTrash />
         </Button>
       </TitleDateContainer>
