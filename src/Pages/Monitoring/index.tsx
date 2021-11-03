@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import apiScraper from "../../services/scrappers";
+import { apiCrawlers } from "../../services/api";
 import MonitoringCard from "../../Components/MonitoringCard";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -86,7 +86,7 @@ const Monitoring: React.FC = () => {
     const getCrawlers = async () => {
         setIsLoading(true);
         try {
-            const { data } = await apiScraper.get(`crawlers`);
+            const { data } = await apiCrawlers.get(`crawlers`);
             console.log(data)
             // const idCrawler = data.results.id;
             setMonitoringResponse(data);
@@ -98,7 +98,7 @@ const Monitoring: React.FC = () => {
 
     // const getCrawlersDetails = async () => {
     //     try {       
-    //         const { data } = await apiScraper.get(`crawlers/${id}/executions`);
+    //         const { data } = await apiCrawlers.get(`crawlers/${id}/executions`);
     //         monitoringResultDetailsExecution(data);
     //     } catch (error) {
     //         alert("Ocorreu um erro ao buscar os detalhes do crawlers!");

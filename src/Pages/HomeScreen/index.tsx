@@ -15,7 +15,7 @@ import {
   NewsTitle,
 } from "./styles";
 
-interface documentResult {
+interface DocumentResult {
   id: number;
   source: string;
   url: string;
@@ -31,7 +31,7 @@ type documentsResponse = {
   count: number;
   next: string;
   previous: string;
-  results: Array<documentResult>;
+  results: Array<DocumentResult>;
 };
 
 const HomeScreen: React.FC = () => {
@@ -40,6 +40,10 @@ const HomeScreen: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [mySearch, setMySearch] = useState("");
 
+
+  useEffect(() => {
+    document.title = "PCTs";
+  }, []);
 
   useEffect(() => {
     getDocuments();
@@ -67,7 +71,7 @@ const HomeScreen: React.FC = () => {
       await api.get<documentsResponse>(`${documentsResponse?.next}`)
     );
     if (documentsResponse?.results) {
-      let myDocuments: Array<documentResult> = documentsResponse?.results;
+      let myDocuments: Array<DocumentResult> = documentsResponse?.results;
       myDocuments = [...myDocuments, ...data.results];
 
       const newDocumentsResponse = {
@@ -83,7 +87,7 @@ const HomeScreen: React.FC = () => {
     console.log(data);
   };
 
-  const renderResultCard = (result: documentResult) => {
+  const renderResultCard = (result: DocumentResult) => {
     return <ResultCard key={result?.id} item={result} />;
   };
 
@@ -111,7 +115,7 @@ const HomeScreen: React.FC = () => {
         ) : (
           <MyFlatlist
             list={documentsResponse?.results}
-            renderItem={(item: documentResult) => renderResultCard(item)}
+            renderItem={(item: DocumentResult) => renderResultCard(item)}
             renderWhenEmpty={() => (
               <div>Não foi possível encontrar resultados!</div>
             )}
