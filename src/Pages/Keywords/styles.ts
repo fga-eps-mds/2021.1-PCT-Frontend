@@ -18,16 +18,15 @@ export const NewResultsContainer = styled.div`
   justify-content: center;
   margin-bottom: 6%;
   overflow: auto;
-
-  .results-title {
-    align-self: flex-start;
-    font-family: Rokkitt, sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 42px;
-    line-height: 50px;
-    /* identical to box height */
-
-    color: #004346;
-  }
 `;
+
+export const Title = styled.div`
+  align-self: flex-start;
+  font-family: Rokkitt, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 42px;
+  line-height: 50px;
+  color: #004346;
+  margin: 2%;
+`
