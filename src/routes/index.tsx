@@ -10,10 +10,10 @@ import Sources from "../Pages/Sources";
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={HomeScreen} />
-    <Route path="/sobre-nos" component={AboutUs} />
+    <Route path="/sobre-nos" exact component={AboutUs} />
     <Route path="/resultados/:searchTerm+" component={Results} />
-    <Route path="/keywords" component={Keywords} />
-    <Route path="/sources" component={Sources} />
+    <Route path="/keywords" exact component={Keywords} />
+    <Route path="/sources" exact component={Sources} />
   </Switch>
 );
 
