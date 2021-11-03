@@ -1,5 +1,6 @@
 import React from "react";
 import { ButtonProps } from "react-bootstrap";
+import moment from "moment";
 
 import {
   Container,
@@ -12,7 +13,7 @@ import {
   TitleDateContainer,
 } from "./styles";
 
-interface documentResult {
+interface DocumentResult {
   id: number;
   source: string;
   url: string;
@@ -24,7 +25,7 @@ interface documentResult {
   created_at: string;
 }
 interface ResultCardProps extends ButtonProps {
-  item: documentResult;
+  item: DocumentResult;
 }
 
 const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
@@ -38,7 +39,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
     <Container onClick={() => openLink()}>
       <TitleDateContainer>
         <ResultTitle>{item.title}</ResultTitle>
-        <ResultDate>{item.updated_at}</ResultDate>
+        <ResultDate>{moment(item.updated_at).format("DD/MM/YYYY hh:mm")}</ResultDate>
       </TitleDateContainer>
       <ResultLink href={item.url} target="_blank">
         {item.url}

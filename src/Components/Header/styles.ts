@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { NavDropdown } from "react-bootstrap";
 
 export const Container = styled.div`
   flex: 1;
@@ -9,10 +10,6 @@ export const Container = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   justify-content: space-evenly;
-
-  /* top: 0;
-  position: fixed;
-  background-color: #edffd3; */
 
   @media screen and (max-width: 1024px) {
     padding-left: 0.5rem;
@@ -63,7 +60,7 @@ export const HeaderButton = styled.button`
   font-weight: bold;
   align-items: center;
   justify-content: center;
-  background-color: #edffd3;
+  background-color: transparent;
 `;
 
 export const MyLink = styled(Link)`
@@ -81,6 +78,27 @@ export const MyLink = styled(Link)`
     font-size: 0.8rem;
   }
 `;
+
+export const CustomNavDropdown = styled(NavDropdown)`
+  color: #1bc47d;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.8rem;
+  }
+
+  a {
+    color: #1bc47d !important;
+    text-align: start;
+  }
+`
 
 export const ProfileButton = styled.button`
   flex: 1;
