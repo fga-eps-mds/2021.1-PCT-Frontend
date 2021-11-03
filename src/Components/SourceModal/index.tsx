@@ -1,41 +1,69 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { apiCrawlers } from "../../services/api";
 
 import { Col, Modal, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import { SourceResult } from "../../Components/SourceItem";
+
 import { CustomCheckbox } from "./styles";
 
 interface SourceModalProps {
-  show: boolean;
+  showModal: boolean;
+  isUpdateModal: boolean;
   handleClose: () => void;
-  onCreated: () => void;
+  onDataUpdated: () => void;
+  source?: SourceResult;
 }
 
 const SourceModal: React.FC<SourceModalProps> = ({
-  show,
+  showModal,
+  isUpdateModal,
   handleClose,
-  onCreated,
+  onDataUpdated,
+  source,
 }: SourceModalProps) => {
   const [formData, setFormdata] = useState({
-    site_name_display: "",
-    url_root: "",
-    qs_search_keyword_param: "",
-    allowed_domains: [],
-    allowed_paths: [],
-    task_enabled: true,
-    task_one_off: false,
-    contains_dynamic_js_load: true,
-    contains_end_path_keyword: false,
-    retries: 1,
-    page_load_timeout: 5,
-    cron_minute: "",
-    cron_hour: "",
-    cron_day_of_week: "*",
-    cron_day_of_month: "*",
-    cron_day_of_year: "*",
+    site_name_display: source?.site_name_display || "",
+    url_root: source?.url_root || "",
+    qs_search_keyword_param: source?.qs_search_keyword_param || "",
+    allowed_domains: source?.allowed_domains || [],
+    allowed_paths: source?.allowed_paths || [],
+    task_enabled: source?.task_enabled || true,
+    task_one_off: source?.task_one_off || false,
+    contains_dynamic_js_load: source?.contains_dynamic_js_load || true,
+    contains_end_path_keyword: source?.contains_end_path_keyword || false,
+    retries: source?.retries || 1,
+    page_load_timeout: source?.page_load_timeout || 5,
+    cron_minute: source?.cron_minute || "",
+    cron_hour: source?.cron_hour || "",
+    cron_day_of_week: source?.cron_day_of_week || "*",
+    cron_day_of_month: source?.cron_day_of_month || "*",
+    cron_month_of_year: source?.cron_month_of_year || "*",
   });
+
+  // Atualiza quando o estado da modal se altera
+  useEffect(() => {
+    setFormdata({
+      site_name_display: source?.site_name_display || "",
+      url_root: source?.url_root || "",
+      qs_search_keyword_param: source?.qs_search_keyword_param || "",
+      allowed_domains: source?.allowed_domains || [],
+      allowed_paths: source?.allowed_paths || [],
+      task_enabled: source?.task_enabled || true,
+      task_one_off: source?.task_one_off || false,
+      contains_dynamic_js_load: source?.contains_dynamic_js_load || true,
+      contains_end_path_keyword: source?.contains_end_path_keyword || false,
+      retries: source?.retries || 1,
+      page_load_timeout: source?.page_load_timeout || 5,
+      cron_minute: source?.cron_minute || "",
+      cron_hour: source?.cron_hour || "",
+      cron_day_of_week: source?.cron_day_of_week || "*",
+      cron_day_of_month: source?.cron_day_of_month || "*",
+      cron_month_of_year: source?.cron_month_of_year || "*",
+    });
+  }, [isUpdateModal]);
 
   function handleInputChage(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -54,6 +82,35 @@ const SourceModal: React.FC<SourceModalProps> = ({
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase()
       .replace(/[&/\\#,+()$~%.'":*?<>{}\s]/g, "_");
+  }
+
+  function closeModalOnUpdate() {
+    handleClose();
+    onDataUpdated();
+  }
+
+  async function registerSource(data: FormData) {
+    await apiCrawlers
+      .post("/crawlers/", data)
+      .then(() => {
+        closeModalOnUpdate();
+      })
+      .catch(() => {
+        const msg = "Ocorreu um erro inesperado ao cadastrar!";
+        alert(msg);
+      });
+  }
+
+  async function updateSource(data: FormData) {
+    await apiCrawlers
+      .put(`/crawlers/${source?.id}/`, data)
+      .then(() => {
+        closeModalOnUpdate();
+      })
+      .catch(() => {
+        const msg = "Ocorreu um erro inesperado ao atualizar!";
+        alert(msg);
+      });
   }
 
   async function handleSubmit(event: FormEvent) {
@@ -75,7 +132,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
       cron_hour,
       cron_day_of_week,
       cron_day_of_month,
-      cron_day_of_year,
+      cron_month_of_year,
     } = formData;
 
     const data = new FormData();
@@ -100,25 +157,25 @@ const SourceModal: React.FC<SourceModalProps> = ({
     data.append("cron_hour", cron_hour);
     data.append("cron_day_of_week", cron_day_of_week);
     data.append("cron_day_of_month", cron_day_of_month);
-    data.append("cron_day_of_year", cron_day_of_year);
+    data.append("cron_month_of_year", cron_month_of_year);
 
-    await apiCrawlers
-      .post("/crawlers/", data)
-      .then((response) => {
-        console.log(response);
-        handleClose();
-        onCreated();
-      })
-      .catch((error) => {
-        const msg = "Ocorreu um erro inesperado!";
-        alert(msg);
-      });
+    if (isUpdateModal) {
+      console.log("Atualizar registro");
+      await updateSource(data);
+    } else {
+      console.log("Cadastrar registro");
+      await registerSource(data);
+    }
   }
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={showModal} onHide={handleClose}>
       <Modal.Header>
-        <Modal.Title>Cadastro de fonte</Modal.Title>
+        <Modal.Title>
+          {isUpdateModal
+            ? `Atualizar '${source?.site_name_display}'`
+            : "Cadastro de fonte"}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -178,6 +235,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
                   type="text"
                   id="allowed_domains"
                   name="allowed_domains"
+                  value={formData["allowed_domains"].join(", ")}
                   onChange={handleListInputChage}
                   placeholder="Domínios"
                 />
@@ -185,6 +243,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
                   type="text"
                   id="allowed_paths"
                   name="allowed_paths"
+                  value={formData["allowed_paths"].join(", ")}
                   onChange={handleListInputChage}
                   placeholder="Paths"
                 />
@@ -294,36 +353,36 @@ const SourceModal: React.FC<SourceModalProps> = ({
                 />
               </Col>
               <Col md>
-                <Form.Label>Dia da semana</Form.Label>
-                <Form.Control
-                  type="text"
-                  id="cron_day_of_week"
-                  name="cron_day_of_week"
-                  value={formData["cron_day_of_week"]}
-                  onChange={handleInputChage}
-                  placeholder="D. semana"
-                />
-              </Col>
-              <Col md>
-                <Form.Label>Dia do mês</Form.Label>
+                <Form.Label>Dia (mês)</Form.Label>
                 <Form.Control
                   type="text"
                   id="cron_day_of_month"
                   name="cron_day_of_month"
                   value={formData["cron_day_of_month"]}
                   onChange={handleInputChage}
-                  placeholder="D. mês"
+                  placeholder="Dia (mês)"
                 />
               </Col>
               <Col md>
-                <Form.Label>Dia do ano</Form.Label>
+                <Form.Label>Mês</Form.Label>
                 <Form.Control
                   type="text"
-                  id="cron_day_of_year"
-                  name="cron_day_of_year"
-                  value={formData["cron_day_of_year"]}
+                  id="cron_month_of_year"
+                  name="cron_month_of_year"
+                  value={formData["cron_month_of_year"]}
                   onChange={handleInputChage}
-                  placeholder="D. ano"
+                  placeholder="Mês"
+                />
+              </Col>
+              <Col md>
+                <Form.Label>Dia (semana)</Form.Label>
+                <Form.Control
+                  type="text"
+                  id="cron_day_of_week"
+                  name="cron_day_of_week"
+                  value={formData["cron_day_of_week"]}
+                  onChange={handleInputChage}
+                  placeholder="Dia (semana)"
                 />
               </Col>
             </Row>
@@ -345,7 +404,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
           Cancelar
         </Button>
         <Button variant="primary" form="source-registration-form" type="submit">
-          Cadastrar
+          {isUpdateModal ? `Atualizar` : "Cadastrar"}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -65,22 +65,41 @@ const Sources: React.FC = () => {
     console.log(data);
   };
 
-  const renderResultCard = (result: SourceResult) => {
-    return (
-      <SourceItem key={result?.id} item={result} onDelete={getSources} />
-    );
+  const [showModal, setShowModal] = useState(false);
+  const [isUpdateModal, setIsUpdateModal] = useState(false);
+  const handleClose = () => {
+    setShowModal(false);
+    setIsUpdateModal(false);
+  };
+  const handleShowModal = () => setShowModal(true);
+  const [selectedSource, setSelectedSource] = useState<SourceResult>();
+
+  const handleShowModalUpdate = (sourceItem: SourceResult) => {
+    console.log("Abrir modal UPDATE: ", sourceItem);
+    setSelectedSource(sourceItem);
+    setIsUpdateModal(true);
+    setShowModal(true);
   };
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShowModal = () => setShow(true);
+  const renderResultCard = (sourceItem: SourceResult) => {
+    return (
+      <SourceItem
+        key={sourceItem?.id}
+        item={sourceItem}
+        onDelete={getSources}
+        onClick={handleShowModalUpdate}
+      />
+    );
+  };
 
   return (
     <>
       <SourceModal
-        show={show}
+        showModal={showModal}
+        isUpdateModal={isUpdateModal}
         handleClose={handleClose}
-        onCreated={getSources}
+        onDataUpdated={getSources}
+        source={selectedSource}
       />
       <Container>
         <Header />

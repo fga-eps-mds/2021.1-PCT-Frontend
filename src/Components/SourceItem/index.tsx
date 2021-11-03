@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ButtonProps } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import moment from "moment";
 import { FiTrash } from "react-icons/fi";
 
@@ -15,10 +15,11 @@ import {
 export interface SourceResult {
   id: number;
   site_name: string;
+  site_name_display: string;
   task_name: string;
   task_enabled: boolean;
   task_one_off: boolean;
-  url_root: boolean;
+  url_root: string;
   qs_search_keyword_param: string;
   contains_end_path_keyword: boolean;
   allowed_domains: Array<string>;
@@ -34,16 +35,13 @@ export interface SourceResult {
   created_at: string;
 }
 
-interface SourceItemProps extends ButtonProps {
+interface SourceItemProps {
   item: SourceResult;
   onDelete: () => void;
+  onClick: (sourceItem: SourceResult) => void;
 }
 
-const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete }) => {
-  const openModal = () => {
-    return true;
-  };
-
+const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
   const Source = async () => {
     await apiCrawlers
       .delete(`/crawlers/${item.id}/`)
@@ -56,7 +54,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete }) => {
   };
 
   return (
-    <Container onClick={() => openModal()}>
+    <Container onClick={() => onClick(item)} style={{ cursor: "pointer" }}>
       <TitleDateContainer>
         <SourceName>{item.site_name}</SourceName>
         <ResultDate>
