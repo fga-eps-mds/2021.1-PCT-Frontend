@@ -29,7 +29,6 @@ export const TitleDateContainer = styled.div`
   justify-content: space-between;
   border: none;
   border-radius: 15px;
-  background-color: #FFFFFF;
 `;
 
 export const ResultTitle = styled.text`
@@ -60,6 +59,24 @@ export const ResultDate = styled.text`
   font-family: Rokkitt, sans-serif;
 
   width: 20%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: #ffffff;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.5rem;
+  }
+`;
+
+export const ResultDetails = styled.text`
+  font-size: 1rem;
+  font-style: normal;
+  font-family: Rokkitt, sans-serif;
+
+  width: 70%;
   display: block;
   overflow: hidden;
   white-space: nowrap;

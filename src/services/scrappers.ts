@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const Api = axios.create({
-    baseURL: "https://pcts-scrapers-dev.herokuapp.com/api/scrapers/",
+const apiScraper = axios.create({
+    baseURL: "https://pcts-scrapers-dev.herokuapp.com/api/",
 });
 
-export default Api;
+export default apiScraper;

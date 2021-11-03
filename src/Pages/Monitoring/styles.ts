@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+  margin-bottom: 3%;
 `;
 
 export const NewsTitle = styled.p`
@@ -33,6 +34,7 @@ export const NewResultsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  margin-top: 3%;
 
   width: 90%;
   /* padding-top: 20%; */
@@ -46,4 +48,9 @@ export const NewResultsContainer = styled.div`
   /* @media screen and (max-width: 1024px) {
     max-height: 45vh;
   } */
+
+  h1 {
+    font-weight: bold;
+    font-size: 30px;
+  }
 `;
