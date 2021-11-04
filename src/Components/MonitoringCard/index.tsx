@@ -9,27 +9,32 @@ import {
     ResultDetails,
   } from "./styles";
 
-  interface monitoringResult {
-    id: number;
-    scraper_execution_group: number;
-    site_name_display: string;
-    task_enabled: boolean;
-    allowed_domains: string;
-    allowed_paths: string;
-    task_id: string;
-    task_name: string;
-    start_datetime: Date;
-    finish_datetime: Date;
-    keyword: string;
-    status: number;
-    scraped_pages: number;
-    saved_records: number;
-    dropped_records: number;
-    error_log?: any;
+export interface crawlerExecutionResponse {
+  id: number;
+  crawler: number;
+  task_name: string;
+  start_datetime: string;
+  finish_datetime: string;
+  state: string;
+  crawler_executions: Array<crawlerExecutionDetailsResponse>;
+}
+
+export interface crawlerExecutionDetailsResponse {
+  id: number;
+  crawler_execution_group: number;
+  task_id: string;
+  task_name: string;
+  start_datetime: string;
+  finish_datetime: string;
+  keyword: string;
+  state: string;
+  crawled_pages: number;
+  saved_records: number;
+  error_log?: any;
 }
 
 interface MonitoringCardProps extends ButtonProps {
-    item: monitoringResult;
+    item: crawlerExecutionResponse;
 }
 
 const MonitoringCard: React.FC<MonitoringCardProps> = ({ item }) => {
@@ -37,11 +42,10 @@ const MonitoringCard: React.FC<MonitoringCardProps> = ({ item }) => {
     return (
         <Container>
           <TitleDateContainer>
-            <ResultDate>{item.site_name_display}</ResultDate> <br /><br />
             <ResultDetails>
-              Site: {item.allowed_domains}<br />
-              Crawler Ativo: {item.task_enabled}<br />  
-              Pasta Acessada: {item.allowed_paths}<br /> 
+              Status da Execução: {item.state}<br />
+              Hora de Início: {item.start_datetime}<br />
+              Hora de Término: {item.finish_datetime}<br />  
             </ResultDetails>
           </TitleDateContainer>
         </Container>

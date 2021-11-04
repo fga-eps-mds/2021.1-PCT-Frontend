@@ -10,10 +10,11 @@ import {
     NewResultsContainer,
     NewsTitle,
 } from "./styles";
+import { useRouteMatch } from "react-router-dom";
 
+import { crawlerExecutionResponse, crawlerExecutionDetailsResponse } from "../../Components/MonitoringCard"
 
-
-interface monitoringResult {
+type crawlerResponse = {
     id: number;
     scraper_execution_group: number;
     site_name_display: string;
@@ -30,88 +31,60 @@ interface monitoringResult {
     saved_records: number;
     dropped_records: number;
     error_log?: any;
-}
+};
 
-interface monitoringResultDetails {
-    id: number;
-    crawler: number;
-    task_name: string;
-    start_datetime: string;
-    finish_datetime: string;
-    state: string;
-    crawler_executions: Array<monitoringResultDetailsExecution>;
-}
-
-interface monitoringResultDetailsExecution {
-    id: number;
-    crawler_execution_group: number;
-    task_id: string;
-    task_name: string;
-    start_datetime: string;
-    finish_datetime: string;
-    keyword: string;
-    state: string;
-    crawled_pages: number;
-    saved_records: number;
-    error_log?: any;
-}
-
-type monitoringResponse = {
+type crawlerAllExecutionsResponse = {
     count: number;
     next: string;
     previous: string;
-    results: Array<monitoringResult>;
+    results: Array<crawlerExecutionResponse>;
 };
 
-type monitoringDetailsResponse = {
-count: number;
-next: string;
-previous: string;
-results: Array<monitoringResultDetails>;
-};
+interface monitoringParams {
+    sourceID: string;
+}
 
 const Monitoring: React.FC = () => {
-    const [monitoringResponse, setMonitoringResponse] =
-        useState<monitoringResponse>();
-    // const [monitoringResponseDetails, setMonitoringResponseDetails] =
-    // useState<monitoringDetailsResponse>();
-    
+    const [crawlerResponse, setCrawlerResponse] =
+        useState<crawlerResponse>();
+
+    const [monitoringAllExecutionResponse, setMonitoringAllExecutionResponse] =
+        useState<crawlerAllExecutionsResponse>();
+
     const [isLoading, setIsLoading] = useState(false);
 
+    const { params } = useRouteMatch<monitoringParams>();
+    const [sourceID, setSourceID] = useState(params.sourceID);
+
     useEffect(() => {
-        getCrawlers();
-        // getCrawlersDetails();
+        getCrawlersExecutions();
     }, []);
     
-    const getCrawlers = async () => {
+    // const getCrawlerDetail = async () => {
+    //     try {
+    //         const { data } = await apiCrawlers.get(`crawlers/${sourceID}/`);
+    //         console.log(data)
+    //         setCrawlerResponse(data);
+    //     } catch (error) {
+    //         alert("Ocorreu um erro ao buscar os documentos!");
+    //     }
+    // };
+
+    const getCrawlersExecutions = async () => {
         setIsLoading(true);
         try {
-            const { data } = await apiCrawlers.get(`crawlers`);
+            const { data } = await apiCrawlers.get(`crawlers/${sourceID}/executions`);
             console.log(data)
-            // const idCrawler = data.results.id;
-            setMonitoringResponse(data);
+            setMonitoringAllExecutionResponse(data);
         } catch (error) {
-            alert("Ocorreu um erro ao buscar os documentos!");
+            alert("Ocorreu um erro ao buscar os detalhes dos documentos!");
         }
         setIsLoading(false);
     };
 
-    // const getCrawlersDetails = async () => {
-    //     try {       
-    //         const { data } = await apiCrawlers.get(`crawlers/${id}/executions`);
-    //         monitoringResultDetailsExecution(data);
-    //     } catch (error) {
-    //         alert("Ocorreu um erro ao buscar os detalhes do crawlers!");
-    //     }
-    // };
-
-    const renderResultCard = (result: monitoringResult) => {
+    const renderResultCard = (result: crawlerExecutionResponse) => {
         return <MonitoringCard key={result?.id} item={result} />;
     };
-
-    // const renderResultCardDetails = (resultDetails: monitoringResultDetails) => {
-    //     return <MonitoringCard key={resultDetails?.crawler} item={resultDetails} />;
-    // };
 
     return(
         <Container>
@@ -127,13 +100,8 @@ const Monitoring: React.FC = () => {
                     />
                 ) : (
                     <MyFlatlist
-                        list={monitoringResponse?.results}
-                        renderItem={(item: monitoringResult) => renderResultCard(item)}                       
-                    > 
-                        {/* <MyFlatlist list={monitoringResponse?.results}
-                        renderItem={(item: monitoringResultDetails) => renderResultCardDetails(item)}   >
-                        </MyFlatlist> */}
-                    </MyFlatlist>
+                        list={monitoringAllExecutionResponse?.results}
+                        renderItem={(item: crawlerExecutionResponse) => renderResultCard(item)} />
                 )}
             </NewResultsContainer>
 
