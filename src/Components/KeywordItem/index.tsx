@@ -30,20 +30,22 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
   };
 
   const deleteKeyword = async () => {
-    await apiCrawlers
-      .delete(`keywords/${item.id}/`)
-      .then(() => {
-        onDelete();
-      })
-      .catch(() => {
-        alert("Ocorreu um erro inesperado ao deletar expressão!");
-      });
+    if (confirm("Tem certeza que deseja deletar esta expressão?")) {
+      await apiCrawlers
+        .delete(`keywords/${item.id}/`)
+        .then(() => {
+          onDelete();
+        })
+        .catch(() => {
+          alert("Ocorreu um erro inesperado ao deletar expressão!");
+        });
+    }
   };
 
   const textMargin = {
-    marginTop: '2%',
-    marginBottom: '2%'
-  }
+    marginTop: "2%",
+    marginBottom: "2%",
+  };
 
   return (
     <Container onClick={() => openModal()}>

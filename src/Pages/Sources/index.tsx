@@ -67,12 +67,15 @@ const Sources: React.FC = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [isUpdateModal, setIsUpdateModal] = useState(false);
-  const handleClose = () => {
+  const [selectedSource, setSelectedSource] = useState<SourceResult>();
+
+  const handleShowModal = () => setShowModal(true);
+
+  const handleCloseModal = () => {
     setShowModal(false);
     setIsUpdateModal(false);
+    setSelectedSource(undefined);
   };
-  const handleShowModal = () => setShowModal(true);
-  const [selectedSource, setSelectedSource] = useState<SourceResult>();
 
   const handleShowModalUpdate = (sourceItem: SourceResult) => {
     console.log("Abrir modal UPDATE: ", sourceItem);
@@ -97,7 +100,7 @@ const Sources: React.FC = () => {
       <SourceModal
         showModal={showModal}
         isUpdateModal={isUpdateModal}
-        handleClose={handleClose}
+        handleClose={handleCloseModal}
         onDataUpdated={getSources}
         source={selectedSource}
       />

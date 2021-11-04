@@ -25,22 +25,22 @@ const SourceModal: React.FC<SourceModalProps> = ({
   source,
 }: SourceModalProps) => {
   const [formData, setFormdata] = useState({
-    site_name_display: source?.site_name_display || "",
-    url_root: source?.url_root || "",
-    qs_search_keyword_param: source?.qs_search_keyword_param || "",
-    allowed_domains: source?.allowed_domains || [],
-    allowed_paths: source?.allowed_paths || [],
-    task_enabled: source?.task_enabled || true,
-    task_one_off: source?.task_one_off || false,
-    contains_dynamic_js_load: source?.contains_dynamic_js_load || true,
-    contains_end_path_keyword: source?.contains_end_path_keyword || false,
-    retries: source?.retries || 1,
-    page_load_timeout: source?.page_load_timeout || 5,
-    cron_minute: source?.cron_minute || "",
-    cron_hour: source?.cron_hour || "",
-    cron_day_of_week: source?.cron_day_of_week || "*",
-    cron_day_of_month: source?.cron_day_of_month || "*",
-    cron_month_of_year: source?.cron_month_of_year || "*",
+    site_name_display: "",
+    url_root: "",
+    qs_search_keyword_param: "",
+    allowed_domains: Array<string>(),
+    allowed_paths: Array<string>(),
+    task_enabled: true,
+    task_one_off: false,
+    contains_dynamic_js_load: true,
+    contains_end_path_keyword: false,
+    retries: 1,
+    page_load_timeout: 5,
+    cron_minute: "",
+    cron_hour: "",
+    cron_day_of_week: "*",
+    cron_day_of_month: "*",
+    cron_month_of_year: "*",
   });
 
   // Atualiza quando o estado da modal se altera
@@ -51,10 +51,14 @@ const SourceModal: React.FC<SourceModalProps> = ({
       qs_search_keyword_param: source?.qs_search_keyword_param || "",
       allowed_domains: source?.allowed_domains || [],
       allowed_paths: source?.allowed_paths || [],
-      task_enabled: source?.task_enabled || true,
-      task_one_off: source?.task_one_off || false,
-      contains_dynamic_js_load: source?.contains_dynamic_js_load || true,
-      contains_end_path_keyword: source?.contains_end_path_keyword || false,
+      task_enabled: source ? source.task_enabled : true,
+      task_one_off: source ? source.task_one_off : false,
+      contains_dynamic_js_load: source
+        ? source.contains_dynamic_js_load
+        : true,
+      contains_end_path_keyword: source
+        ? source.contains_end_path_keyword
+        : false,
       retries: source?.retries || 1,
       page_load_timeout: source?.page_load_timeout || 5,
       cron_minute: source?.cron_minute || "",
@@ -70,9 +74,15 @@ const SourceModal: React.FC<SourceModalProps> = ({
     setFormdata({ ...formData, [name]: value });
   }
 
+  function handleInputBooleanChage(event: ChangeEvent<HTMLInputElement>) {
+    const { name } = event.target;
+    const current_value = (formData as any)[name];
+    setFormdata({ ...formData, [name]: !current_value });
+  }
+
   function handleListInputChage(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setFormdata({ ...formData, [name]: value.trim().split(",") });
+    setFormdata({ ...formData, [name]: value.split(",") });
   }
 
   function normalize_text_id(text: string) {
@@ -235,24 +245,28 @@ const SourceModal: React.FC<SourceModalProps> = ({
                   type="text"
                   id="allowed_domains"
                   name="allowed_domains"
-                  value={formData["allowed_domains"].join(", ")}
+                  value={formData["allowed_domains"].join(",")}
                   onChange={handleListInputChage}
                   placeholder="Domínios"
                 />
+                <Form.Text className="text-muted">
+                  Domínios permitidos que o crawler pode executar. Digite os
+                  domínios separados por &quot;,&quot; (ex: google.com,
+                  www.mpf.mp.br).
+                </Form.Text>
                 <Form.Control
                   type="text"
                   id="allowed_paths"
                   name="allowed_paths"
-                  value={formData["allowed_paths"].join(", ")}
+                  value={formData["allowed_paths"].join(",")}
                   onChange={handleListInputChage}
                   placeholder="Paths"
                 />
+                <Form.Text className="text-muted">
+                  Caminhos permitidos (paths). Digite os paths separados por
+                  &quot;,&quot; (ex: noticias, jurisprudencia/documentos).
+                </Form.Text>
               </Row>
-              <Form.Text className="text-muted">
-                Caminhos em que o crawler pode percorrer, por meio de restrição
-                de domínios (ex: google.com, www.mpf.mp.br) ou restrição de
-                paths (ex: noticias, jurisprudencia/documentos)
-              </Form.Text>
             </Form.Group>
           </Form.Group>
 
@@ -265,7 +279,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="task_enabled"
               checked={formData["task_enabled"]}
               label="Habilitar coleta periódica"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <CustomCheckbox
               type="checkbox"
@@ -273,7 +287,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="task_one_off"
               checked={formData["task_one_off"]}
               label="Desabilitar tarefa após execução"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <CustomCheckbox
               type="checkbox"
@@ -281,7 +295,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="contains_dynamic_js_load"
               checked={formData["contains_dynamic_js_load"]}
               label="Possui carregamento dinâmico (Javascript)"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <CustomCheckbox
               type="checkbox"
@@ -289,7 +303,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="contains_end_path_keyword"
               checked={formData["contains_end_path_keyword"]}
               label="Alterar expressões pelo path da URL"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <Form.Group className="mb-3">
               <Row className="g-2">
