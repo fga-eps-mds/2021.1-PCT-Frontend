@@ -25,22 +25,22 @@ const SourceModal: React.FC<SourceModalProps> = ({
   source,
 }: SourceModalProps) => {
   const [formData, setFormdata] = useState({
-    site_name_display: source?.site_name_display || "",
-    url_root: source?.url_root || "",
-    qs_search_keyword_param: source?.qs_search_keyword_param || "",
-    allowed_domains: source?.allowed_domains || [],
-    allowed_paths: source?.allowed_paths || [],
-    task_enabled: source?.task_enabled || true,
-    task_one_off: source?.task_one_off || false,
-    contains_dynamic_js_load: source?.contains_dynamic_js_load || true,
-    contains_end_path_keyword: source?.contains_end_path_keyword || false,
-    retries: source?.retries || 1,
-    page_load_timeout: source?.page_load_timeout || 5,
-    cron_minute: source?.cron_minute || "",
-    cron_hour: source?.cron_hour || "",
-    cron_day_of_week: source?.cron_day_of_week || "*",
-    cron_day_of_month: source?.cron_day_of_month || "*",
-    cron_month_of_year: source?.cron_month_of_year || "*",
+    site_name_display: "",
+    url_root: "",
+    qs_search_keyword_param: "",
+    allowed_domains: Array<string>(),
+    allowed_paths: Array<string>(),
+    task_enabled: true,
+    task_one_off: false,
+    contains_dynamic_js_load: true,
+    contains_end_path_keyword: false,
+    retries: 1,
+    page_load_timeout: 5,
+    cron_minute: "",
+    cron_hour: "",
+    cron_day_of_week: "*",
+    cron_day_of_month: "*",
+    cron_month_of_year: "*",
   });
 
   // Atualiza quando o estado da modal se altera
@@ -51,10 +51,14 @@ const SourceModal: React.FC<SourceModalProps> = ({
       qs_search_keyword_param: source?.qs_search_keyword_param || "",
       allowed_domains: source?.allowed_domains || [],
       allowed_paths: source?.allowed_paths || [],
-      task_enabled: source?.task_enabled || true,
-      task_one_off: source?.task_one_off || false,
-      contains_dynamic_js_load: source?.contains_dynamic_js_load || true,
-      contains_end_path_keyword: source?.contains_end_path_keyword || false,
+      task_enabled: source ? source.task_enabled : true,
+      task_one_off: source ? source.task_one_off : false,
+      contains_dynamic_js_load: source
+        ? source.contains_dynamic_js_load
+        : true,
+      contains_end_path_keyword: source
+        ? source.contains_end_path_keyword
+        : false,
       retries: source?.retries || 1,
       page_load_timeout: source?.page_load_timeout || 5,
       cron_minute: source?.cron_minute || "",
