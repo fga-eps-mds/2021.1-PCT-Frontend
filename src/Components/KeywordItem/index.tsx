@@ -40,10 +40,6 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
       });
   };
 
-  const boldText = {
-    fontWeight: 'bold'
-  }
-
   const textMargin = {
     marginTop: '2%',
     marginBottom: '2%'
@@ -56,7 +52,7 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
         <ResultDate>
           <ul>
             <li style={textMargin}>Criado em: </li>
-            <li style={boldText}>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+            <li>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
           </ul>
         </ResultDate>
         <ButtonStyle>
