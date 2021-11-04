@@ -1,16 +1,16 @@
 import { Button, ButtonProps } from "react-bootstrap";
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
 import { useHistory } from "react-router-dom";
 import {
-    Container,
-    ResultDate,
-    ResultTitle,
-    TitleDateContainer,
-    ResultDetails,
-    MonitoringInfo,
-    ResultDetailsInfo,
-  } from "./styles";
+  Container,
+  ResultDate,
+  ResultTitle,
+  TitleDateContainer,
+  ResultDetails,
+  MonitoringInfo,
+  ResultDetailsInfo,
+} from "./styles";
 import moment from "moment";
 import { FiArrowLeft } from "react-icons/fi";
 
@@ -39,36 +39,42 @@ export interface crawlerExecutionDetailsResponse {
 }
 
 interface MonitoringCardProps extends ButtonProps {
-    item: crawlerExecutionResponse;
+  item: crawlerExecutionResponse;
 }
 
 const MonitoringCard: React.FC<MonitoringCardProps> = ({ item }) => {
-
-  const history = useHistory();
-  const backToCrawlers = (e: React.SyntheticEvent) => {
-    history.push(`/fontes`); 
-  };
-
   return (
-      <Container>
-        <TitleDateContainer>
-          <ResultDetails>
-            <MonitoringInfo>Status da Execução:</MonitoringInfo>
-            <MonitoringInfo>Hora de Início:</MonitoringInfo>
-            <MonitoringInfo>Hora de Término:</MonitoringInfo>
-          </ResultDetails>
-          <ResultDetailsInfo>
-            <MonitoringInfo style={item.state=='SUCCESS' ? {color:'green', fontWeight: 'bold'} : {color:'red', fontWeight: 'bold'}}>{item.state}<br /></MonitoringInfo>
-            <MonitoringInfo>{moment(item.start_datetime).format("DD/MM/YYYY hh:mm")}</MonitoringInfo>
-            <MonitoringInfo>{moment(item.finish_datetime).format("DD/MM/YYYY hh:mm")}</MonitoringInfo>
-          </ResultDetailsInfo>
-        </TitleDateContainer>
-        <br /><br /><br />
-          <Button onClick={backToCrawlers}>
-            <FiArrowLeft /> Voltar para fontes
-          </Button>
-      </Container>
-    );
+    <Container>
+      <TitleDateContainer>
+        <ResultDetails>
+          <MonitoringInfo>Status da Execução:</MonitoringInfo>
+          <MonitoringInfo>Hora de Início:</MonitoringInfo>
+          <MonitoringInfo>Hora de Término:</MonitoringInfo>
+        </ResultDetails>
+        <ResultDetailsInfo>
+          <MonitoringInfo
+            style={
+              item.state == "SUCCESS"
+                ? { color: "green", fontWeight: "bold" }
+                : { color: "red", fontWeight: "bold" }
+            }
+          >
+            {item.state}
+            <br />
+          </MonitoringInfo>
+          <MonitoringInfo>
+            {moment(item.start_datetime).format("DD/MM/YYYY hh:mm")}
+          </MonitoringInfo>
+          <MonitoringInfo>
+            {moment(item.finish_datetime).format("DD/MM/YYYY hh:mm")}
+          </MonitoringInfo>
+        </ResultDetailsInfo>
+      </TitleDateContainer>
+      <br />
+      <br />
+      <br />
+    </Container>
+  );
 };
-    
+
 export default MonitoringCard;

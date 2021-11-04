@@ -75,7 +75,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
   return (
     <Container onClick={() => onClick(item)} style={{ cursor: "pointer" }}>
       <TitleDateContainer>
-        <SourceName>{item.site_name}</SourceName>
+        <SourceName>{item.site_name_display}</SourceName>
         <ResultDate>
           <ul>
             <li style={textMargin}>Criado em: </li>

@@ -90,7 +90,7 @@ export const ResultDate = styled.text`
 `;
 
 export const ButtonStyle = styled.button`
-  margin-right: 20%;
+  margin-right: 5%;
   border: 0;
   border-radius: 5px;
 `;
