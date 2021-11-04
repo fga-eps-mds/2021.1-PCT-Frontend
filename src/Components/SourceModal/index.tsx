@@ -78,7 +78,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   function handleListInputChage(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    setFormdata({ ...formData, [name]: value.trim().split(",") });
+    setFormdata({ ...formData, [name]: value.split(",") });
   }
 
   function normalize_text_id(text: string) {
@@ -241,24 +241,28 @@ const SourceModal: React.FC<SourceModalProps> = ({
                   type="text"
                   id="allowed_domains"
                   name="allowed_domains"
-                  value={formData["allowed_domains"].join(", ")}
+                  value={formData["allowed_domains"].join(",")}
                   onChange={handleListInputChage}
                   placeholder="Domínios"
                 />
+                <Form.Text className="text-muted">
+                  Domínios permitidos que o crawler pode executar. Digite os
+                  domínios separados por &quot;,&quot; (ex: google.com,
+                  www.mpf.mp.br).
+                </Form.Text>
                 <Form.Control
                   type="text"
                   id="allowed_paths"
                   name="allowed_paths"
-                  value={formData["allowed_paths"].join(", ")}
+                  value={formData["allowed_paths"].join(",")}
                   onChange={handleListInputChage}
                   placeholder="Paths"
                 />
+                <Form.Text className="text-muted">
+                  Caminhos permitidos (paths). Digite os paths separados por
+                  &quot;,&quot; (ex: noticias, jurisprudencia/documentos).
+                </Form.Text>
               </Row>
-              <Form.Text className="text-muted">
-                Caminhos em que o crawler pode percorrer, por meio de restrição
-                de domínios (ex: google.com, www.mpf.mp.br) ou restrição de
-                paths (ex: noticias, jurisprudencia/documentos)
-              </Form.Text>
             </Form.Group>
           </Form.Group>
 
