@@ -19,6 +19,10 @@ export const Container = styled.div`
     width: 100%;
     padding: 2%;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const TitleDateContainer = styled.div`
@@ -27,6 +31,12 @@ export const TitleDateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ul {
+    width: 20%;
+    text-align: center;
+    padding-top: 0.5%;
+  }
 `;
 
 export const ResultTitle = styled.text`
@@ -52,11 +62,10 @@ export const ResultTitle = styled.text`
 
 export const ResultDate = styled.text`
   font-size: 1rem;
-  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
 
-  width: 20%;
+  width: 100%;
   display: block;
   overflow: hidden;
   white-space: nowrap;

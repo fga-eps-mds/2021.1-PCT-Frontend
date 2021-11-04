@@ -68,7 +68,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
   };
 
   const boldText = {
-    fontWeight: 'bold'
+    fontWeight: 'bold' as 'bold'
   }
 
   const textMargin = {
