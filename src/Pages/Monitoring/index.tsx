@@ -58,17 +58,18 @@ const Monitoring: React.FC = () => {
 
     useEffect(() => {
         getCrawlersExecutions();
+        getCrawlerDetail();
     }, []);
     
-    // const getCrawlerDetail = async () => {
-    //     try {
-    //         const { data } = await apiCrawlers.get(`crawlers/${sourceID}/`);
-    //         console.log(data)
-    //         setCrawlerResponse(data);
-    //     } catch (error) {
-    //         alert("Ocorreu um erro ao buscar os documentos!");
-    //     }
-    // };
+    const getCrawlerDetail = async () => {
+        try {
+            const { data } = await apiCrawlers.get(`crawlers/${sourceID}/`);
+            console.log(data)
+            setCrawlerResponse(data);
+        } catch (error) {
+            alert("Ocorreu um erro ao buscar os documentos!");
+        }
+    };
 
     const getCrawlersExecutions = async () => {
         setIsLoading(true);
@@ -90,7 +91,7 @@ const Monitoring: React.FC = () => {
         <Container>
             <Header />
             <NewResultsContainer>
-            <h1>Sites em Monitoramento</h1>
+            <h1>Monitoramento do {crawlerResponse?.site_name_display}</h1>
                 {isLoading === true ? (
                     <Loader
                         type="ThreeDots"

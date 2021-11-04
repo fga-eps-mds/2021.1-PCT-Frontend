@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   background-color: #172a3a;
 
-  width: 80%;
+  width: 50%;
   padding: 1%;
 
   margin-top: 0.7rem;
@@ -74,6 +74,7 @@ export const ResultDate = styled.text`
 export const ResultDetails = styled.text`
   font-size: 1rem;
   font-style: normal;
+  font-weight: bold;
   font-family: Rokkitt, sans-serif;
 
   width: 70%;
@@ -81,6 +82,28 @@ export const ResultDetails = styled.text`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin: 1%;
+  margin-left: 25%;
+
+  color: #ffffff;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.5rem;
+  }
+`;
+
+export const ResultDetailsInfo = styled.div`
+  font-size: 1rem;
+  font-style: normal;
+  font-family: Rokkitt, sans-serif;
+
+  width: 70%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 1%;
+  margin-left: -10%;
 
   color: #ffffff;
 
@@ -113,9 +136,8 @@ export const ResultLink = styled.a`
   }
 `;
 
-export const ResultCategoriesText = styled.text`
+export const MonitoringInfo = styled.div`
   font-size: 1rem;
-  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
   /* line-height: 28px; */

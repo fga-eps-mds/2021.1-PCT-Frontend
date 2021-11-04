@@ -11,6 +11,7 @@ import {
   ResultDate,
   SourceName,
   TitleDateContainer,
+  ButtonStyle,
 } from "./styles";
 
 export interface SourceResult {
@@ -55,7 +56,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
           onDelete();
         })
         .catch(() => {
-          alert("Ocorreu um erro inesperado ao deletar a fonte!");
+          alert("Ocorreu um erro inesperado ao deletar a fonte! Tente novamente.");
         });
     }
   };
@@ -72,12 +73,16 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
         <ResultDate>
           {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
         </ResultDate>
-        <Button onClick={monitoringSource}>
-          <FiClock />
-        </Button>
-        <Button onClick={deleteSource}>
-          <FiTrash />
-        </Button>
+        <ButtonStyle>
+          <Button onClick={monitoringSource}>
+            <FiClock />
+          </Button>
+        </ButtonStyle>
+        <ButtonStyle>
+          <Button onClick={deleteSource}>
+            <FiTrash />
+          </Button>
+        </ButtonStyle>
       </TitleDateContainer>
     </Container>
   );

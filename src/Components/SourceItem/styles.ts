@@ -37,6 +37,7 @@ export const SourceName = styled.text`
 
   width: 80%;
   height: 1rem;
+  margin-left: 2%;
 
   display: block;
   overflow: hidden;
@@ -67,4 +68,11 @@ export const ResultDate = styled.text`
   @media screen and (max-width: 1024px) {
     font-size: 0.5rem;
   }
+`;
+
+export const ButtonStyle = styled.button`
+  margin-left: 0.5%;
+  margin-right: 1%;
+  border: 0;
+  border-radius: 5px;
 `;

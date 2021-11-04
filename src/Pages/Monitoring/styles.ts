@@ -52,5 +52,6 @@ export const NewResultsContainer = styled.div`
   h1 {
     font-weight: bold;
     font-size: 30px;
+    color: #004346;
   }
 `;
