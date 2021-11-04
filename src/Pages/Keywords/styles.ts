@@ -21,12 +21,15 @@ export const NewResultsContainer = styled.div`
 `;
 
 export const Title = styled.div`
-  align-self: flex-start;
+  align-itnns: center;
   font-family: Rokkitt, sans-serif;
   font-style: normal;
-  font-weight: bold;
   font-size: 42px;
   line-height: 50px;
   color: #004346;
   margin: 2%;
+  
+  h2 {
+    font-weight: bold;
+  }
 `

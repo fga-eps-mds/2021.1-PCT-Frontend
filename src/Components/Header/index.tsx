@@ -38,12 +38,12 @@ const Header: React.FC = () => {
               <CustomNavDropdown title="Gerenciamento" id="management-nav-dropdown">
                 <CustomNavDropdown.Item>
                   <HeaderButton>
-                    <MyLink to={"/keywords"}>Expressões</MyLink>
+                    <MyLink to={"/expressoes"}>Expressões</MyLink>
                   </HeaderButton>
                 </CustomNavDropdown.Item>
                 <CustomNavDropdown.Item>
                   <HeaderButton>
-                    <MyLink to={"/sources"}>Fontes</MyLink>
+                    <MyLink to={"/fontes"}>Fontes</MyLink>
                   </HeaderButton>
                 </CustomNavDropdown.Item>
               </CustomNavDropdown>

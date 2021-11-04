@@ -35,7 +35,7 @@ const Sources: React.FC = () => {
   const getSources = async () => {
     setIsLoading(true);
     try {
-      const { data } = await apiCrawlers.get(`/crawlers/`);
+      const { data } = await apiCrawlers.get(`crawlers/`);
       setSourcesResponse(data);
       console.log(data);
     } catch (error) {

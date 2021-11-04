@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   background-color: #172a3a;
 
-  width: 80%;
+  width: 60%;
   padding: 1%;
 
   margin-top: 0.7rem;
@@ -19,6 +19,10 @@ export const Container = styled.div`
     width: 100%;
     padding: 2%;
   }
+  
+  &:hover {
+    background-color: #153754;
+  }
 `;
 
 export const TitleDateContainer = styled.div`
@@ -27,6 +31,7 @@ export const TitleDateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 3%;
 `;
 
 export const KeywordName = styled.text`
@@ -52,19 +57,31 @@ export const KeywordName = styled.text`
 
 export const ResultDate = styled.text`
   font-size: 1rem;
-  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
 
-  width: 20%;
+  width: 50%;
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
+  text-align: center;
+  padding-top: 0.5%;
+  margin-right: 9%;
+  
   color: #ffffff;
+
+  ul {
+    list-style-type: none;
+  }
 
   @media screen and (max-width: 1024px) {
     font-size: 0.5rem;
   }
+`;
+
+export const ButtonStyle = styled.button`
+  margin-right: 3%;
+  border: 0;
+  border-radius: 5px;
 `;

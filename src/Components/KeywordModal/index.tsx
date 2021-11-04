@@ -36,7 +36,7 @@ const KeywordModal: React.FC<KeywordModalProps> = ({
     data.append("keyword", keyword);
 
     await apiCrawlers
-      .post("/keywords/", data)
+      .post("keywords/", data)
       .then((response) => {
         console.log(response);
         handleClose();

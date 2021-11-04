@@ -5,7 +5,7 @@ export const api = axios.create({
 });
 
 export const apiCrawlers = axios.create({
-  baseURL: "https://pcts-scrapers-dev.herokuapp.com/api",
+  baseURL: "https://pcts-scrapers-dev.herokuapp.com/api/",
 });
 
 export default api;

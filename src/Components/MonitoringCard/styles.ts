@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   background-color: #172a3a;
 
-  width: 80%;
+  width: 50%;
   padding: 1%;
 
   margin-top: 0.7rem;
@@ -19,10 +19,6 @@ export const Container = styled.div`
     width: 100%;
     padding: 2%;
   }
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export const TitleDateContainer = styled.div`
@@ -31,12 +27,8 @@ export const TitleDateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  ul {
-    width: 20%;
-    text-align: center;
-    padding-top: 0.5%;
-  }
+  border: none;
+  border-radius: 15px;
 `;
 
 export const ResultTitle = styled.text`
@@ -62,14 +54,56 @@ export const ResultTitle = styled.text`
 
 export const ResultDate = styled.text`
   font-size: 1rem;
+  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
 
-  width: 100%;
+  width: 20%;
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
+  color: #ffffff;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.5rem;
+  }
+`;
+
+export const ResultDetails = styled.text`
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: bold;
+  font-family: Rokkitt, sans-serif;
+
+  width: 70%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 1%;
+  margin-left: 25%;
+
+  color: #ffffff;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 0.5rem;
+  }
+`;
+
+export const ResultDetailsInfo = styled.div`
+  font-size: 1rem;
+  font-style: normal;
+  font-family: Rokkitt, sans-serif;
+
+  width: 70%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 1%;
+  margin-left: -10%;
 
   color: #ffffff;
 
@@ -102,9 +136,8 @@ export const ResultLink = styled.a`
   }
 `;
 
-export const ResultCategoriesText = styled.text`
+export const MonitoringInfo = styled.div`
   font-size: 1rem;
-  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
   /* line-height: 28px; */

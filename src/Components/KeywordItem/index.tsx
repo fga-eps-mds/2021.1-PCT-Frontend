@@ -10,6 +10,7 @@ import {
   ResultDate,
   KeywordName,
   TitleDateContainer,
+  ButtonStyle,
 } from "./styles";
 
 export interface KeywordResult {
@@ -30,7 +31,7 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
 
   const deleteKeyword = async () => {
     await apiCrawlers
-      .delete(`/keywords/${item.id}/`)
+      .delete(`keywords/${item.id}/`)
       .then(() => {
         onDelete();
       })
@@ -39,16 +40,26 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
       });
   };
 
+  const textMargin = {
+    marginTop: '2%',
+    marginBottom: '2%'
+  }
+
   return (
     <Container onClick={() => openModal()}>
       <TitleDateContainer>
         <KeywordName>{item.keyword}</KeywordName>
         <ResultDate>
-          {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
+          <ul>
+            <li style={textMargin}>Criado em: </li>
+            <li>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+          </ul>
         </ResultDate>
-        <Button onClick={deleteKeyword}>
-          <FiTrash />
-        </Button>
+        <ButtonStyle>
+          <Button onClick={deleteKeyword}>
+            <FiTrash />
+          </Button>
+        </ButtonStyle>
       </TitleDateContainer>
     </Container>
   );

@@ -35,7 +35,7 @@ const Keywords: React.FC = () => {
   const getKeywords = async () => {
     setIsLoading(true);
     try {
-      const { data } = await apiCrawlers.get(`/keywords/`);
+      const { data } = await apiCrawlers.get(`keywords/`);
       setKeywordsResponse(data);
       console.log(data);
     } catch (error) {

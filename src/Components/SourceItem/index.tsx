@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import moment from "moment";
-import { FiTrash } from "react-icons/fi";
+import { FiTrash, FiClock } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
 
 import { apiCrawlers } from "../../services/api";
 
@@ -10,6 +11,8 @@ import {
   ResultDate,
   SourceName,
   TitleDateContainer,
+  ButtonStyle,
+  ButtonContainer,
 } from "./styles";
 
 export interface SourceResult {
@@ -42,28 +45,55 @@ interface SourceItemProps {
 }
 
 const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
+  
+  const history = useHistory(); 
+  
   const deleteSource = async (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    await apiCrawlers
-      .delete(`/crawlers/${item.id}/`)
-      .then(() => {
-        onDelete();
-      })
-      .catch(() => {
-        alert("Ocorreu um erro inesperado ao deletar a fonte!");
-      });
+    if (confirm('Tem certeza que deseja deletar essa fonte?')) {
+      await apiCrawlers
+        .delete(`crawlers/${item.id}/`)
+        .then(() => {
+          onDelete();
+        })
+        .catch(() => {
+          alert("Ocorreu um erro inesperado ao deletar a fonte! Tente novamente.");
+        });
+    }
   };
+
+  const monitoringSource = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
+    history.push(`/fontes/monitoramento/${item.id}`); 
+  };
+
+  const textMargin = {
+    marginTop: '2%',
+    marginBottom: '2%'
+  }
 
   return (
     <Container onClick={() => onClick(item)} style={{ cursor: "pointer" }}>
       <TitleDateContainer>
-        <SourceName>{item.site_name}</SourceName>
+        <SourceName>{item.site_name_display}</SourceName>
         <ResultDate>
-          {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
+          <ul>
+            <li style={textMargin}>Criado em: </li>
+            <li>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+          </ul>
         </ResultDate>
-        <Button onClick={deleteSource}>
-          <FiTrash />
-        </Button>
+        <ButtonContainer>
+          <ButtonStyle>
+            <Button onClick={monitoringSource}>
+              <FiClock />
+            </Button>
+          </ButtonStyle>
+          <ButtonStyle>
+            <Button onClick={deleteSource}>
+              <FiTrash />
+            </Button>
+          </ButtonStyle>
+        </ButtonContainer>
       </TitleDateContainer>
     </Container>
   );
