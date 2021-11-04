@@ -12,6 +12,7 @@ import {
   SourceName,
   TitleDateContainer,
   ButtonStyle,
+  ButtonContainer,
 } from "./styles";
 
 export interface SourceResult {
@@ -66,23 +67,37 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
     history.push(`/fontes/monitoramento/${item.id}`); 
   };
 
+  const boldText = {
+    fontWeight: 'bold'
+  }
+
+  const textMargin = {
+    marginTop: '2%',
+    marginBottom: '2%'
+  }
+
   return (
     <Container onClick={() => onClick(item)} style={{ cursor: "pointer" }}>
       <TitleDateContainer>
         <SourceName>{item.site_name}</SourceName>
         <ResultDate>
-          {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
+          <ul>
+            <li style={textMargin}>Criado em: </li>
+            <li style={boldText}>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+          </ul>
         </ResultDate>
-        <ButtonStyle>
-          <Button onClick={monitoringSource}>
-            <FiClock />
-          </Button>
-        </ButtonStyle>
-        <ButtonStyle>
-          <Button onClick={deleteSource}>
-            <FiTrash />
-          </Button>
-        </ButtonStyle>
+        <ButtonContainer>
+          <ButtonStyle>
+            <Button onClick={monitoringSource}>
+              <FiClock />
+            </Button>
+          </ButtonStyle>
+          <ButtonStyle>
+            <Button onClick={deleteSource}>
+              <FiTrash />
+            </Button>
+          </ButtonStyle>
+        </ButtonContainer>
       </TitleDateContainer>
     </Container>
   );

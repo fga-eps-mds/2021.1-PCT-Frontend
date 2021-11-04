@@ -10,6 +10,7 @@ import {
   ResultDate,
   KeywordName,
   TitleDateContainer,
+  ButtonStyle,
 } from "./styles";
 
 export interface KeywordResult {
@@ -39,16 +40,30 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
       });
   };
 
+  const boldText = {
+    fontWeight: 'bold'
+  }
+
+  const textMargin = {
+    marginTop: '2%',
+    marginBottom: '2%'
+  }
+
   return (
     <Container onClick={() => openModal()}>
       <TitleDateContainer>
         <KeywordName>{item.keyword}</KeywordName>
         <ResultDate>
-          {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
+          <ul>
+            <li style={textMargin}>Criado em: </li>
+            <li style={boldText}>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+          </ul>
         </ResultDate>
-        <Button onClick={deleteKeyword}>
-          <FiTrash />
-        </Button>
+        <ButtonStyle>
+          <Button onClick={deleteKeyword}>
+            <FiTrash />
+          </Button>
+        </ButtonStyle>
       </TitleDateContainer>
     </Container>
   );

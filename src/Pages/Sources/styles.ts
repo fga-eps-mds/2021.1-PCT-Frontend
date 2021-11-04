@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const NewResultsContainer = styled.div`
   flex: 1;
-  width: 90%;
+  width: 60%;
   display: flex;
   align-items: center;
   flex-direction: column;

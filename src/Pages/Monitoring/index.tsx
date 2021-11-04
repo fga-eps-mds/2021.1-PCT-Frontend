@@ -10,9 +10,11 @@ import {
     NewResultsContainer,
     NewsTitle,
 } from "./styles";
-import { useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { crawlerExecutionResponse, crawlerExecutionDetailsResponse } from "../../Components/MonitoringCard"
+import { FiArrowLeft } from "react-icons/fi";
+import { Button } from "react-bootstrap";
 
 type crawlerResponse = {
     id: number;
@@ -87,6 +89,11 @@ const Monitoring: React.FC = () => {
         return <MonitoringCard key={result?.id} item={result} />;
     };
 
+    const history = useHistory();
+    const backToCrawlers = (e: React.SyntheticEvent) => {
+        history.push(`/fontes`); 
+    };
+
     return(
         <Container>
             <Header />
@@ -99,10 +106,17 @@ const Monitoring: React.FC = () => {
                         height={50}
                         width={50}
                     />
-                ) : (
+                ) : ( monitoringAllExecutionResponse?.results.length!=0 ? 
                     <MyFlatlist
                         list={monitoringAllExecutionResponse?.results}
                         renderItem={(item: crawlerExecutionResponse) => renderResultCard(item)} />
+                        :
+                        <NewResultsContainer>   
+                            <p> Nenhuma execução encontrada. </p>
+                            <Button onClick={backToCrawlers}>
+                                <FiArrowLeft /> Voltar para fontes
+                            </Button>
+                        </NewResultsContainer>
                 )}
             </NewResultsContainer>
 

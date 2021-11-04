@@ -19,6 +19,10 @@ export const Container = styled.div`
     width: 100%;
     padding: 2%;
   }
+
+  &:hover {
+    background-color: #153754;
+  }
 `;
 
 export const TitleDateContainer = styled.div`
@@ -29,13 +33,22 @@ export const TitleDateContainer = styled.div`
   justify-content: space-between;
 `;
 
+export const ButtonContainer = styled.div`
+  flex: 1;
+  display: block;
+  align-items: right;
+  justify-content: space-between;
+  padding-left: 10%;
+  right: 0;
+`;
+
 export const SourceName = styled.text`
   font-size: 1rem;
   font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
 
-  width: 80%;
+  width: 50%;
   height: 1rem;
   margin-left: 2%;
 
@@ -53,17 +66,23 @@ export const SourceName = styled.text`
 
 export const ResultDate = styled.text`
   font-size: 1rem;
-  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
 
-  width: 20%;
+  width: auto;
   display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
+  text-align: center;
+  padding-top: 0.5%;
+  margin-right: 9 %;
+  
   color: #ffffff;
+
+  ul {
+    list-style-type: none;
+  }
 
   @media screen and (max-width: 1024px) {
     font-size: 0.5rem;
@@ -71,8 +90,7 @@ export const ResultDate = styled.text`
 `;
 
 export const ButtonStyle = styled.button`
-  margin-left: 0.5%;
-  margin-right: 1%;
+  margin-right: 20%;
   border: 0;
   border-radius: 5px;
 `;
