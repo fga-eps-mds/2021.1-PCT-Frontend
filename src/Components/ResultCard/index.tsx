@@ -35,17 +35,13 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
     window.open(item.url, "_blank");
   };
 
-  const boldText = {
-    fontWeight:'bold' as 'bold'
-  }
-
   return (
     <Container onClick={() => openLink()}>
       <TitleDateContainer>
         <ResultTitle>{item.title}</ResultTitle>
         <ul>
           <li><ResultDate>Data de obtenção:</ResultDate></li>
-          <li style={boldText}><ResultDate>{moment(item.updated_at).format("DD/MM/YYYY hh:mm")}</ResultDate></li>
+          <li><ResultDate>{moment(item.updated_at).format("DD/MM/YYYY hh:mm")}</ResultDate></li>
         </ul>
       </TitleDateContainer>
       <ResultLink href={item.url} target="_blank">

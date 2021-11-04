@@ -67,10 +67,6 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
     history.push(`/fontes/monitoramento/${item.id}`); 
   };
 
-  const boldText = {
-    fontWeight: 'bold' as 'bold'
-  }
-
   const textMargin = {
     marginTop: '2%',
     marginBottom: '2%'
@@ -83,7 +79,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
         <ResultDate>
           <ul>
             <li style={textMargin}>Criado em: </li>
-            <li style={boldText}>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+            <li>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
           </ul>
         </ResultDate>
         <ButtonContainer>
