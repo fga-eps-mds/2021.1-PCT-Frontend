@@ -70,6 +70,12 @@ const SourceModal: React.FC<SourceModalProps> = ({
     setFormdata({ ...formData, [name]: value });
   }
 
+  function handleInputBooleanChage(event: ChangeEvent<HTMLInputElement>) {
+    const { name } = event.target;
+    const current_value = (formData as any)[name];
+    setFormdata({ ...formData, [name]: !current_value });
+  }
+
   function handleListInputChage(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setFormdata({ ...formData, [name]: value.trim().split(",") });
@@ -265,7 +271,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="task_enabled"
               checked={formData["task_enabled"]}
               label="Habilitar coleta periódica"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <CustomCheckbox
               type="checkbox"
@@ -273,7 +279,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="task_one_off"
               checked={formData["task_one_off"]}
               label="Desabilitar tarefa após execução"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <CustomCheckbox
               type="checkbox"
@@ -281,7 +287,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="contains_dynamic_js_load"
               checked={formData["contains_dynamic_js_load"]}
               label="Possui carregamento dinâmico (Javascript)"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <CustomCheckbox
               type="checkbox"
@@ -289,7 +295,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
               name="contains_end_path_keyword"
               checked={formData["contains_end_path_keyword"]}
               label="Alterar expressões pelo path da URL"
-              onChange={handleInputChage}
+              onChange={handleInputBooleanChage}
             />
             <Form.Group className="mb-3">
               <Row className="g-2">
