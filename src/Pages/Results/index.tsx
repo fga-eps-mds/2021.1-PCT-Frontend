@@ -22,6 +22,7 @@ interface DocumentResult {
   checksum: string;
   updated_at: string;
   created_at: string;
+  classification: string;
 }
 
 type documentsResponse = {

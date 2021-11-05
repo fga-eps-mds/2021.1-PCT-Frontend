@@ -8,12 +8,11 @@ import { MyFlatlist } from "../HomeScreen/styles";
 import { Container, NewResultsContainer, NewsTitle } from "./styles";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import {
-  crawlerExecutionResponse,
-  crawlerExecutionDetailsResponse,
-} from "../../Components/MonitoringCard";
+import { crawlerExecutionResponse } from "../../Components/MonitoringCard";
 import { FiArrowLeft } from "react-icons/fi";
 import { Button } from "react-bootstrap";
+
+import ExecutionDetailsModal from "../../Components/ExecutionDetailsModal";
 
 type crawlerResponse = {
   id: number;
@@ -47,14 +46,29 @@ interface monitoringParams {
 
 const Monitoring: React.FC = () => {
   const [crawlerResponse, setCrawlerResponse] = useState<crawlerResponse>();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedExecutionGroup, setSelectedExecutionGroup] =
+    useState<crawlerExecutionResponse>();
 
   const [monitoringAllExecutionResponse, setMonitoringAllExecutionResponse] =
     useState<crawlerAllExecutionsResponse>();
 
+  const handleShowMonitoringDetailsModal = (
+    groupExecutionItem: crawlerExecutionResponse
+  ) => {
+    setSelectedExecutionGroup(groupExecutionItem);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedExecutionGroup(undefined);
+    setShowModal(false);
+  };
+
   const [isLoading, setIsLoading] = useState(false);
 
   const { params } = useRouteMatch<monitoringParams>();
-  const [sourceID, setSourceID] = useState(params.sourceID);
+  const [sourceID] = useState(params.sourceID);
 
   useEffect(() => {
     getCrawlersExecutions();
@@ -86,17 +100,28 @@ const Monitoring: React.FC = () => {
   };
 
   const renderResultCard = (result: crawlerExecutionResponse) => {
-    return <MonitoringCard key={result?.id} item={result} />;
+    return (
+      <MonitoringCard
+        key={result?.id}
+        item={result}
+        onClick={handleShowMonitoringDetailsModal}
+      />
+    );
   };
 
   const history = useHistory();
-  const backToCrawlers = (e: React.SyntheticEvent) => {
+  const backToCrawlers = () => {
     history.push(`/fontes`);
   };
 
   return (
     <Container>
       <Header />
+      <ExecutionDetailsModal
+        show={showModal}
+        handleClose={handleCloseModal}
+        executionGroup={selectedExecutionGroup}
+      />
       <NewResultsContainer>
         <h1>Monitoramento do {crawlerResponse?.site_name_display}</h1>
         {isLoading === true ? (

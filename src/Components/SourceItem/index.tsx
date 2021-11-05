@@ -64,7 +64,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
 
   const monitoringSource = (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    history.push(`/fontes/monitoramento/${item.id}`); 
+    history.push(`/fontes/${item.id}/monitoramento`); 
   };
 
   const textMargin = {

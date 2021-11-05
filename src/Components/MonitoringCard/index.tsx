@@ -1,18 +1,12 @@
-import { Button, ButtonProps } from "react-bootstrap";
 import React from "react";
-import ReactDOM from "react-dom";
-import { useHistory } from "react-router-dom";
 import {
   Container,
-  ResultDate,
-  ResultTitle,
   TitleDateContainer,
   ResultDetails,
   MonitoringInfo,
   ResultDetailsInfo,
 } from "./styles";
 import moment from "moment";
-import { FiArrowLeft } from "react-icons/fi";
 
 export interface crawlerExecutionResponse {
   id: number;
@@ -35,16 +29,18 @@ export interface crawlerExecutionDetailsResponse {
   state: string;
   crawled_pages: number;
   saved_records: number;
+  dropped_records: number;
   error_log?: any;
 }
 
-interface MonitoringCardProps extends ButtonProps {
+interface MonitoringCardProps {
   item: crawlerExecutionResponse;
+  onClick: (sourceItem: crawlerExecutionResponse) => void;
 }
 
-const MonitoringCard: React.FC<MonitoringCardProps> = ({ item }) => {
+const MonitoringCard: React.FC<MonitoringCardProps> = ({ item, onClick }) => {
   return (
-    <Container>
+    <Container onClick={() => onClick(item)} style={{ cursor: "pointer" }}>
       <TitleDateContainer>
         <ResultDetails>
           <MonitoringInfo>Status da Execução:</MonitoringInfo>
