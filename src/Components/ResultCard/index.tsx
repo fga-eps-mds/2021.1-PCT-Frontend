@@ -1,5 +1,5 @@
 import React from "react";
-import { ButtonProps } from "react-bootstrap";
+import { ButtonProps, Col, Row } from "react-bootstrap";
 import moment from "moment";
 
 import {
@@ -54,14 +54,28 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
         {item.url}
       </ResultLink>
 
-      <ResultCategoriesText>Categorias</ResultCategoriesText>
-      <ResultCategoriesContainer>
-        {item?.classification && (
-          <ResultCategories>
-            <text>{item.classification}</text>
-          </ResultCategories>
-        )}
-      </ResultCategoriesContainer>
+      <Row className="g-4">
+        <Col>
+          <ResultCategoriesText>Fonte</ResultCategoriesText>
+          <ResultCategoriesContainer>
+            {item?.source && (
+              <ResultCategories>
+                <text>{item.source}</text>
+              </ResultCategories>
+            )}
+          </ResultCategoriesContainer>
+        </Col>
+        <Col>
+          <ResultCategoriesText>Categorias</ResultCategoriesText>
+          <ResultCategoriesContainer>
+            {item?.classification && (
+              <ResultCategories>
+                <text>{item.classification}</text>
+              </ResultCategories>
+            )}
+          </ResultCategoriesContainer>
+        </Col>
+      </Row>
     </Container>
   );
 };
