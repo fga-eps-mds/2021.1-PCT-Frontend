@@ -8,9 +8,10 @@ import ResultCard from "../../Components/ResultCard";
 import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
-import { Container, NewResultsContainer } from "./styles";
+import { Container as PageContainer, NewResultsContainer } from "./styles";
 import api from "../../services/api";
 import { useRouteMatch } from "react-router";
+import { Form, Container, Row, Col } from "react-bootstrap";
 
 interface DocumentResult {
   id: number;
@@ -94,17 +95,46 @@ const Results: React.FC = () => {
   };
 
   return (
-    <Container>
+    <PageContainer>
       <Header />
       <NewResultsContainer>
         <h2 className="results-title">Resultados</h2>
-        <SearchBar
-          ableToSearch={searchTerm === "" ? false : true}
-          searchTerm={searchTerm}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setSearchTerm(e.target.value);
-          }}
-        />
+        <Row style={{ width: "80%", marginBottom: "20px" }}>
+          <SearchBar
+            ableToSearch={searchTerm === "" ? false : true}
+            searchTerm={searchTerm}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+          <Row className="justify-content-md-left">
+            <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
+              <Form.Select id="source-filter" aria-label="Fonte" size="sm">
+                <option>Fonte</option>
+                <option value="1">Incra</option>
+                <option value="2">MPF</option>
+                <option value="3">Senado</option>
+              </Form.Select>
+            </Col>
+            <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
+              <Form.Select id="source-filter" aria-label="Categoria" size="sm">
+                <option>Categoria</option>
+                <option value="1">Quilombolas</option>
+                <option value="2">Território</option>
+              </Form.Select>
+            </Col>
+            <Col sm lg="3" style={{ padding: "0px", paddingRight: "0.5vh" }}>
+              <Form.Select id="source-filter" aria-label="Categoria" size="sm">
+                <option>Qualquer momento</option>
+                <option value="1">Semana passada</option>
+                <option value="2">Mês passado</option>
+                <option value="3">Ano passado</option>
+                <option value="4">Customizado</option>
+              </Form.Select>
+            </Col>
+          </Row>
+        </Row>
+        
         {isLoading === true ? (
           <Loader type="ThreeDots" color="#004346" height={50} width={50} />
         ) : (
@@ -137,7 +167,7 @@ const Results: React.FC = () => {
         )}
       </NewResultsContainer>
       <Footer />
-    </Container>
+    </PageContainer>
   );
 };
 
