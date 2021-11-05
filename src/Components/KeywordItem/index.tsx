@@ -59,7 +59,7 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
         </ResultDate>
         <ButtonStyle>
           <Button onClick={deleteKeyword}>
-            <FiTrash />
+            <FiTrash color="#ff0000"/>
           </Button>
         </ButtonStyle>
       </TitleDateContainer>

@@ -9,6 +9,45 @@ import { SourceResult } from "../../Components/SourceItem";
 
 import { CustomCheckbox } from "./styles";
 
+
+type CrawlerFormData = {
+  site_name_display: string;
+  url_root: string;
+  qs_search_keyword_param: string;
+  allowed_domains: Array<string>;
+  allowed_paths: Array<string>;
+  task_enabled: boolean;
+  task_one_off: boolean;
+  contains_dynamic_js_load: boolean;
+  contains_end_path_keyword: boolean;
+  retries: number;
+  page_load_timeout: number;
+  cron_minute: string;
+  cron_hour: string;
+  cron_day_of_week: string;
+  cron_day_of_month: string;
+  cron_month_of_year: string;
+};
+
+type CrawlerRegistrationErrorResponse = {
+  site_name_display: Array<string>;
+  url_root: Array<string>;
+  qs_search_keyword_param: Array<string>;
+  allowed_domains: Array<string>;
+  allowed_paths: Array<string>;
+  task_enabled: Array<string>;
+  task_one_off: Array<string>;
+  contains_dynamic_js_load: Array<string>;
+  contains_end_path_keyword: Array<string>;
+  retries: Array<string>;
+  page_load_timeout: Array<string>;
+  cron_minute: Array<string>;
+  cron_hour: Array<string>;
+  cron_day_of_week: Array<string>;
+  cron_day_of_month: Array<string>;
+  cron_month_of_year: Array<string>;
+};
+
 interface SourceModalProps {
   showModal: boolean;
   isUpdateModal: boolean;
@@ -24,7 +63,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
   onDataUpdated,
   source,
 }: SourceModalProps) => {
-  const [formData, setFormdata] = useState({
+  const INITIAL_FORM_DATA: CrawlerFormData = {
     site_name_display: "",
     url_root: "",
     qs_search_keyword_param: "",
@@ -41,7 +80,32 @@ const SourceModal: React.FC<SourceModalProps> = ({
     cron_day_of_week: "*",
     cron_day_of_month: "*",
     cron_month_of_year: "*",
-  });
+  };
+
+  const INITIAL_FORM_ERRORS: CrawlerRegistrationErrorResponse = {
+    site_name_display: Array<string>(),
+    url_root: Array<string>(),
+    qs_search_keyword_param: Array<string>(),
+    allowed_domains: Array<string>(),
+    allowed_paths: Array<string>(),
+    task_enabled: Array<string>(),
+    task_one_off: Array<string>(),
+    contains_dynamic_js_load: Array<string>(),
+    contains_end_path_keyword: Array<string>(),
+    retries: Array<string>(),
+    page_load_timeout: Array<string>(),
+    cron_minute: Array<string>(),
+    cron_hour: Array<string>(),
+    cron_day_of_week: Array<string>(),
+    cron_day_of_month: Array<string>(),
+    cron_month_of_year: Array<string>(),
+  };
+
+  const [formData, setFormdata] =
+    useState<CrawlerFormData>(INITIAL_FORM_DATA);
+
+  const [formErrors, setFormErrors] =
+    useState<CrawlerRegistrationErrorResponse>(INITIAL_FORM_ERRORS);
 
   // Atualiza quando o estado da modal se altera
   useEffect(() => {
@@ -53,9 +117,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
       allowed_paths: source?.allowed_paths || [],
       task_enabled: source ? source.task_enabled : true,
       task_one_off: source ? source.task_one_off : false,
-      contains_dynamic_js_load: source
-        ? source.contains_dynamic_js_load
-        : true,
+      contains_dynamic_js_load: source ? source.contains_dynamic_js_load : true,
       contains_end_path_keyword: source
         ? source.contains_end_path_keyword
         : false,
@@ -99,15 +161,31 @@ const SourceModal: React.FC<SourceModalProps> = ({
     onDataUpdated();
   }
 
+  function onCloseModal() {
+    handleClose();
+    setFormdata(INITIAL_FORM_DATA);
+    setFormErrors(INITIAL_FORM_ERRORS);
+  }
+
+  async function setErrors(errorResponse: CrawlerRegistrationErrorResponse) {
+    console.log("RESPOSTA ERROR:", errorResponse);
+    setFormErrors(errorResponse);
+  }
+
   async function registerSource(data: FormData) {
     await apiCrawlers
       .post("crawlers/", data)
       .then(() => {
         closeModalOnUpdate();
       })
-      .catch(() => {
-        const msg = "Ocorreu um erro inesperado ao cadastrar!";
-        alert(msg);
+      .catch((error) => {
+        try {
+          const errorResponse = error?.response?.data;
+          setErrors(errorResponse);
+        } catch {
+          const msg = "Ocorreu um erro inesperado ao cadastrar!";
+          alert(msg);
+        }
       });
   }
 
@@ -117,9 +195,14 @@ const SourceModal: React.FC<SourceModalProps> = ({
       .then(() => {
         closeModalOnUpdate();
       })
-      .catch(() => {
-        const msg = "Ocorreu um erro inesperado ao atualizar!";
-        alert(msg);
+      .catch((error) => {
+        try {
+          const errorResponse = error?.response?.data;
+          setErrors(errorResponse);
+        } catch {
+          const msg = "Ocorreu um erro inesperado ao atualizar!";
+          alert(msg);
+        }
       });
   }
 
@@ -179,7 +262,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
   }
 
   return (
-    <Modal show={showModal} onHide={handleClose}>
+    <Modal show={showModal} onHide={onCloseModal}>
       <Modal.Header>
         <Modal.Title>
           {isUpdateModal
@@ -200,8 +283,12 @@ const SourceModal: React.FC<SourceModalProps> = ({
                 name="site_name_display"
                 value={formData["site_name_display"]}
                 onChange={handleInputChage}
+                isInvalid={!!formErrors.site_name_display?.length}
                 placeholder="Nome do site"
               />
+              <Form.Control.Feedback type="invalid">
+                {formErrors.site_name_display[0]}
+              </Form.Control.Feedback>
               <Form.Text className="text-muted">
                 Nome do site ou nome + seção de um site. Formato: site_crawler
               </Form.Text>
@@ -218,7 +305,11 @@ const SourceModal: React.FC<SourceModalProps> = ({
                     value={formData["url_root"]}
                     onChange={handleInputChage}
                     placeholder="URL de início"
+                    isInvalid={!!formErrors.url_root?.length}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {formErrors.url_root[0]}
+                  </Form.Control.Feedback>
                 </Col>
                 <Col md>
                   <Form.Control
@@ -228,7 +319,12 @@ const SourceModal: React.FC<SourceModalProps> = ({
                     value={formData["qs_search_keyword_param"]}
                     onChange={handleInputChage}
                     placeholder="Param. de busca"
+                    isInvalid={!!formErrors.qs_search_keyword_param?.length}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {!!formErrors.qs_search_keyword_param?.length &&
+                      formErrors.qs_search_keyword_param[0]}
+                  </Form.Control.Feedback>
                 </Col>
               </Row>
               <Form.Text className="text-muted">
@@ -248,12 +344,19 @@ const SourceModal: React.FC<SourceModalProps> = ({
                   value={formData["allowed_domains"].join(",")}
                   onChange={handleListInputChage}
                   placeholder="Domínios"
+                  isInvalid={!!formErrors.allowed_domains?.length}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {!!formErrors.allowed_domains?.length &&
+                    formErrors.allowed_domains[0]}
+                </Form.Control.Feedback>
                 <Form.Text className="text-muted">
                   Domínios permitidos que o crawler pode executar. Digite os
                   domínios separados por &quot;,&quot; (ex: google.com,
                   www.mpf.mp.br).
                 </Form.Text>
+              </Row>
+              <Row className="g-2">
                 <Form.Control
                   type="text"
                   id="allowed_paths"
@@ -261,7 +364,12 @@ const SourceModal: React.FC<SourceModalProps> = ({
                   value={formData["allowed_paths"].join(",")}
                   onChange={handleListInputChage}
                   placeholder="Paths"
+                  isInvalid={!!formErrors.allowed_paths?.length}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {!!formErrors.allowed_paths?.length &&
+                    formErrors.allowed_paths[0]}
+                </Form.Control.Feedback>
                 <Form.Text className="text-muted">
                   Caminhos permitidos (paths). Digite os paths separados por
                   &quot;,&quot; (ex: noticias, jurisprudencia/documentos).
@@ -316,7 +424,11 @@ const SourceModal: React.FC<SourceModalProps> = ({
                     value={formData["retries"]}
                     onChange={handleInputChage}
                     placeholder="Tentativas"
+                    isInvalid={!!formErrors.retries?.length}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {!!formErrors.retries?.length && formErrors.retries[0]}
+                  </Form.Control.Feedback>
                   <Form.Text className="text-muted">
                     Quantidade de tentativas de carregamento de uma página
                   </Form.Text>
@@ -330,7 +442,12 @@ const SourceModal: React.FC<SourceModalProps> = ({
                     value={formData["page_load_timeout"]}
                     onChange={handleInputChage}
                     placeholder="Timeout em segundos"
+                    isInvalid={!!formErrors.page_load_timeout?.length}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {!!formErrors.page_load_timeout?.length &&
+                      formErrors.page_load_timeout[0]}
+                  </Form.Control.Feedback>
                   <Form.Text className="text-muted">
                     Tempo de espera máximo, para o carregamento de uma página,
                     antes de considerar como erro
@@ -414,7 +531,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="tertiary" onClick={handleClose}>
+        <Button variant="tertiary" onClick={onCloseModal}>
           Cancelar
         </Button>
         <Button variant="primary" form="source-registration-form" type="submit">

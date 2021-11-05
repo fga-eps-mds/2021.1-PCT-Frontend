@@ -90,7 +90,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
           </ButtonStyle>
           <ButtonStyle>
             <Button onClick={deleteSource}>
-              <FiTrash />
+              <FiTrash color="#ff0000"/>
             </Button>
           </ButtonStyle>
         </ButtonContainer>
