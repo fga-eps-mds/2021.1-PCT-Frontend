@@ -19,7 +19,6 @@ import logoImage from "./../../assets/images/LogoPCT.png";
 const Header: React.FC = () => {
   const history = useHistory();
 
-  const userNome = localStorage.getItem("userNome");
   const isLoggedIn = true;
 
   const logout = () => {

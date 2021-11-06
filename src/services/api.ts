@@ -8,4 +8,8 @@ export const apiCrawlers = axios.create({
   baseURL: "https://pcts-scrapers-dev.herokuapp.com/api/",
 });
 
+export const apiUsers = axios.create({
+  baseURL: "http://localhost:8001/",
+});
+
 export default api;

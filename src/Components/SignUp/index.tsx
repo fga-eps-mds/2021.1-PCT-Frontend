@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import apiUsers from "../../services/apiUsers";
+import { apiUsers } from "../../services/api";
 
 import {
   Container,
@@ -14,42 +14,45 @@ import {
 } from "./styles";
 
 const TelaCadastro: React.FC = () => {
-
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const history = useHistory();
 
-  const realizaCadastro = async (e: { preventDefault: () => void; }) => {
-    
+  const realizaCadastro = async (e: { preventDefault: () => void }) => {
     const data = {
       nome,
       email,
-      senha
+      senha,
     };
 
     try {
-      const response = await apiUsers.post('COLOCAR A ROTA DE CADASTRO', data)
+      const response = await apiUsers.post("COLOCAR A ROTA DE CADASTRO", data);
       // alert(`Cadastro realizado com sucesso! ID: ${response.data.id}`);
-      history.push('/login');
+      history.push("/login");
     } catch (err) {
-      alert(`Houve um erro ao cadastrar. Por favor, tente novamente mais tarde.`);
+      alert(
+        `Houve um erro ao cadastrar. Por favor, tente novamente mais tarde.`
+      );
     }
-  }
+  };
 
   return (
     <Container>
       <CadastroForm onSubmit={realizaCadastro}>
         <h3>Faça seu cadastro</h3>
-        <p> Faça seu cadastro para salvar suas pesquisas e poder exportá-las.</p>
+        <p>
+          {" "}
+          Faça seu cadastro para salvar suas pesquisas e poder exportá-las.
+        </p>
         <>
           <ItemForm>
             <Input
               type="text"
               placeholder="Nome"
               value={nome}
-              onChange={e => setNome(e.target.value)}
+              onChange={(e) => setNome(e.target.value)}
             />
           </ItemForm>
           <ItemForm>
@@ -57,7 +60,7 @@ const TelaCadastro: React.FC = () => {
               type="text"
               placeholder="Email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </ItemForm>
           <ItemForm>
@@ -65,19 +68,15 @@ const TelaCadastro: React.FC = () => {
               type="password"
               placeholder="Senha"
               value={senha}
-              onChange={e => setSenha(e.target.value)}
+              onChange={(e) => setSenha(e.target.value)}
             />
           </ItemForm>
           <ItemForm>
-            <BotaoCadastrar type="submit" >
-              Cadastrar
-            </BotaoCadastrar>
+            <BotaoCadastrar type="submit">Cadastrar</BotaoCadastrar>
           </ItemForm>
           <ItemForm>
             <OpcoesExtra>
-                <MyLink to={"/login"}>
-                  Voltar para tela de login
-                </MyLink>
+              <MyLink to={"/login"}>Voltar para tela de login</MyLink>
             </OpcoesExtra>
           </ItemForm>
         </>
