@@ -10,30 +10,48 @@ export const Container = styled.div`
   position: relative;
 `;
 
+export const SearchAreaContainer = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  
+  width: 60%;
+  
+  overflow: auto;
+  overflow-x: hidden;
+  
+  margin-bottom: 1rem;
+  
+  @media screen and (max-width: 640px) {
+    width: 100%;
+    padding: 2%;
+  }
+`;
+
 export const NewResultsContainer = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
-  width: 90%;
-  /* padding-top: 20%; */
-  /* max-height: 50vh; */
-
+  
+  width: 80%;
+  
   overflow: auto;
   overflow-x: hidden;
-
+  
   margin-bottom: 1rem;
-
-  /* @media screen and (max-width: 1024px) {
-    max-height: 45vh;
-  } */
+  
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 2%;
+  }
 `;
 
 export const NewsTitle = styled.p`
   flex: 1;
-  margin-left: 10%;
   margin-bottom: 0.2%;
   align-self: flex-start;
 

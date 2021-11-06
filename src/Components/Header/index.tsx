@@ -24,17 +24,14 @@ const Header: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav style={{ width: "100%", justifyContent: "space-around" }}>
-            <Nav.Link>
-              <MyLink to={"/"}>Início</MyLink>
-            </Nav.Link>
-            <Nav.Link>
+          <Nav style={{ width: "100%" }} className="justify-content-md-end">
+            {/* <Nav.Link>
               <MyLink to={"/"}>Pesquisa Avançada</MyLink>
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link>
               <MyLink to={"/sobre-nos"}>Sobre Nós</MyLink>
             </Nav.Link>
-            <MyLink to={""}>
+            {/* <MyLink to={""}>
               <CustomNavDropdown title="Gerenciamento" id="management-nav-dropdown">
                 <CustomNavDropdown.Item>
                   <HeaderButton>
@@ -47,7 +44,7 @@ const Header: React.FC = () => {
                   </HeaderButton>
                 </CustomNavDropdown.Item>
               </CustomNavDropdown>
-            </MyLink>
+            </MyLink> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

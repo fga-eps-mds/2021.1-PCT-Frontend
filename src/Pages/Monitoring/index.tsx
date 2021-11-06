@@ -71,6 +71,7 @@ const Monitoring: React.FC = () => {
   const [sourceID] = useState(params.sourceID);
 
   useEffect(() => {
+    document.title = "Monitoramento";
     getCrawlersExecutions();
     getCrawlerDetail();
   }, []);
