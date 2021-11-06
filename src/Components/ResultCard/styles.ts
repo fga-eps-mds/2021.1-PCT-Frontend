@@ -9,16 +9,11 @@ export const Container = styled.div`
 
   background-color: #172a3a;
 
-  width: 80%;
+  width: 100%;
   padding: 1%;
 
   margin-top: 0.7rem;
   border-radius: 10px;
-
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    padding: 2%;
-  }
 
   &:hover {
     cursor: pointer;

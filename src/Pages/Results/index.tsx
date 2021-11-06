@@ -9,10 +9,14 @@ import ResultCard from "../../Components/ResultCard";
 import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
-import { Container as PageContainer, NewResultsContainer } from "./styles";
+import {
+  Container as PageContainer,
+  NewResultsContainer,
+  SearchAreaContainer,
+} from "./styles";
 import { api, apiCrawlers } from "../../services/api";
 import { useRouteMatch } from "react-router";
-import { Form, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import SelectFilter from "../../Components/SelectFilter";
 import DateFilterModal from "../../Components/DateFilterModal";
@@ -228,7 +232,8 @@ const Results: React.FC = () => {
       />
       <NewResultsContainer>
         <h2 className="results-title">Resultados</h2>
-        <Row style={{ width: "80%", marginBottom: "20px" }}>
+        {/* <Row style={{ width: "80%", marginBottom: "20px" }}> */}
+        <SearchAreaContainer>
           <SearchBar
             ableToSearch={searchTerm === "" ? false : true}
             searchTerm={searchTerm}
@@ -236,7 +241,7 @@ const Results: React.FC = () => {
               setSearchTerm(e.target.value);
             }}
           />
-          <Row className="justify-content-md-left">
+          <Row className="justify-content-md-start" style={{ width: "100%" }}>
             <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
               <SelectFilter
                 items={availableSources}
@@ -265,7 +270,8 @@ const Results: React.FC = () => {
               />
             </Col>
           </Row>
-        </Row>
+        </SearchAreaContainer>
+        {/* </Row> */}
 
         {isLoading === true ? (
           <Loader type="ThreeDots" color="#004346" height={50} width={50} />

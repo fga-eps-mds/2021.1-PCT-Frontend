@@ -12,6 +12,7 @@ import {
   Container,
   MyFlatlist,
   NewResultsContainer,
+  SearchAreaContainer,
   NewsTitle,
 } from "./styles";
 
@@ -40,7 +41,6 @@ const HomeScreen: React.FC = () => {
     useState<documentsResponse>();
   const [isLoading, setIsLoading] = useState(false);
   const [mySearch, setMySearch] = useState("");
-
 
   useEffect(() => {
     document.title = "PCTs";
@@ -88,15 +88,17 @@ const HomeScreen: React.FC = () => {
     <Container>
       <Header />
       <MyCarousel />
-      <SearchBar
-        ableToSearch={mySearch === "" ? false : true}
-        searchTerm={mySearch}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setMySearch(e.target.value);
-        }}
-      />
-      <NewsTitle>Últimas Atualizações</NewsTitle>
       <NewResultsContainer>
+        <SearchAreaContainer>
+          <SearchBar
+            ableToSearch={mySearch === "" ? false : true}
+            searchTerm={mySearch}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setMySearch(e.target.value);
+            }}
+          />
+        </SearchAreaContainer>
+        <NewsTitle>Últimas Atualizações</NewsTitle>
         {isLoading === true ? (
           <Loader
             type="ThreeDots"
