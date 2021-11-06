@@ -27,7 +27,8 @@ const SelectFilter: React.FC<SelectFilterProps> = ({
   };
 
   return (
-    <Form.Select
+    <Form.Control
+      as= "select"
       id="source-filter"
       aria-label="Fonte"
       size="sm"
@@ -40,7 +41,7 @@ const SelectFilter: React.FC<SelectFilterProps> = ({
           {item[displayAttr]}
         </option>
       ))}
-    </Form.Select>
+    </Form.Control>
   );
 };
 

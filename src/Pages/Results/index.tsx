@@ -16,7 +16,7 @@ import {
 } from "./styles";
 import { api, apiCrawlers } from "../../services/api";
 import { useRouteMatch } from "react-router";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 
 import SelectFilter from "../../Components/SelectFilter";
 import DateFilterModal from "../../Components/DateFilterModal";
@@ -222,6 +222,27 @@ const Results: React.FC = () => {
     setShowDateFilterModal(false);
   };
 
+  const exportDocuments = () => {
+    try {
+      let filters = `?q=${searchTerm}`;
+      filters += selectedSource ? `&source=${selectedSource}` : "";
+      filters += selectedCategory ? `&category=${selectedCategory}` : "";
+
+      if (selectedPeriod) {
+        filters += selectedPeriod.date_lte
+          ? `&date-lte=${selectedPeriod?.date_lte}`
+          : "";
+        filters += selectedPeriod.date_gte
+          ? `&date-gte=${selectedPeriod?.date_gte}`
+          : "";
+      }
+      filters += `/export`;
+      const data = api.get(filters);
+    } catch (error) {
+      alert("Ocorreu um erro ao exportar a pesquisa!");
+    }
+  };
+
   return (
     <PageContainer>
       <Header />
@@ -241,7 +262,7 @@ const Results: React.FC = () => {
               setSearchTerm(e.target.value);
             }}
           />
-          <Row className="justify-content-md-start" style={{ width: "100%" }}>
+          <Row className="justify-content-md-start" style={{ width: "100%"}}>
             <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
               <SelectFilter
                 items={availableSources}
@@ -268,6 +289,9 @@ const Results: React.FC = () => {
                 defaultItem="Qualquer momento"
                 onSelect={filterPeriod}
               />
+            </Col>
+            <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh", height: '100%' }}>
+              <Button variant="success" style={{ backgroundColor: 'green', color: 'white', marginLeft: "5%" }} onClick={exportDocuments}>Exportar Pesquisa</Button>
             </Col>
           </Row>
         </SearchAreaContainer>
