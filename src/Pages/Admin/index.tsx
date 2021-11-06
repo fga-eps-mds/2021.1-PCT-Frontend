@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
+
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
-
-import { Container, Title } from "./styles";
+import { Container, Title, AdminItemCard, MyLink } from "./styles";
 import { Card, CardGroup, Col, Row } from "react-bootstrap";
 
 const AdminPage: React.FC = () => {
@@ -17,26 +17,29 @@ const AdminPage: React.FC = () => {
       <CardGroup>
         <Row className="g-2">
           <Col md={3}>
-            <Card>
-              <Card.Body>
-                <Card.Title>Fontes</Card.Title>
-                <Card.Text>
-                  Gerenciamento de expressões e palavras chaves que são
-                  utilizadas para extração de dados das fontes.
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            <MyLink to="/fontes">
+              <AdminItemCard>
+                <Card.Body>
+                  <Card.Title>Fontes</Card.Title>
+                  <Card.Text>
+                    Websites utilizados como fonte de conteúdo.
+                  </Card.Text>
+                </Card.Body>
+              </AdminItemCard>
+            </MyLink>
           </Col>
           <Col md={3}>
-            <Card>
-              <Card.Body>
-                <Card.Title>Expressões</Card.Title>
-                <Card.Text>
-                  Gerenciamento de expressões e palavras chaves que são
-                  utilizadas para extração de dados das fontes.
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            <MyLink to="/expressoes">
+              <AdminItemCard>
+                <Card.Body>
+                  <Card.Title>Expressões</Card.Title>
+                  <Card.Text>
+                    Expressões e palavras chaves que são utilizadas para
+                    extração de dados das fontes.
+                  </Card.Text>
+                </Card.Body>
+              </AdminItemCard>
+            </MyLink>
           </Col>
         </Row>
       </CardGroup>

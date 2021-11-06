@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   flex: 1;
@@ -25,3 +27,16 @@ export const Title = styled.p`
     margin-left: 5%;
   }
 `;
+
+export const AdminItemCard = styled(Card)`
+ height: 100%;
+ cursor: pointer;
+`;
+
+export const MyLink = styled(Link)`
+  color: #1bc47d;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+`;
+
