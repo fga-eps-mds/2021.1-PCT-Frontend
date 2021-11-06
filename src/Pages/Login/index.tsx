@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -41,7 +42,7 @@ const Login: React.FC = () => {
 
   const history = useHistory();
 
-  async function login(event: FormEvent) {
+  const login = async (event: FormEvent) => {
     event.preventDefault();
     const dataRequest: LoginRequest = {
       username: email,
@@ -56,6 +57,9 @@ const Login: React.FC = () => {
         if (status === 200) {
           localStorage.setItem("acessToken", data?.access);
           localStorage.setItem("refreshToken", data?.refresh);
+
+          const accessDesc: any = jwt_decode(data?.access);
+          localStorage.setItem("userID", accessDesc["user_id"]);
         }
       })
       .catch(() => {
