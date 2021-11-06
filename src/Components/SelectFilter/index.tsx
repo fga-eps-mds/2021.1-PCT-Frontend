@@ -31,7 +31,8 @@ const SelectFilter: React.FC<SelectFilterProps> = ({
       id="source-filter"
       aria-label="Fonte"
       size="sm"
-      onChange={handleOnSelect}
+      // onChange={handleOnSelect}
+      onClickCapture={handleOnSelect}
     >
       <option value="0">{defaultItem}</option>
       {items && items.map((item) => (

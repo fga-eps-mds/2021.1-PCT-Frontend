@@ -41,7 +41,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
         <ResultTitle>{item.title}</ResultTitle>
         <ul>
           <li>
-            <ResultDate>Data de obtenção:</ResultDate>
+            <ResultDate>Encontrado em:</ResultDate>
           </li>
           <li>
             <ResultDate>
