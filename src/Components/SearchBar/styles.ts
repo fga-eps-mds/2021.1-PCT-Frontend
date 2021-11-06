@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
-  width: 40%;
+  width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding-left: 0.5rem;
@@ -18,6 +18,12 @@ export const Container = styled.div`
   border-radius: 5px;
   border-color: black;
   border: 1px solid black;
+`;
+
+export const SearchForm = styled.form`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 `;
 
 export const SearchInput = styled.input`

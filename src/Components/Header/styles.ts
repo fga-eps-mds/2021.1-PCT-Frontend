@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { NavDropdown } from "react-bootstrap";
 
 export const Container = styled.div`
   flex: 1;
@@ -11,10 +12,6 @@ export const Container = styled.div`
   padding-top: 1rem;
   margin-bottom: 1rem;
   justify-content: space-evenly;
-
-  /* top: 0;
-  position: fixed;
-  background-color: #edffd3; */
 
   @media screen and (max-width: 1024px) {
     padding-left: 0.5rem;
@@ -40,37 +37,47 @@ export const LogoImage = styled.img`
   width: 100%;
 `;
 
-export const ButtonsContainer = styled.div`
-  flex: 4;
-  border: none;
+export const UserButton = styled.div`
+  color: #004346;
   display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-evenly;
-`;
+  font-size: 1.1rem;
+  text-align: center;
 
-export const ProfileContainer = styled.div`
-  flex: 0.3;
-  width: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: 1.5rem;
-`;
-
-export const HeaderButton = styled.button`
-  flex: 1;
-  height: 2rem;
-  border: none;
-  color: #1bc47d;
-  display: flex;
-  font-weight: bold;
-  align-items: center;
-  justify-content: center;
-  background-color: #edffd3;
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const MyLink = styled(Link)`
+  color: #1bc47d;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  height: fit-content;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.8rem;
+  }
+`;
+
+export const NavItem = styled.div`
+  color: #004346;
+  display: flex;
+  margin-right: 1rem;
+  flex-direction: column;
+  justify-content: center;
+
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+export const CustomNavDropdown = styled(NavDropdown)`
   color: #1bc47d;
   font-size: 1.2rem;
   cursor: pointer;
@@ -84,58 +91,12 @@ export const MyLink = styled(Link)`
   @media screen and (max-width: 400px) {
     font-size: 0.8rem;
   }
-`;
 
-export const ProfileButton = styled.button`
-  flex: 1;
-  height: 2rem;
-  color: white;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  border-radius: 0.5rem;
-  justify-content: space-evenly;
-  background-color: #004346;
-  font-size: 1.1rem;
-  padding: 5%;
-
-  @media screen and (max-width: 1024px) {
-    font-size: 1rem;
-    padding: 5%;
+  a {
+    color: #1bc47d !important;
+    text-align: start;
   }
-
-  @media screen and (max-width: 400px) {
-    font-size: 0.8rem;
-    padding: 5%;
-  }
-`;
-
-export const UserButton = styled.div`
-  flex: 1;
-  width: 10rem;
-  color: #004346;
-  display: flex;
-  font-size: 1.1rem;
-  padding: 5%;
-  margin-right: 2rem;
-  text-align: center;
-`;
-
-export const LogoutButton = styled.button`
-  flex: 1;
-  height: 2rem;
-  color: white;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  border-radius: 0.5rem;
-  cursor: pointer; 
-  justify-content: space-evenly;
-  background-color: #004346;
-  font-size: 1.1rem;
-  padding: 5%;
-  margin-left: 2rem;
-`;
+`
 
 export const PersonIcon = styled.img`
   height: 1.1rem;
