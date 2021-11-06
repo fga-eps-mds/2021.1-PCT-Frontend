@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { Button, ButtonToolbar, Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import {
   Title,
   PersonIcon,
   LogoImage,
   UserButton,
-  CustomNavDropdown,
   NavItem,
   MyLink,
 } from "./styles";
+
+import userIsAuthenticated from "../../utils/userAuthentication";
 
 import personIcon from "./../../assets/images/person.png";
 import logoImage from "./../../assets/images/LogoPCT.png";
@@ -19,7 +20,7 @@ import logoImage from "./../../assets/images/LogoPCT.png";
 const Header: React.FC = () => {
   const history = useHistory();
 
-  const isLoggedIn = true;
+  const isLoggedIn = userIsAuthenticated();
 
   const logout = () => {
     localStorage.clear();
@@ -51,28 +52,21 @@ const Header: React.FC = () => {
                   <UserButton>Olá, Usuário</UserButton>
                 </NavItem>
                 <NavItem>
-                  <Button variant="outline-primary">Sair</Button>
+                  <Button variant="outline-primary" onClick={logout}>
+                    Sair
+                  </Button>
                 </NavItem>
               </>
             ) : (
-              <NavItem>
-                <Button>
-                  <MyLink to="/login">
-                    Login <PersonIcon src={personIcon} />{" "}
-                  </MyLink>
-                </Button>
-              </NavItem>
+              <></>
+              // <NavItem>
+              //   <Button>
+              //     <MyLink to="/login">
+              //       Login <PersonIcon src={personIcon} />{" "}
+              //     </MyLink>
+              //   </Button>
+              // </NavItem>
             )}
-            {/* <MyLink to={""}>
-              <CustomNavDropdown title="Gerenciamento" id="management-nav-dropdown">
-                <CustomNavDropdown.Item>
-                    <MyLink to={"/expressoes"}>Expressões</MyLink>
-                </CustomNavDropdown.Item>
-                <CustomNavDropdown.Item>
-                    <MyLink to={"/fontes"}>Fontes</MyLink>
-                </CustomNavDropdown.Item>
-              </CustomNavDropdown>
-            </MyLink> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
