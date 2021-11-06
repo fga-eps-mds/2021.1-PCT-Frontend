@@ -54,15 +54,20 @@ const Results: React.FC = () => {
   const [documentsResponse, setDocumentsResponse] =
     useState<DocumentsResponse>();
   const [availableSources, setAvailableSources] = useState<SourceResult[]>();
+  const [availableCategories] = useState([
+    { id: 1, categoryName: "Quilombolas" },
+    { id: 2, categoryName: "Território" },
+    { id: 3, categoryName: "Conflito" },
+  ]);
   const [isLoading, setIsLoading] = useState(false);
+  const { params } = useRouteMatch<ResultsParams>();
+  const [searchTerm, setSearchTerm] = useState(params.searchTerm);
+  const [selectedSource, setSelectedSource] = useState<string>();
+  const [selectedCategory, setSelectedCategory] = useState<string>();
 
   useEffect(() => {
     document.title = "Resultado";
   }, []);
-
-  const { params } = useRouteMatch<ResultsParams>();
-  const [searchTerm, setSearchTerm] = useState(params.searchTerm);
-  const [sourceFilter, setSourceFilter] = useState<string>();
 
   useEffect(() => {
     getDocuments();
@@ -71,13 +76,14 @@ const Results: React.FC = () => {
 
   useEffect(() => {
     getDocuments();
-  }, [sourceFilter]);
+  }, [selectedSource, selectedCategory]);
 
   const getDocuments = async () => {
     setIsLoading(true);
     try {
       let filters = `?q=${searchTerm}`;
-      filters += sourceFilter ? `&source=${sourceFilter}` : "";
+      filters += selectedSource ? `&source=${selectedSource}` : "";
+      filters += selectedCategory ? `&category=${selectedCategory}` : "";
 
       const { data } = await api.get(filters);
       setDocumentsResponse(data);
@@ -134,7 +140,11 @@ const Results: React.FC = () => {
   };
 
   const filterSource = (source: SourceResult) => {
-    setSourceFilter(source?.site_name);
+    setSelectedSource(source?.site_name);
+  };
+
+  const filterCategory = (category: any) => {
+    setSelectedCategory(category["categoryName"]);
   };
 
   return (
@@ -156,17 +166,18 @@ const Results: React.FC = () => {
                 items={availableSources}
                 idAttr="id"
                 displayAttr="site_name_display"
-                defaultItem="Todas as Fontes"
+                defaultItem="Todas as fontes"
                 onSelect={filterSource}
               />
             </Col>
             <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
-              <Form.Select id="source-filter" aria-label="Categoria" size="sm">
-                <option>Todas Categorias</option>
-                <option value="1">Quilombolas</option>
-                <option value="2">Território</option>
-                <option value="2">Conflito</option>
-              </Form.Select>
+              <SelectFilter
+                items={availableCategories}
+                idAttr="id"
+                displayAttr="categoryName"
+                defaultItem="Todas categorias"
+                onSelect={filterCategory}
+              />
             </Col>
             <Col sm lg="3" style={{ padding: "0px", paddingRight: "0.5vh" }}>
               <Form.Select id="source-filter" aria-label="Categoria" size="sm">
