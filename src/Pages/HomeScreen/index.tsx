@@ -48,7 +48,6 @@ const HomeScreen: React.FC = () => {
 
   useEffect(() => {
     getDocuments();
-    console.log("olá");
   }, []);
 
   const getDocuments = async () => {
@@ -56,7 +55,6 @@ const HomeScreen: React.FC = () => {
     try {
       const { data } = await api.get(``);
       setDocumentsResponse(data);
-      console.log(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
     }
@@ -66,10 +64,6 @@ const HomeScreen: React.FC = () => {
   const getMoreDocuments = async () => {
     const { data } = await api.get<documentsResponse>(
       `${documentsResponse?.next}`
-    );
-    console.log(
-      "nova chamada: ",
-      await api.get<documentsResponse>(`${documentsResponse?.next}`)
     );
     if (documentsResponse?.results) {
       let myDocuments: Array<DocumentResult> = documentsResponse?.results;
@@ -84,8 +78,6 @@ const HomeScreen: React.FC = () => {
 
       setDocumentsResponse(newDocumentsResponse);
     }
-
-    console.log(data);
   };
 
   const renderResultCard = (result: DocumentResult) => {

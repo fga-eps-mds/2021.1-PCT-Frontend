@@ -78,7 +78,6 @@ const Monitoring: React.FC = () => {
   const getCrawlerDetail = async () => {
     try {
       const { data } = await apiCrawlers.get(`crawlers/${sourceID}/`);
-      console.log(data);
       setCrawlerResponse(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
@@ -91,7 +90,6 @@ const Monitoring: React.FC = () => {
       const { data } = await apiCrawlers.get(
         `crawlers/${sourceID}/executions/`
       );
-      console.log(data);
       setMonitoringAllExecutionResponse(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os detalhes dos documentos!");
