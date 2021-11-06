@@ -37,7 +37,6 @@ const Keywords: React.FC = () => {
     try {
       const { data } = await apiCrawlers.get(`keywords/`);
       setKeywordsResponse(data);
-      console.log(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar as expressões-chave!");
     }
@@ -61,8 +60,6 @@ const Keywords: React.FC = () => {
 
       setKeywordsResponse(newKeywordsResponse);
     }
-
-    console.log(data);
   };
 
   const renderResultCard = (result: KeywordResult) => {

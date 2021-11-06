@@ -9,9 +9,15 @@ import Flatlist from "flatlist-react";
 import Loader from "react-loader-spinner";
 
 import { Container as PageContainer, NewResultsContainer } from "./styles";
-import api from "../../services/api";
+import { api, apiCrawlers } from "../../services/api";
 import { useRouteMatch } from "react-router";
-import { Form, Container, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
+
+import { SourceResult } from "../../Components/SourceItem";
+
+import SelectFilter from "../../Components/SelectFilter";
+import { listenerCount } from "process";
+import { kMaxLength } from "buffer";
 
 interface DocumentResult {
   id: number;
@@ -26,11 +32,18 @@ interface DocumentResult {
   classification: string;
 }
 
-type documentsResponse = {
+type DocumentsResponse = {
   count: number;
   next: string;
   previous: string;
   results: Array<DocumentResult>;
+};
+
+type SourcesResponse = {
+  count: number;
+  next: string;
+  previous: string;
+  results: Array<SourceResult>;
 };
 
 interface ResultsParams {
@@ -39,7 +52,8 @@ interface ResultsParams {
 
 const Results: React.FC = () => {
   const [documentsResponse, setDocumentsResponse] =
-    useState<documentsResponse>();
+    useState<DocumentsResponse>();
+  const [availableSources, setAvailableSources] = useState<SourceResult[]>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -48,30 +62,57 @@ const Results: React.FC = () => {
 
   const { params } = useRouteMatch<ResultsParams>();
   const [searchTerm, setSearchTerm] = useState(params.searchTerm);
+  const [sourceFilter, setSourceFilter] = useState<string>();
 
   useEffect(() => {
     getDocuments();
+    getSources();
   }, []);
+
+  useEffect(() => {
+    getDocuments();
+  }, [sourceFilter]);
 
   const getDocuments = async () => {
     setIsLoading(true);
     try {
-      const { data } = await api.get(`?q=${searchTerm}`);
+      let filters = `?q=${searchTerm}`;
+      filters += sourceFilter ? `&source=${sourceFilter}` : "";
+
+      const { data } = await api.get(filters);
       setDocumentsResponse(data);
-      console.log(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
     }
     setIsLoading(false);
   };
 
-  const getMoreDocuments = async () => {
-    const { data } = await api.get<documentsResponse>(
-      `${documentsResponse?.next}`
+  const getSources = async () => {
+    let sources: SourceResult[] = [];
+
+    let { data } = await apiCrawlers.get<SourcesResponse>(`crawlers/`);
+
+    sources = sources.concat(data["results"]);
+
+    // Recupera o restante das fontes pela paginacao
+    while (data["next"]) {
+      data = await getMoreSources(data);
+      sources = sources.concat(data["results"]);
+    }
+
+    setAvailableSources(sources);
+  };
+
+  const getMoreSources = async (currentSourcesResponse: SourcesResponse) => {
+    const { data } = await apiCrawlers.get<SourcesResponse>(
+      `${currentSourcesResponse.next}`
     );
-    console.log(
-      "nova chamada: ",
-      await api.get<documentsResponse>(`${documentsResponse?.next}`)
+    return data;
+  };
+
+  const getMoreDocuments = async () => {
+    const { data } = await api.get<DocumentsResponse>(
+      `${documentsResponse?.next}`
     );
     if (documentsResponse?.results) {
       let myDocuments: Array<DocumentResult> = documentsResponse?.results;
@@ -86,12 +127,14 @@ const Results: React.FC = () => {
 
       setDocumentsResponse(newDocumentsResponse);
     }
-
-    console.log(data);
   };
 
   const renderResultCard = (result: DocumentResult) => {
     return <ResultCard key={result?.id} item={result} />;
+  };
+
+  const filterSource = (source: SourceResult) => {
+    setSourceFilter(source?.site_name);
   };
 
   return (
@@ -109,18 +152,20 @@ const Results: React.FC = () => {
           />
           <Row className="justify-content-md-left">
             <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
-              <Form.Select id="source-filter" aria-label="Fonte" size="sm">
-                <option>Fonte</option>
-                <option value="1">Incra</option>
-                <option value="2">MPF</option>
-                <option value="3">Senado</option>
-              </Form.Select>
+              <SelectFilter
+                items={availableSources}
+                idAttr="id"
+                displayAttr="site_name_display"
+                defaultItem="Todas as Fontes"
+                onSelect={filterSource}
+              />
             </Col>
             <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh" }}>
               <Form.Select id="source-filter" aria-label="Categoria" size="sm">
-                <option>Categoria</option>
+                <option>Todas Categorias</option>
                 <option value="1">Quilombolas</option>
                 <option value="2">Território</option>
+                <option value="2">Conflito</option>
               </Form.Select>
             </Col>
             <Col sm lg="3" style={{ padding: "0px", paddingRight: "0.5vh" }}>
@@ -134,7 +179,7 @@ const Results: React.FC = () => {
             </Col>
           </Row>
         </Row>
-        
+
         {isLoading === true ? (
           <Loader type="ThreeDots" color="#004346" height={50} width={50} />
         ) : (

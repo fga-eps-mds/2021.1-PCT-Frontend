@@ -168,7 +168,6 @@ const SourceModal: React.FC<SourceModalProps> = ({
   }
 
   async function setErrors(errorResponse: CrawlerRegistrationErrorResponse) {
-    console.log("RESPOSTA ERROR:", errorResponse);
     setFormErrors(errorResponse);
   }
 
@@ -253,10 +252,8 @@ const SourceModal: React.FC<SourceModalProps> = ({
     data.append("cron_month_of_year", cron_month_of_year);
 
     if (isUpdateModal) {
-      console.log("Atualizar registro");
       await updateSource(data);
     } else {
-      console.log("Cadastrar registro");
       await registerSource(data);
     }
   }

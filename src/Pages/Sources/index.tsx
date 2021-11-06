@@ -37,7 +37,6 @@ const Sources: React.FC = () => {
     try {
       const { data } = await apiCrawlers.get(`crawlers/`);
       setSourcesResponse(data);
-      console.log(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar as expressões-chave!");
     }
@@ -61,8 +60,6 @@ const Sources: React.FC = () => {
 
       setSourcesResponse(newSourcesResponse);
     }
-
-    console.log(data);
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -78,7 +75,6 @@ const Sources: React.FC = () => {
   };
 
   const handleShowModalUpdate = (sourceItem: SourceResult) => {
-    console.log("Abrir modal UPDATE: ", sourceItem);
     setSelectedSource(sourceItem);
     setIsUpdateModal(true);
     setShowModal(true);
