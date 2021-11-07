@@ -107,25 +107,41 @@ const AboutUs: React.FC = () => {
               (Departamento de Engenharia de Produção e Instituto de Letras). 
               <br />
               <br />
-              <strong>Nova Cartografia Social-</strong> Núcleo Minas Gerais, PPGDS-Unimontes
+              <strong>Nova Cartografia Social -</strong> Núcleo Minas Gerais, PPGDS-Unimontes
+              <br />
               Sheilla Borges Dourado
+              <br />
               Ricardo Dias Campos
+              <br />
               Andrea Maria Narciso Rocha de Paula
+              <br />
               Juliene Pereira dos Santos
+              <br />
               Cáritas Borges Dourado
               <br />
               <br />
-              <strong>Universidade de Brasília-</strong> Curso de graduação em Engenharia de Software
+              <strong>Universidade de Brasília -</strong> Curso de graduação em Engenharia de Software
+              <br />
               Disciplina Engenharia de Produto de Software Turma A, semestre letivo 2021.1
+              <br />
               Hilmer Rodrigues Neri (professor)
+              <br />
               Caio Vinicius Fernandes de Araujo
+              <br />
               Guilherme Mendes Pereira
+              <br />
               Julio Cesar Litwin
+              <br />
               Letícia Karla Araújo
+              <br />
               Lucas Gomes de Oliveira
+              <br />
               Lucas Gomes Silva
+              <br />
               Lucas Maciel Aguiar
+              <br />
               Lude Yuri de Castro Ribeiro
+              <br />
               Miguel Henrique de O. Alves
               <br />
               <br />
