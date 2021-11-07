@@ -37,7 +37,7 @@ interface APIResponse<T = any> {
 }
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>();
+  const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
 
   const history = useHistory();
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
   const login = async (event: FormEvent) => {
     event.preventDefault();
     const dataRequest: LoginRequest = {
-      username: email,
+      username: username,
       password: password,
     };
 
@@ -69,23 +69,23 @@ const Login: React.FC = () => {
       });
 
     history.push("/admin");
-  }
+  };
 
   return (
     <Container>
       <Header />
       <Row md={10} className="align-items-sm-center" style={{ height: "85%" }}>
         <Col>
+          <h2 style={{ textAlign: "center" }}>Área Restrita</h2>
           <LoginForm>
             <h3>Login</h3>
             <>
               <ItemForm>
                 <Input
                   type="text"
-                  // type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Usuário"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </ItemForm>
               <ItemForm>
@@ -99,7 +99,7 @@ const Login: React.FC = () => {
               <ItemForm>
                 <BotaoLogar onClick={login}>Entrar</BotaoLogar>
               </ItemForm>
-              <ItemFormOptions>
+              {/* <ItemFormOptions>
                 <ul>
                   <OpcoesExtra>
                     <MyLink to={"/"}>Esqueci minha senha</MyLink>
@@ -108,7 +108,7 @@ const Login: React.FC = () => {
                     <MyLink to={"/cadastro"}>Não possuo cadastro</MyLink>
                   </OpcoesExtra>
                 </ul>
-              </ItemFormOptions>
+              </ItemFormOptions> */}
             </>
           </LoginForm>
         </Col>
