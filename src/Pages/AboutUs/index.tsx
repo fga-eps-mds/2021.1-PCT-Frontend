@@ -151,8 +151,8 @@ const AboutUs: React.FC = () => {
               <br />
               <br />
               <br />
-              <img src={ppgds} style="border:0px;margin:0px;margin-right:60px;width:190px;height:82px" />
-              <img src={unimontes} style="border:10px;margin:0px;width:190px;height:80px" />
+              <img src={ppgds} alt="" width="190" height="82" />
+              <img src={unimontes} alt="" width="190" height="80" />
             </p>
           </DescriptionInfo>
         </CardHeader>
