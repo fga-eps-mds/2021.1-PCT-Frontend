@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import { Modal } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -36,9 +36,8 @@ const KeywordModal: React.FC<KeywordModalProps> = ({
     data.append("keyword", keyword);
 
     await apiCrawlers
-      .post("/keywords/", data)
-      .then((response) => {
-        console.log(response);
+      .post("api/keywords/", data)
+      .then(() => {
         handleClose();
         onCreated();
       })

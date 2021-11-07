@@ -3,13 +3,14 @@ import { Button, ButtonProps } from "react-bootstrap";
 import moment from "moment";
 import { FiTrash } from "react-icons/fi";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import {
   Container,
   ResultDate,
   KeywordName,
   TitleDateContainer,
+  ButtonStyle,
 } from "./styles";
 
 export interface KeywordResult {
@@ -29,14 +30,18 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
   };
 
   const deleteKeyword = async () => {
-    await apiCrawlers
-      .delete(`/keywords/${item.id}/`)
-      .then(() => {
-        onDelete();
-      })
-      .catch(() => {
-        alert("Ocorreu um erro inesperado ao deletar expressão!");
-      });
+    if (confirm("Tem certeza que deseja deletar esta expressão?")) {
+      await apiCrawlers
+        .delete(`api/keywords/${item.id}/`)
+        .then(() => {
+          onDelete();
+        });
+    }
+  };
+
+  const textMargin = {
+    marginTop: "2%",
+    marginBottom: "2%",
   };
 
   return (
@@ -44,11 +49,16 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
       <TitleDateContainer>
         <KeywordName>{item.keyword}</KeywordName>
         <ResultDate>
-          {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
+          <ul>
+            <li style={textMargin}>Criado em: </li>
+            <li>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+          </ul>
         </ResultDate>
-        <Button onClick={deleteKeyword}>
-          <FiTrash />
-        </Button>
+        <ButtonStyle>
+          <Button onClick={deleteKeyword}>
+            <FiTrash color="#ff0000" />
+          </Button>
+        </ButtonStyle>
       </TitleDateContainer>
     </Container>
   );

@@ -11,7 +11,7 @@ import KeywordModal from "../../Components/KeywordModal";
 
 import { Container, NewResultsContainer, Title } from "./styles";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 type keywordsResponse = {
   count: number;
@@ -34,13 +34,11 @@ const Keywords: React.FC = () => {
 
   const getKeywords = async () => {
     setIsLoading(true);
-    try {
-      const { data } = await apiCrawlers.get(`/keywords/`);
-      setKeywordsResponse(data);
-      console.log(data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar as expressões-chave!");
-    }
+    await apiCrawlers
+      .get(`api/keywords/`)
+      .then(({data}) => {
+        setKeywordsResponse(data);
+      });
     setIsLoading(false);
   };
 
@@ -61,8 +59,6 @@ const Keywords: React.FC = () => {
 
       setKeywordsResponse(newKeywordsResponse);
     }
-
-    console.log(data);
   };
 
   const renderResultCard = (result: KeywordResult) => {

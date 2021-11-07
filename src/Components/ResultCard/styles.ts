@@ -9,15 +9,14 @@ export const Container = styled.div`
 
   background-color: #172a3a;
 
-  width: 80%;
+  width: 100%;
   padding: 1%;
 
   margin-top: 0.7rem;
   border-radius: 10px;
 
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    padding: 2%;
+  &:hover {
+    cursor: pointer;
   }
 `;
 
@@ -27,6 +26,12 @@ export const TitleDateContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ul {
+    width: 20%;
+    text-align: center;
+    padding-top: 0.5%;
+  }
 `;
 
 export const ResultTitle = styled.text`
@@ -52,11 +57,10 @@ export const ResultTitle = styled.text`
 
 export const ResultDate = styled.text`
   font-size: 1rem;
-  font-weight: bold;
   font-style: normal;
   font-family: Rokkitt, sans-serif;
 
-  width: 20%;
+  width: 100%;
   display: block;
   overflow: hidden;
   white-space: nowrap;

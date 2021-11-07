@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-import api from "../../services/api";
-
+import { apiDocuments } from "../../services/apiDocuments";
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -14,6 +12,7 @@ import {
   Container,
   MyFlatlist,
   NewResultsContainer,
+  SearchAreaContainer,
   NewsTitle,
 } from "./styles";
 
@@ -27,6 +26,7 @@ interface DocumentResult {
   checksum: string;
   updated_at: string;
   created_at: string;
+  classification: string;
 }
 
 type documentsResponse = {
@@ -48,15 +48,13 @@ const HomeScreen: React.FC = () => {
 
   useEffect(() => {
     getDocuments();
-    console.log("olá");
   }, []);
 
   const getDocuments = async () => {
     setIsLoading(true);
     try {
-      const { data } = await api.get(``);
+      const { data } = await apiDocuments.get(`api/documents/`);
       setDocumentsResponse(data);
-      console.log(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
     }
@@ -64,12 +62,8 @@ const HomeScreen: React.FC = () => {
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<documentsResponse>(
+    const { data } = await apiDocuments.get<documentsResponse>(
       `${documentsResponse?.next}`
-    );
-    console.log(
-      "nova chamada: ",
-      await api.get<documentsResponse>(`${documentsResponse?.next}`)
     );
     if (documentsResponse?.results) {
       let myDocuments: Array<DocumentResult> = documentsResponse?.results;
@@ -84,8 +78,6 @@ const HomeScreen: React.FC = () => {
 
       setDocumentsResponse(newDocumentsResponse);
     }
-
-    console.log(data);
   };
 
   const renderResultCard = (result: DocumentResult) => {
@@ -96,15 +88,17 @@ const HomeScreen: React.FC = () => {
     <Container>
       <Header />
       <MyCarousel />
-      <SearchBar
-        ableToSearch={mySearch === "" ? false : true}
-        searchTerm={mySearch}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setMySearch(e.target.value);
-        }}
-      />
-      <NewsTitle>Últimas Atualizações</NewsTitle>
       <NewResultsContainer>
+        <SearchAreaContainer>
+          <SearchBar
+            ableToSearch={mySearch === "" ? false : true}
+            searchTerm={mySearch}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setMySearch(e.target.value);
+            }}
+          />
+        </SearchAreaContainer>
+        <NewsTitle>Últimas Atualizações</NewsTitle>
         {isLoading === true ? (
           <Loader
             type="ThreeDots"

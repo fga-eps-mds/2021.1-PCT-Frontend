@@ -1,0 +1,2 @@
+REACT_APP_DOCUMENTS_API=https://pcts-documents-api-dev.herokuapp.com/
+REACT_APP_CRAWLERS_API=https://pcts-scrapers-dev.herokuapp.com/
