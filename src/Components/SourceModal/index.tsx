@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import { Col, Modal, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -173,7 +173,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   async function registerSource(data: FormData) {
     await apiCrawlers
-      .post("crawlers/", data)
+      .post("api/crawlers/", data)
       .then(() => {
         closeModalOnUpdate();
       })
@@ -190,7 +190,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   async function updateSource(data: FormData) {
     await apiCrawlers
-      .put(`crawlers/${source?.id}/`, data)
+      .put(`api/crawlers/${source?.id}/`, data)
       .then(() => {
         closeModalOnUpdate();
       })
