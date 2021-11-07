@@ -1,25 +1,21 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { createBrowserHistory } from 'history';
-import {
-  getUserToken,
-} from "../utils/userAuthentication";
+import { createBrowserHistory } from "history";
+import { getUserToken } from "../utils/userAuthentication";
 
-
-const baseURL = "https://pcts-scrapers-dev.herokuapp.com/";
-// const baseURL: "http://localhost:8002/"
+const BASE_URL = process.env.REACT_APP_CRAWLERS_API;
 
 export const apiCrawlers = axios.create({
-  baseURL: baseURL
+  baseURL: BASE_URL,
 });
 
 export const apiCrawlersNoAuth = axios.create({
-  baseURL: baseURL
+  baseURL: BASE_URL,
 });
 
 const logoutUnauthenticatedUser = () => {
-  alert("Usuário não autorizado ou sessão expirou.")
+  alert("Usuário não autorizado ou sessão expirou.");
   localStorage.clear();
-  createBrowserHistory().push('/login');
+  createBrowserHistory().push("/login");
   window.location.reload();
 };
 
@@ -29,7 +25,7 @@ apiCrawlers.interceptors.request.use(
     const authorization = `Bearer ${getUserToken()}`;
 
     request.headers = {
-      "Authorization": authorization || "",
+      Authorization: authorization || "",
     };
 
     return request;
