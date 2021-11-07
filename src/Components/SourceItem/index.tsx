@@ -27,9 +27,7 @@ export interface SourceResult {
   contains_end_path_keyword: boolean;
   allowed_domains: Array<string>;
   allowed_paths: Array<string>;
-  retries: number;
   page_load_timeout: number;
-  contains_dynamic_js_load: boolean;
   cron_minute: string;
   cron_hour: string;
   cron_day_of_week: string;
