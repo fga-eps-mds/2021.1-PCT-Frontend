@@ -123,6 +123,7 @@ const AboutUs: React.FC = () => {
               Cáritas Borges Dourado
               <br />
               <br />
+              <br />
               <strong>Universidade de Brasília -</strong> <em>Curso de graduação em Engenharia de Software</em>
               <br />
               <em>Disciplina Engenharia de Produto de Software Turma A, semestre letivo 2021.1</em>
@@ -148,8 +149,10 @@ const AboutUs: React.FC = () => {
               Miguel Henrique de O. Alves
               <br />
               <br />
-              <img src={ppgds} alt="" width="151" height="82" />
-              <img src={unimontes} alt="" width="151" height="82" />
+              <br />
+              <br />
+              <img src={ppgds} style="border:0px;margin:0px;margin-right:60px;width:190px;height:82px" />
+              <img src={unimontes} style="border:10px;margin:0px;width:190px;height:80px" />
             </p>
           </DescriptionInfo>
         </CardHeader>
