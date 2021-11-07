@@ -43,7 +43,8 @@ const AboutUs: React.FC = () => {
       <CardContainer>
         <CardHeader>
           <TitleInfo>
-            <h2>Projeto Nova Cartografia Social</h2>
+            <h2>SOBRE O PROJETO</h2>
+            <h2>Projeto Busca Integrada – Povos e Comunidades Tradicionais</h2>
           </TitleInfo>
           <DescriptionInfo>
             <p>
