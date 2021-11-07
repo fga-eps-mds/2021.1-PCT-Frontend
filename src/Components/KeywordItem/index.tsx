@@ -32,7 +32,7 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
   const deleteKeyword = async () => {
     if (confirm("Tem certeza que deseja deletar esta expressão?")) {
       await apiCrawlers
-        .delete(`keywords/${item.id}/`)
+        .delete(`api/keywords/${item.id}/`)
         .then(() => {
           onDelete();
         })

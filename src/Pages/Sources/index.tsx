@@ -35,7 +35,7 @@ const Sources: React.FC = () => {
   const getSources = async () => {
     setIsLoading(true);
     try {
-      const { data } = await apiCrawlers.get(`crawlers/`);
+      const { data } = await apiCrawlers.get(`api/crawlers/`);
       setSourcesResponse(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar as expressões-chave!");

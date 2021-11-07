@@ -14,7 +14,7 @@ import {
   NewResultsContainer,
   SearchAreaContainer,
 } from "./styles";
-import { api, apiCrawlers } from "../../services/api";
+import { apiDocuments, apiCrawlers } from "../../services/api";
 import { useRouteMatch } from "react-router";
 import { Row, Col } from "react-bootstrap";
 
@@ -147,7 +147,7 @@ const Results: React.FC = () => {
           : "";
       }
 
-      const { data } = await api.get(filters);
+      const { data } = await apiDocuments.get(`api/documents/${filters}`);
       setDocumentsResponse(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
@@ -158,7 +158,7 @@ const Results: React.FC = () => {
   const getSources = async () => {
     let sources: SourceResult[] = [];
 
-    let { data } = await apiCrawlers.get<SourcesResponse>(`crawlers/`);
+    let { data } = await apiCrawlers.get<SourcesResponse>(`api/crawlers/`);
 
     sources = sources.concat(data["results"]);
 
@@ -179,7 +179,7 @@ const Results: React.FC = () => {
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<DocumentsResponse>(
+    const { data } = await apiDocuments.get<DocumentsResponse>(
       `${documentsResponse?.next}`
     );
     if (documentsResponse?.results) {

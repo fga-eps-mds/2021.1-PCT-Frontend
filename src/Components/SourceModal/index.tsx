@@ -173,7 +173,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   async function registerSource(data: FormData) {
     await apiCrawlers
-      .post("crawlers/", data)
+      .post("api/crawlers/", data)
       .then(() => {
         closeModalOnUpdate();
       })
@@ -190,7 +190,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   async function updateSource(data: FormData) {
     await apiCrawlers
-      .put(`crawlers/${source?.id}/`, data)
+      .put(`api/crawlers/${source?.id}/`, data)
       .then(() => {
         closeModalOnUpdate();
       })

@@ -52,7 +52,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
     e.stopPropagation();
     if (confirm('Tem certeza que deseja deletar essa fonte?')) {
       await apiCrawlers
-        .delete(`crawlers/${item.id}/`)
+        .delete(`api/crawlers/${item.id}/`)
         .then(() => {
           onDelete();
         })
