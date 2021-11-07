@@ -14,7 +14,8 @@ import {
   NewResultsContainer,
   SearchAreaContainer,
 } from "./styles";
-import { apiDocuments, apiCrawlers } from "../../services/api";
+import { apiDocuments } from "../../services/apiDocuments";
+import { apiCrawlers } from "../../services/apiCrawlers";
 import { useRouteMatch } from "react-router";
 import { Row, Col } from "react-bootstrap";
 

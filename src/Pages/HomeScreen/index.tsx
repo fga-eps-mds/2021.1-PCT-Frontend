@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiDocuments } from "../../services/api";
+import { apiDocuments } from "../../services/apiDocuments";
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";

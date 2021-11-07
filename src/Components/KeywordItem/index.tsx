@@ -3,7 +3,7 @@ import { Button, ButtonProps } from "react-bootstrap";
 import moment from "moment";
 import { FiTrash } from "react-icons/fi";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import {
   Container,
@@ -35,9 +35,6 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
         .delete(`api/keywords/${item.id}/`)
         .then(() => {
           onDelete();
-        })
-        .catch(() => {
-          alert("Ocorreu um erro inesperado ao deletar expressão!");
         });
     }
   };
@@ -59,7 +56,7 @@ const KeywordItem: React.FC<KeywordItemProps> = ({ item, onDelete }) => {
         </ResultDate>
         <ButtonStyle>
           <Button onClick={deleteKeyword}>
-            <FiTrash color="#ff0000"/>
+            <FiTrash color="#ff0000" />
           </Button>
         </ButtonStyle>
       </TitleDateContainer>

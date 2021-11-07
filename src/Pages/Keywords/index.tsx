@@ -11,7 +11,7 @@ import KeywordModal from "../../Components/KeywordModal";
 
 import { Container, NewResultsContainer, Title } from "./styles";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 type keywordsResponse = {
   count: number;

@@ -11,7 +11,7 @@ import SourceModal from "../../Components/SourceModal";
 
 import { Container, NewResultsContainer, Title } from "./styles";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 type SourcesResponse = {
   count: number;
@@ -34,12 +34,16 @@ const Sources: React.FC = () => {
 
   const getSources = async () => {
     setIsLoading(true);
-    try {
-      const { data } = await apiCrawlers.get(`api/crawlers/`);
-      setSourcesResponse(data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar as fontes!");
-    }
+    await apiCrawlers
+      .get(`api/crawlers/`)
+      .then((response: any) => {
+        const data = response.data;
+        console.log("RECEBER RESULTADOS");
+        setSourcesResponse(data);
+      })
+      .catch((error) => {
+        alert("Erro ao buscar as fontes!");
+      });
     setIsLoading(false);
   };
 

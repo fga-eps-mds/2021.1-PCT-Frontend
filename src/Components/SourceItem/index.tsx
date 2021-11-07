@@ -4,7 +4,7 @@ import moment from "moment";
 import { FiTrash, FiClock } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import {
   Container,

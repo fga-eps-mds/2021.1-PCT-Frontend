@@ -8,7 +8,7 @@ import { Col, Row } from "react-bootstrap";
 
 import { Container, LoginForm, BotaoLogar, Input, ItemForm } from "./styles";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import { saveSession } from "../../utils/userAuthentication";
 

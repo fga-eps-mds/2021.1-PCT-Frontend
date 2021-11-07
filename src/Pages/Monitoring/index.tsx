@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 import MonitoringCard from "../../Components/MonitoringCard";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -81,7 +81,7 @@ const Monitoring: React.FC = () => {
       const { data } = await apiCrawlers.get(`api/crawlers/${sourceID}/`);
       setCrawlerResponse(data);
     } catch (error) {
-      alert("Ocorreu um erro ao buscar os documentos!");
+      alert("Ocorreu um erro ao buscar informações sobre a fonte!");
     }
   };
 
@@ -93,7 +93,7 @@ const Monitoring: React.FC = () => {
       );
       setMonitoringAllExecutionResponse(data);
     } catch (error) {
-      alert("Ocorreu um erro ao buscar os detalhes dos documentos!");
+      alert("Ocorreu um erro ao buscar as execuções!");
     }
     setIsLoading(false);
   };
