@@ -1,13 +1,12 @@
 import jwt_decode from "jwt-decode";
 
-type LoginResponse = {
+export type LoginResponse = {
   refresh: string;
   access: string;
 };
 
 export const saveSession = (data: LoginResponse) => {
   const accessDesc: any = jwt_decode(data?.access);
-
   localStorage.setItem("acessToken", data?.access);
   localStorage.setItem("refreshToken", data?.refresh);
   localStorage.setItem("userID", accessDesc["user_id"]);
@@ -26,9 +25,11 @@ export const userIsAuthenticated = () => {
 };
 
 export const getUserToken = () => {
-  const token = localStorage.getItem("acessToken");
+  return localStorage.getItem("acessToken");
+};
 
-  return token;
+export const getUserRefreshToken = () => {
+  return localStorage.getItem("refreshToken");
 };
 
 export default userIsAuthenticated;
