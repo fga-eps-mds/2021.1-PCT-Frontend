@@ -5,8 +5,8 @@ import {
 } from "../utils/userAuthentication";
 
 export const apiCrawlers = axios.create({
-  // baseURL: "https://pcts-scrapers-dev.herokuapp.com/",
-  baseURL: "http://localhost:8002/",
+  baseURL: "https://pcts-scrapers-dev.herokuapp.com/",
+  // baseURL: "http://localhost:8002/",
 });
 
 const logoutUnauthenticatedUser = () => {
