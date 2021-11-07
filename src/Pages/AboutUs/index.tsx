@@ -47,7 +47,7 @@ const AboutUs: React.FC = () => {
           </TitleInfo>
           <DescriptionInfo>
             <p>
-              Esta aplicação web é uma ferramenta de busca integrada que permite,
+              Esta aplicação <em>web</em> é uma ferramenta de busca integrada que permite,
               a partir de um só comando, acessar informações sobre povos e
               comunidades tradicionais obtidas em fontes específicas na internet.
               Seu objetivo é facilitar o acesso a tais informações a um
@@ -107,7 +107,7 @@ const AboutUs: React.FC = () => {
               (Departamento de Engenharia de Produção e Instituto de Letras). 
               <br />
               <br />
-              <strong>Nova Cartografia Social -</strong> Núcleo Minas Gerais, PPGDS-Unimontes
+              <strong>Nova Cartografia Social -</strong> <em>Núcleo Minas Gerais, PPGDS-Unimontes</em>
               <br />
               Sheilla Borges Dourado
               <br />
@@ -120,9 +120,9 @@ const AboutUs: React.FC = () => {
               Cáritas Borges Dourado
               <br />
               <br />
-              <strong>Universidade de Brasília -</strong> Curso de graduação em Engenharia de Software
+              <strong>Universidade de Brasília -</strong> <em>Curso de graduação em Engenharia de Software</em>
               <br />
-              Disciplina Engenharia de Produto de Software Turma A, semestre letivo 2021.1
+              <em>Disciplina Engenharia de Produto de Software Turma A, semestre letivo 2021.1</em>
               <br />
               Hilmer Rodrigues Neri (professor)
               <br />
