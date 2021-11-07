@@ -38,7 +38,7 @@ const Sources: React.FC = () => {
       const { data } = await apiCrawlers.get(`api/crawlers/`);
       setSourcesResponse(data);
     } catch (error) {
-      alert("Ocorreu um erro ao buscar as expressões-chave!");
+      alert("Ocorreu um erro ao buscar as fontes!");
     }
     setIsLoading(false);
   };
@@ -103,7 +103,7 @@ const Sources: React.FC = () => {
       <Container>
         <Header />
         <Title>
-          <h2>Fontes de Documentos</h2>
+          <h2>Fontes de Informação</h2>
         </Title>
         <Button variant="primary" onClick={handleShowModal}>
           Adicionar fonte

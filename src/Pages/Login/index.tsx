@@ -6,18 +6,11 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import { Col, Row } from "react-bootstrap";
 
-import {
-  Container,
-  LoginForm,
-  BotaoLogar,
-  OpcoesExtra,
-  Input,
-  ItemForm,
-  ItemFormOptions,
-  MyLink,
-} from "./styles";
+import { Container, LoginForm, BotaoLogar, Input, ItemForm } from "./styles";
 
 import { apiCrawlers } from "../../services/api";
+
+import { saveSession } from "../../utils/userAuthentication";
 
 type LoginRequest = {
   username?: string;
@@ -55,11 +48,7 @@ const Login: React.FC = () => {
         const { data, status } = response;
 
         if (status === 200) {
-          localStorage.setItem("acessToken", data?.access);
-          localStorage.setItem("refreshToken", data?.refresh);
-
-          const accessDesc: any = jwt_decode(data?.access);
-          localStorage.setItem("userID", accessDesc["user_id"]);
+          saveSession(data);
         }
       })
       .catch(() => {
