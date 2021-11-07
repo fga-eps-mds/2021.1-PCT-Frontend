@@ -19,6 +19,8 @@ import fbLogo from "../../assets/images/facebook.png";
 import email from "../../assets/images/email.png";
 import phone from "../../assets/images/phone.png";
 import home from "../../assets/images/home.png";
+import ppgds from "../../assets/images/PPGDSLogo.png";
+import unimontes from "../../assets/images/UnimontesLogo.png";
 
 const AboutUs: React.FC = () => {
   useEffect(() => {
@@ -43,88 +45,114 @@ const AboutUs: React.FC = () => {
       <CardContainer>
         <CardHeader>
           <TitleInfo>
-            <h2>Projeto Nova Cartografia Social</h2>
+            <h2>SOBRE O PROJETO</h2>
+            <h2>Projeto Busca Integrada – Povos e Comunidades Tradicionais</h2>
           </TitleInfo>
           <DescriptionInfo>
             <p>
-              O Projeto Nova Cartografia Social da Amazônia (PNCSA) tem como
-              objetivo dar ensejo à auto-cartografia dos povos e comunidades
-              tradicionais na Amazônia. Com o material produzido, tem-se não
-              apenas um maior conhecimento sobre o processo de ocupação dessa
-              região, mas sobretudo uma maior ênfase e um novo instrumento para
-              o fortalecimento dos movimentos sociais que nela existem. Tais
-              movimentos sociais consistem em manifestações de identidades
-              coletivas, referidas a situações sociais peculiares e
-              territorializadas. Estas territorialidades específicas,
-              construídas socialmente pelos diversos agentes sociais, é que
-              suportam as identidades coletivas objetivadas em movimentos
-              sociais. A força deste processo de territorialização diferenciada
-              constitui o objeto deste projeto. A cartografia se mostra como um
-              elemento de combate. A sua produção é um dos momentos possíveis
-              para a auto-afirmação social. É nesse sentido que o PNCSA busca
-              materializar a manifestação da auto-cartografia dos povos e
-              comunidades nos fascículos que publica, que não só pretendem
-              fortalecer os movimentos, mas o fazem mediante a transparência de
-              suas expressões culturais diversas.
+              Esta aplicação <em>web</em> é uma ferramenta de busca integrada que permite,
+              a partir de um só comando, acessar informações sobre povos e
+              comunidades tradicionais obtidas em fontes específicas na internet.
+              Seu objetivo é facilitar o acesso a tais informações a um
+              público amplo - tanto os movimentos sociais que representam povos e
+              comunidades tradicionais no campo político; quanto os pesquisadores
+              que realizam trabalhos científicos com esses grupos,
+              além de outros usuários interessados na temática.
               <br />
               <br />
-              Cada fascículo é resultado de uma relação social específica entre
-              um povo ou comunidade tradicional e a equipe de pesquisadores. É o
-              movimento social que busca o PNSCA para realizar a cartografia. A
-              partir desse interesse manifesto, é realizada uma oficina de mapas
-              com a participação de cerca de 30 agentes sociais e os
-              pesquisadores membros do Projeto. Nela, os pesquisadores ensinam
-              técnicas de GPS e de mapeamento, além de conversar com os agentes
-              e coletar depoimentos sobre a história social e problemas da
-              comunidade. Os agentes sociais produzem croquis, mapeando sua
-              região e indicando quais os elementos relevantes para a sua
-              composição. Em um segundo momento, sem a presença dos
-              pesquisadores, os agentes sociais marcam, com GPS, os pontos do
-              que consideram significativo de seu território. Na seqüência, o
-              PNSCA recolhe as informações das marcações de ponto e as
-              georeferencia na base cartográfica, inserindo as ilustrações
-              produzidas nos croquis. Essas ilustrações compreendem desenhos,
-              esboços e reproduções de símbolos e objetos (remos, casas,
-              embarcações, instrumentos de trabalho, animais, plantas, etc.) que
-              são transformados, a partir do trabalho da equipe de
-              pesquisadores, em ícones para compor as legendas dos mapas.
-              Simultaneamente, transcreve-se excertos de depoimentos e
-              seleciona-se os que comporão o fascículo.
+              Povos e comunidades tradicionais são grupos culturalmente
+              diferenciados, que se reconhecem como tais, que possuem formas
+              próprias de organização social, ocupando e usando territórios e
+              recursos naturais como condição para sua reprodução cultural,
+              social, religiosa, ancestral e econômica.
+              Estes grupos sociais - tais como ribeirinhos, quebradeiras de
+              coco babaçu, quilombolas, povos indígenas, faxinalenses, povos de terreiro,
+              ciganos, entre outros - têm modos de vidas marcados pela
+              utilização de conhecimentos, inovações e práticas gerados
+              e transmitidos pela tradição (Decreto federal n. 6.040/2007).
               <br />
               <br />
-              Com o mapa concluído e os depoimentos selecionados, monta-se um
-              protótipo de fascículo, que é remetido à comunidade. Ela então faz
-              as correções que deseja, procede à leitura do mapa-piloto e
-              envia-o de volta ao PNCSA. A partir daí toma-se as providências
-              concernentes à publicação. São publicadas mil cópias de cada
-              fascículo. Um menor número de cópias fica em mãos do PNCSA, que
-              guarda alguns exemplares e distribui os restantes para
-              pesquisadores, núcleos de pesquisa, universidades e órgãos
-              estatais tais como Ministério Público Federal e Procuradoria da
-              República. A maior parte dos exemplares fica de posse do movimento
-              social, e por ele é utilizada como quiser, muitas vezes como parte
-              integrante de sua estratégia de auto-afirmação social e de
-              resolução de seus problemas.
+              Na primeira etapa deste projeto, dez entidades governamentais federais
+              do Brasil compõem este repertório de fontes, contemplando os três
+              poderes políticos: Senado Federal, Câmara dos Deputados,
+              Supremo Tribunal Federal, Superior Tribunal de Justiça,
+              Ministério Público Federal (MPF), Instituto Nacional de Colonização e
+              Reforma Agrária (Incra), Instituto Brasileiro de Geografia e
+              Estatística (IBGE), Instituto Brasileiro de Meio Ambiente e
+              Recursos Naturais (IBAMA); Instituto Chico Mendes de
+              Conservação da Biodiversidade (ICMBio) e Tribunal de Contas da União (TCU).
               <br />
               <br />
-              O PNCSA nos seus 13 anos de atuação, alcançou mais de 212 formas
-              organizativas (associações, sindicatos, cooperativas, comissões,
-              Ong‟s) com 142 entidades apoiadoras e centenas de comunidades.
-              Desde 2005 todas as publicações em formato físico, além dos
-              conteúdos que tem sido disponibilizados para download gratuito no
-              site do projeto, fazem essa comparação do alcance das publicações
-              em formato impresso e em formato digital. Deste modo é possível
-              levar a informação produzida tanto para os agentes sociais que
-              participam ativamente das produções, como para o usuário que tenha
-              interesse nessas informações.
+              Este projeto experimental foi idealizado no âmbito do Projeto Nova
+              Cartografia Social Quilombola no Alto Paranaíba, por meio do Núcleo
+              Minas Gerais da Rede Nova Cartografia Social, sob a coordenação do
+              Programa de Pós-Graduação em Desenvolvimento Social da Universidade
+              Estadual de Montes Claros, e realizado em parceria com o curso de graduação
+              em Engenharia de Software da Universidade de Brasília, ao longo do
+              primeiro semestre letivo de 2021.
               <br />
               <br />
-              Para mais informações, consulte o site oficial:{" "}
-              <a href="http://novacartografiasocial.com.br/">
-                {" "}
-                http://novacartografiasocial.com.br/
-              </a>
-              .
+              A Nova Cartografia Social é uma rede composta por pesquisadores,
+              acadêmicos e representantes de movimentos sociais que associam
+              atividades de pesquisa científica a ações de defesa de direitos
+              humanos coletivos. Atuando desde 2005, a Rede Nova Cartografia Social
+              tem colaborado com o auto mapeamento e com a capacitação de
+              diversos povos e comunidades tradicionais,
+              <br />
+              <br />
+              No âmbito da disciplina Engenharia de Produto de
+              Software da Universidade de Brasília (UnB), os graduandos vêm desenvolvendo
+              produtos de software para usuários reais, conforme as necessidades destes.
+              Neste sentido, já foram realizados projetos em parceria com a
+              Polícia Civil do Estado de Goiás (Instituto de Identificação e
+              Setor de Arquivamento), com a Fundação estadual Naturatins
+              (Tocantins) e com outros setores da Universidade de Brasília
+              (Departamento de Engenharia de Produção e Instituto de Letras). 
+              <br />
+              <br />
+              <strong>Nova Cartografia Social -</strong> <em>Núcleo Minas Gerais, PPGDS-Unimontes</em>
+              <br />
+              Sheilla Borges Dourado
+              <br />
+              Ricardo Dias Campos
+              <br />
+              Andrea Maria Narciso Rocha de Paula
+              <br />
+              Juliene Pereira dos Santos
+              <br />
+              Cáritas Borges Dourado
+              <br />
+              <br />
+              <br />
+              <strong>Universidade de Brasília -</strong> <em>Curso de graduação em Engenharia de Software</em>
+              <br />
+              <em>Disciplina Engenharia de Produto de Software Turma A, semestre letivo 2021.1</em>
+              <br />
+              Hilmer Rodrigues Neri (professor)
+              <br />
+              Caio Vinicius Fernandes de Araujo
+              <br />
+              Guilherme Mendes Pereira
+              <br />
+              Julio Cesar Litwin
+              <br />
+              Letícia Karla Araújo
+              <br />
+              Lucas Gomes de Oliveira
+              <br />
+              Lucas Gomes Silva
+              <br />
+              Lucas Maciel Aguiar
+              <br />
+              Lude Yuri de Castro Ribeiro
+              <br />
+              Miguel Henrique de O. Alves
+              <br />
+              <br />
+              <br />
+              <br />
+              <img src={ppgds} alt="" width="190" height="82" />
+              <img src={unimontes} alt="" width="190" height="80" />
             </p>
           </DescriptionInfo>
         </CardHeader>
