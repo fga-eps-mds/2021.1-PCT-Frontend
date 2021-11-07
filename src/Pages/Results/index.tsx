@@ -15,7 +15,7 @@ import {
   SearchAreaContainer,
 } from "./styles";
 import { apiDocuments } from "../../services/apiDocuments";
-import { apiCrawlers } from "../../services/apiCrawlers";
+import { apiCrawlersNoAuth } from "../../services/apiCrawlers";
 import { useRouteMatch } from "react-router";
 import { Row, Col } from "react-bootstrap";
 
@@ -160,7 +160,7 @@ const Results: React.FC = () => {
   const getSources = async () => {
     let sources: SourceResult[] = [];
 
-    let { data } = await apiCrawlers.get<SourcesResponse>(`api/crawlers/`);
+    let { data } = await apiCrawlersNoAuth.get<SourcesResponse>(`api/crawlers/`);
 
     sources = sources.concat(data["results"]);
 
@@ -174,7 +174,7 @@ const Results: React.FC = () => {
   };
 
   const getMoreSources = async (currentSourcesResponse: SourcesResponse) => {
-    const { data } = await apiCrawlers.get<SourcesResponse>(
+    const { data } = await apiCrawlersNoAuth.get<SourcesResponse>(
       `${currentSourcesResponse.next}`
     );
     return data;
