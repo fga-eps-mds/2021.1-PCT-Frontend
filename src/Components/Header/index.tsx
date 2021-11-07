@@ -10,6 +10,7 @@ import {
   UserButton,
   NavItem,
   MyLink,
+  CustomNavDropdown,
 } from "./styles";
 
 import userIsAuthenticated from "../../utils/userAuthentication";
@@ -48,6 +49,19 @@ const Header: React.FC = () => {
             </NavItem>
             {isLoggedIn ? (
               <>
+                <NavItem>
+                  <CustomNavDropdown
+                    title="Gerenciamento"
+                    id="management-nav-dropdown"
+                  >
+                    <CustomNavDropdown.Item>
+                      <MyLink to={"/expressoes"}>Expressões</MyLink>
+                    </CustomNavDropdown.Item>
+                    <CustomNavDropdown.Item>
+                      <MyLink to={"/fontes"}>Fontes</MyLink>
+                    </CustomNavDropdown.Item>
+                  </CustomNavDropdown>
+                </NavItem>
                 <NavItem>
                   <UserButton>Olá, Usuário</UserButton>
                 </NavItem>

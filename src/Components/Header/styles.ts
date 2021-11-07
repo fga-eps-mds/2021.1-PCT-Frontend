@@ -84,6 +84,10 @@ export const CustomNavDropdown = styled(NavDropdown)`
   text-align: center;
   text-decoration: none;
 
+  a {
+    text-align: center !important;
+  }
+
   @media screen and (max-width: 1024px) {
     font-size: 1rem;
   }
