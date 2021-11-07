@@ -34,16 +34,9 @@ const Sources: React.FC = () => {
 
   const getSources = async () => {
     setIsLoading(true);
-    await apiCrawlers
-      .get(`api/crawlers/`)
-      .then((response: any) => {
-        const data = response.data;
-        console.log("RECEBER RESULTADOS");
-        setSourcesResponse(data);
-      })
-      .catch((error) => {
-        alert("Erro ao buscar as fontes!");
-      });
+    await apiCrawlers.get(`api/crawlers/`).then(({ data }) => {
+      setSourcesResponse(data);
+    });
     setIsLoading(false);
   };
 

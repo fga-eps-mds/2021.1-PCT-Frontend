@@ -153,6 +153,7 @@ const Results: React.FC = () => {
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
     }
+    
     setIsLoading(false);
   };
 

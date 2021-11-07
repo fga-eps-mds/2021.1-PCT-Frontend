@@ -9,8 +9,8 @@ export const apiCrawlers = axios.create({
   baseURL: "http://localhost:8002/",
 });
 
-const logout = () => {
-  console.log("Deslogar usuario");
+const logoutUnauthenticatedUser = () => {
+  alert("Usuário não autorizado ou sessão expirou.")
   localStorage.clear();
   createBrowserHistory().push('/login');
   window.location.reload();
@@ -43,7 +43,7 @@ apiCrawlers.interceptors.response.use(
     const status = error.response?.status;
 
     if (UNAUTHORIZED === status) {
-      logout();
+      logoutUnauthenticatedUser();
     }
     return Promise.reject(error);
   }

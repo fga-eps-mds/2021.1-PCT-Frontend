@@ -33,14 +33,11 @@ const SignUp: React.FC = () => {
       senha,
     };
 
-    try {
-      const response = await apiCrawlers.post("COLOCAR A ROTA DE CADASTRO", data);
-      history.push("/login");
-    } catch (err) {
-      alert(
-        `Houve um erro ao cadastrar. Por favor, tente novamente mais tarde.`
-      );
-    }
+    // await apiCrawlers
+    //   .get("COLOCAR A ROTA DE CADASTRO", data)
+    //   .then((response: any) => {
+    //     history.push("/login");
+    //   });
   };
 
   return (

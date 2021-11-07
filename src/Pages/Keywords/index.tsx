@@ -34,12 +34,11 @@ const Keywords: React.FC = () => {
 
   const getKeywords = async () => {
     setIsLoading(true);
-    try {
-      const { data } = await apiCrawlers.get(`api/keywords/`);
-      setKeywordsResponse(data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar as expressões-chave!");
-    }
+    await apiCrawlers
+      .get(`api/keywords/`)
+      .then(({data}) => {
+        setKeywordsResponse(data);
+      });
     setIsLoading(false);
   };
 
