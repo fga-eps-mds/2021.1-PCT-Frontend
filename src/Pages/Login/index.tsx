@@ -17,7 +17,7 @@ import {
   MyLink,
 } from "./styles";
 
-import { apiUsers } from "../../services/api";
+import { apiCrawlers } from "../../services/api";
 
 type LoginRequest = {
   username?: string;
@@ -49,7 +49,7 @@ const Login: React.FC = () => {
       password: password,
     };
 
-    await apiUsers
+    await apiCrawlers
       .post<LoginRequest, APIResponse<LoginResponse>>("token/", dataRequest)
       .then((response: APIResponse<LoginResponse>) => {
         const { data, status } = response;

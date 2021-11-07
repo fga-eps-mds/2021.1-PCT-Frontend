@@ -6,7 +6,7 @@ import { Row, Col } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
 
-import { apiUsers } from "../../services/api";
+import { apiCrawlers } from "../../services/api";
 
 import {
   Container,
@@ -34,7 +34,7 @@ const SignUp: React.FC = () => {
     };
 
     try {
-      const response = await apiUsers.post("COLOCAR A ROTA DE CADASTRO", data);
+      const response = await apiCrawlers.post("COLOCAR A ROTA DE CADASTRO", data);
       // alert(`Cadastro realizado com sucesso! ID: ${response.data.id}`);
       history.push("/login");
     } catch (err) {
