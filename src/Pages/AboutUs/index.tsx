@@ -19,6 +19,8 @@ import fbLogo from "../../assets/images/facebook.png";
 import email from "../../assets/images/email.png";
 import phone from "../../assets/images/phone.png";
 import home from "../../assets/images/home.png";
+import ppgds from "../../assets/images/PPGDSLogo.png";
+import unimontes from "../../assets/images/UnimontesLogo.png";
 
 const AboutUs: React.FC = () => {
   useEffect(() => {
@@ -146,6 +148,8 @@ const AboutUs: React.FC = () => {
               Miguel Henrique de O. Alves
               <br />
               <br />
+              <img src={ppgds} alt="" width="151" height="82" />
+              <img src={unimontes} alt="" width="151" height="82" />
             </p>
           </DescriptionInfo>
         </CardHeader>
