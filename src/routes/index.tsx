@@ -18,7 +18,7 @@ const Routes: React.FC = () => {
     <Switch>
       <Route path="/" exact component={HomeScreen} />
       <Route path="/login" exact component={Login} />
-      <Route path="/cadastro" exact component={SignUp} />
+      {/* <Route path="/cadastro" exact component={SignUp} /> */}
       <ProtectedRoute path="/admin" exact component={Admin} />
       <ProtectedRoute path="/expressoes" exact component={Keywords} />
       <ProtectedRoute path="/fontes" exact component={Sources} />
