@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 import MonitoringCard from "../../Components/MonitoringCard";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -77,24 +77,20 @@ const Monitoring: React.FC = () => {
   }, []);
 
   const getCrawlerDetail = async () => {
-    try {
-      const { data } = await apiCrawlers.get(`crawlers/${sourceID}/`);
+    await apiCrawlers.get(`api/crawlers/${sourceID}/`).then(({ data }) => {
       setCrawlerResponse(data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar os documentos!");
-    }
+    });
   };
 
   const getCrawlersExecutions = async () => {
     setIsLoading(true);
-    try {
-      const { data } = await apiCrawlers.get(
-        `crawlers/${sourceID}/executions/`
-      );
-      setMonitoringAllExecutionResponse(data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar os detalhes dos documentos!");
-    }
+
+    await apiCrawlers
+      .get(`api/crawlers/${sourceID}/executions/`)
+      .then(({ data }) => {
+        setMonitoringAllExecutionResponse(data);
+      });
+
     setIsLoading(false);
   };
 
@@ -122,7 +118,7 @@ const Monitoring: React.FC = () => {
         executionGroup={selectedExecutionGroup}
       />
       <NewResultsContainer>
-        <h1>Monitoramento do {crawlerResponse?.site_name_display}</h1>
+        <h1>Monitoramento {crawlerResponse?.site_name_display}</h1>
         {isLoading === true ? (
           <Loader type="ThreeDots" color="#004346" height={50} width={50} />
         ) : monitoringAllExecutionResponse?.results.length != 0 ? (

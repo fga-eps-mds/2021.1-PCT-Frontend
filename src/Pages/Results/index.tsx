@@ -14,7 +14,8 @@ import {
   NewResultsContainer,
   SearchAreaContainer,
 } from "./styles";
-import { api, apiCrawlers } from "../../services/api";
+import { apiDocuments } from "../../services/apiDocuments";
+import { apiCrawlersNoAuth } from "../../services/apiCrawlers";
 import { useRouteMatch } from "react-router";
 import { Row, Col, Button } from "react-bootstrap";
 
@@ -58,6 +59,11 @@ type PeriodFilter = {
   date_gte: string;
 };
 
+type CategoryFilter = {
+  id: number;
+  categoryName: string;
+};
+
 interface ResultsParams {
   searchTerm: string;
 }
@@ -66,7 +72,7 @@ const Results: React.FC = () => {
   const [documentsResponse, setDocumentsResponse] =
     useState<DocumentsResponse>();
   const [availableSources, setAvailableSources] = useState<SourceResult[]>();
-  const [availableCategories] = useState([
+  const [availableCategories] = useState<CategoryFilter[]>([
     { id: 1, categoryName: "Quilombolas" },
     { id: 2, categoryName: "Território" },
     { id: 3, categoryName: "Conflito" },
@@ -144,18 +150,19 @@ const Results: React.FC = () => {
           : "";
       }
 
-      const { data } = await api.get(filters);
+      const { data } = await apiDocuments.get(`api/documents/${filters}`);
       setDocumentsResponse(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
     }
+    
     setIsLoading(false);
   };
 
   const getSources = async () => {
     let sources: SourceResult[] = [];
 
-    let { data } = await apiCrawlers.get<SourcesResponse>(`crawlers/`);
+    let { data } = await apiCrawlersNoAuth.get<SourcesResponse>(`api/crawlers/`);
 
     sources = sources.concat(data["results"]);
 
@@ -169,14 +176,14 @@ const Results: React.FC = () => {
   };
 
   const getMoreSources = async (currentSourcesResponse: SourcesResponse) => {
-    const { data } = await apiCrawlers.get<SourcesResponse>(
+    const { data } = await apiCrawlersNoAuth.get<SourcesResponse>(
       `${currentSourcesResponse.next}`
     );
     return data;
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<DocumentsResponse>(
+    const { data } = await apiDocuments.get<DocumentsResponse>(
       `${documentsResponse?.next}`
     );
     if (documentsResponse?.results) {
@@ -202,8 +209,8 @@ const Results: React.FC = () => {
     setSelectedSource(source?.site_name);
   };
 
-  const filterCategory = (category: any) => {
-    setSelectedCategory(category["categoryName"]);
+  const filterCategory = (category: CategoryFilter) => {
+    setSelectedCategory(category?.categoryName);
   };
 
   const filterPeriod = (period: PeriodFilter) => {

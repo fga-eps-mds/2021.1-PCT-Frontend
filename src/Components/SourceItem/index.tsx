@@ -4,7 +4,7 @@ import moment from "moment";
 import { FiTrash, FiClock } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import {
   Container,
@@ -27,9 +27,7 @@ export interface SourceResult {
   contains_end_path_keyword: boolean;
   allowed_domains: Array<string>;
   allowed_paths: Array<string>;
-  retries: number;
   page_load_timeout: number;
-  contains_dynamic_js_load: boolean;
   cron_minute: string;
   cron_hour: string;
   cron_day_of_week: string;
@@ -52,7 +50,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
     e.stopPropagation();
     if (confirm('Tem certeza que deseja deletar essa fonte?')) {
       await apiCrawlers
-        .delete(`crawlers/${item.id}/`)
+        .delete(`api/crawlers/${item.id}/`)
         .then(() => {
           onDelete();
         })

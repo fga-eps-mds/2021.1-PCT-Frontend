@@ -11,7 +11,7 @@ import SourceModal from "../../Components/SourceModal";
 
 import { Container, NewResultsContainer, Title } from "./styles";
 
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 type SourcesResponse = {
   count: number;
@@ -34,12 +34,9 @@ const Sources: React.FC = () => {
 
   const getSources = async () => {
     setIsLoading(true);
-    try {
-      const { data } = await apiCrawlers.get(`crawlers/`);
+    await apiCrawlers.get(`api/crawlers/`).then(({ data }) => {
       setSourcesResponse(data);
-    } catch (error) {
-      alert("Ocorreu um erro ao buscar as expressões-chave!");
-    }
+    });
     setIsLoading(false);
   };
 
@@ -103,7 +100,7 @@ const Sources: React.FC = () => {
       <Container>
         <Header />
         <Title>
-          <h2>Fontes de Documentos</h2>
+          <h2>Fontes de Informação</h2>
         </Title>
         <Button variant="primary" onClick={handleShowModal}>
           Adicionar fonte

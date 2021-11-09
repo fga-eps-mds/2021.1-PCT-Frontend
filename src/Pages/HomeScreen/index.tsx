@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../services/api";
+import { apiDocuments } from "../../services/apiDocuments";
 import SearchBar from "../../Components/SearchBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -43,7 +43,7 @@ const HomeScreen: React.FC = () => {
   const [mySearch, setMySearch] = useState("");
 
   useEffect(() => {
-    document.title = "PCTs";
+    document.title = "BUSCA INTEGRADA - POVOS E COMUNIDADES TRADICIONAIS";
   }, []);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const HomeScreen: React.FC = () => {
   const getDocuments = async () => {
     setIsLoading(true);
     try {
-      const { data } = await api.get(``);
+      const { data } = await apiDocuments.get(`api/documents/`);
       setDocumentsResponse(data);
     } catch (error) {
       alert("Ocorreu um erro ao buscar os documentos!");
@@ -62,7 +62,7 @@ const HomeScreen: React.FC = () => {
   };
 
   const getMoreDocuments = async () => {
-    const { data } = await api.get<documentsResponse>(
+    const { data } = await apiDocuments.get<documentsResponse>(
       `${documentsResponse?.next}`
     );
     if (documentsResponse?.results) {

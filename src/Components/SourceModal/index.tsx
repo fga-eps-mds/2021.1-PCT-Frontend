@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import { apiCrawlers } from "../../services/api";
+import { apiCrawlers } from "../../services/apiCrawlers";
 
 import { Col, Modal, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -18,9 +18,7 @@ type CrawlerFormData = {
   allowed_paths: Array<string>;
   task_enabled: boolean;
   task_one_off: boolean;
-  contains_dynamic_js_load: boolean;
   contains_end_path_keyword: boolean;
-  retries: number;
   page_load_timeout: number;
   cron_minute: string;
   cron_hour: string;
@@ -37,9 +35,7 @@ type CrawlerRegistrationErrorResponse = {
   allowed_paths: Array<string>;
   task_enabled: Array<string>;
   task_one_off: Array<string>;
-  contains_dynamic_js_load: Array<string>;
   contains_end_path_keyword: Array<string>;
-  retries: Array<string>;
   page_load_timeout: Array<string>;
   cron_minute: Array<string>;
   cron_hour: Array<string>;
@@ -71,9 +67,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
     allowed_paths: Array<string>(),
     task_enabled: true,
     task_one_off: false,
-    contains_dynamic_js_load: true,
     contains_end_path_keyword: false,
-    retries: 1,
     page_load_timeout: 5,
     cron_minute: "",
     cron_hour: "",
@@ -90,9 +84,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
     allowed_paths: Array<string>(),
     task_enabled: Array<string>(),
     task_one_off: Array<string>(),
-    contains_dynamic_js_load: Array<string>(),
     contains_end_path_keyword: Array<string>(),
-    retries: Array<string>(),
     page_load_timeout: Array<string>(),
     cron_minute: Array<string>(),
     cron_hour: Array<string>(),
@@ -117,11 +109,9 @@ const SourceModal: React.FC<SourceModalProps> = ({
       allowed_paths: source?.allowed_paths || [],
       task_enabled: source ? source.task_enabled : true,
       task_one_off: source ? source.task_one_off : false,
-      contains_dynamic_js_load: source ? source.contains_dynamic_js_load : true,
       contains_end_path_keyword: source
         ? source.contains_end_path_keyword
         : false,
-      retries: source?.retries || 1,
       page_load_timeout: source?.page_load_timeout || 5,
       cron_minute: source?.cron_minute || "",
       cron_hour: source?.cron_hour || "",
@@ -173,7 +163,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   async function registerSource(data: FormData) {
     await apiCrawlers
-      .post("crawlers/", data)
+      .post("api/crawlers/", data)
       .then(() => {
         closeModalOnUpdate();
       })
@@ -190,7 +180,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
 
   async function updateSource(data: FormData) {
     await apiCrawlers
-      .put(`crawlers/${source?.id}/`, data)
+      .put(`api/crawlers/${source?.id}/`, data)
       .then(() => {
         closeModalOnUpdate();
       })
@@ -216,9 +206,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
       allowed_paths,
       task_enabled,
       task_one_off,
-      contains_dynamic_js_load,
       contains_end_path_keyword,
-      retries,
       page_load_timeout,
       cron_minute,
       cron_hour,
@@ -241,9 +229,7 @@ const SourceModal: React.FC<SourceModalProps> = ({
     data.append("allowed_paths", JSON.stringify(allowed_paths));
     data.append("task_enabled", String(task_enabled));
     data.append("task_one_off", String(task_one_off));
-    data.append("contains_dynamic_js_load", String(contains_dynamic_js_load));
     data.append("contains_end_path_keyword", String(contains_end_path_keyword));
-    data.append("retries", String(retries));
     data.append("page_load_timeout", String(page_load_timeout));
     data.append("cron_minute", cron_minute);
     data.append("cron_hour", cron_hour);
@@ -396,14 +382,6 @@ const SourceModal: React.FC<SourceModalProps> = ({
             />
             <CustomCheckbox
               type="checkbox"
-              id="contains_dynamic_js_load"
-              name="contains_dynamic_js_load"
-              checked={formData["contains_dynamic_js_load"]}
-              label="Possui carregamento dinâmico (Javascript)"
-              onChange={handleInputBooleanChage}
-            />
-            <CustomCheckbox
-              type="checkbox"
               id="contains_end_path_keyword"
               name="contains_end_path_keyword"
               checked={formData["contains_end_path_keyword"]}
@@ -412,24 +390,6 @@ const SourceModal: React.FC<SourceModalProps> = ({
             />
             <Form.Group className="mb-3">
               <Row className="g-2">
-                <Col>
-                  <Form.Label>Quantidade de tentativas</Form.Label>
-                  <Form.Control
-                    type="number"
-                    id="retries"
-                    name="retries"
-                    value={formData["retries"]}
-                    onChange={handleInputChage}
-                    placeholder="Tentativas"
-                    isInvalid={!!formErrors.retries?.length}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {!!formErrors.retries?.length && formErrors.retries[0]}
-                  </Form.Control.Feedback>
-                  <Form.Text className="text-muted">
-                    Quantidade de tentativas de carregamento de uma página
-                  </Form.Text>
-                </Col>
                 <Col>
                   <Form.Label>Timeout de carregamento (segundos)</Form.Label>
                   <Form.Control
