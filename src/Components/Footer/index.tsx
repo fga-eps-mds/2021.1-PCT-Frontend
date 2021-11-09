@@ -12,13 +12,21 @@ import unbLogo from "../../assets/images/unbLogo.png";
 import fbLogo from "../../assets/images/facebook.png";
 import email from "../../assets/images/email.png";
 import skype from "../../assets/images/logoSkype.png";
+import { useHistory } from "react-router-dom";
 
 
 const Footer: React.FC = () => {
+  
+  const history = useHistory();
+  
+  const adminpage = () => {
+    history.push("/admin");
+  }
+
   return (
     <Container>
       <CopyrightContainer>
-        <Copyright>@2021</Copyright>
+        <Copyright onClick={adminpage}>@2021</Copyright>
         <Copyright>Povos e Comunidades Tradicionais</Copyright>
       </CopyrightContainer>
       <FooterButtonsContainer>
