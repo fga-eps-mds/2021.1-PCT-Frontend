@@ -43,7 +43,7 @@ const HomeScreen: React.FC = () => {
   const [mySearch, setMySearch] = useState("");
 
   useEffect(() => {
-    document.title = "PCTs";
+    document.title = "BUSCA INTEGRADA - POVOS E COMUNIDADES TRADICIONAIS";
   }, []);
 
   useEffect(() => {

@@ -84,6 +84,7 @@ export const ResultLink = styled.a`
   width: 80%;
   color: #1bc47d;
   /* margin-top: 5px; */
+  margin-bottom: 1rem;
 
   text-align: left;
 
@@ -119,11 +120,11 @@ export const ResultCategories = styled.div`
   justify-content: center;
 
   height: 100%;
-  padding: 0.2rem;
+  padding: 0.4rem;
   margin-top: 5px;
   margin-right: 5px;
   margin-bottom: 2px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #1bc47d;
 
   text {

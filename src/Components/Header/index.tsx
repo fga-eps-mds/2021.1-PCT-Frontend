@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   return (
     <Navbar bg="light" expand="lg" style={{ width: "100%" }}>
       <Container style={{ maxWidth: "none" }}>
-        <Navbar.Brand style={{ maxWidth: "200px" }}>
+        <Navbar.Brand style={{ maxWidth: "300px", paddingLeft: "20px" }}>
           <MyLink to={"/"}>
             <Title>
               <LogoImage src={logoImage} />
