@@ -4,18 +4,17 @@ import Form from "react-bootstrap/Form";
 
 
 export const Container = styled.div`
-  height: 100vh;
+  height: 60vh;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 `;
 
 export const LoginForm = styled(Form) `
-    display: block;
-    padding: 2%;
+    padding: 5%;
     width: 100%;
+    margin-top: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
     align-items: center;

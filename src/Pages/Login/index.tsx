@@ -63,7 +63,7 @@ const Login: React.FC = () => {
   return (
     <Container>
       <Header />
-      <Row md={10} className="align-items-sm-center" style={{ height: "85%" }}>
+      <Row md={10} className="align-items-sm-center" style={{ height: "85%", width: "20%" }}>
         <Col>
           <h2 style={{ textAlign: "center" }}>Área Restrita</h2>
           <LoginForm>
