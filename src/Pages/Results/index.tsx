@@ -22,6 +22,7 @@ import SelectFilter from "../../Components/SelectFilter";
 import DateFilterModal from "../../Components/DateFilterModal";
 
 import { SourceResult } from "../../Components/SourceItem";
+import axios from "axios";
 
 interface DocumentResult {
   id: number;
@@ -110,6 +111,7 @@ const Results: React.FC = () => {
   const [selectedSource, setSelectedSource] = useState<string>();
   const [selectedCategory, setSelectedCategory] = useState<string>();
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodFilter>();
+  const [download, setDownload] = useState('');
 
   const [showDateFilterModal, setShowDateFilterModal] = useState(false);
 
@@ -221,7 +223,7 @@ const Results: React.FC = () => {
     });
     setShowDateFilterModal(false);
   };
-
+  
   const exportDocuments = () => {
     try {
       let filters = `?q=${searchTerm}`;
@@ -236,8 +238,9 @@ const Results: React.FC = () => {
           ? `&date-gte=${selectedPeriod?.date_gte}`
           : "";
       }
-      filters += `/export`;
-      const data = api.get(filters);
+      const exportFile = `https://pcts-documents-api-dev.herokuapp.com/api/documents/export/` + filters;
+      setDownload(exportFile);
+    
     } catch (error) {
       alert("Ocorreu um erro ao exportar a pesquisa!");
     }
@@ -292,6 +295,7 @@ const Results: React.FC = () => {
             </Col>
             <Col sm lg="2" style={{ padding: "0px", paddingRight: "0.5vh", height: '100%' }}>
               <Button variant="success" style={{ backgroundColor: 'green', color: 'white', marginLeft: "5%" }} onClick={exportDocuments}>Exportar Pesquisa</Button>
+              {download && <iframe src={download} style={{display: "none"}}></iframe>}
             </Col>
           </Row>
         </SearchAreaContainer>
