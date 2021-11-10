@@ -59,10 +59,10 @@ const MonitoringCard: React.FC<MonitoringCardProps> = ({ item, onClick }) => {
             <br />
           </MonitoringInfo>
           <MonitoringInfo>
-            {moment(item.start_datetime).format("DD/MM/YYYY hh:mm")}
+            {moment(item.start_datetime).format("DD/MM/YYYY HH:mm")}
           </MonitoringInfo>
           <MonitoringInfo>
-            {moment(item.finish_datetime).format("DD/MM/YYYY hh:mm")}
+            {moment(item.finish_datetime).format("DD/MM/YYYY HH:mm")}
           </MonitoringInfo>
         </ResultDetailsInfo>
       </TitleDateContainer>

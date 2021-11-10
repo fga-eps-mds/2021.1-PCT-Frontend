@@ -45,7 +45,7 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
           </li>
           <li>
             <ResultDate>
-              {moment(item.created_at).format("DD/MM/YYYY hh:mm")}
+              {moment(item.created_at).format("DD/MM/YYYY HH:mm")}
             </ResultDate>
           </li>
         </ul>
