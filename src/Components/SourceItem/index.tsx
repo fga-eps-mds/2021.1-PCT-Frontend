@@ -77,7 +77,7 @@ const SourceItem: React.FC<SourceItemProps> = ({ item, onDelete, onClick }) => {
         <ResultDate>
           <ul>
             <li style={textMargin}>Criado em: </li>
-            <li>{moment(item.created_at).format("DD/MM/YYYY hh:mm")}</li>
+            <li>{moment(item.created_at).format("DD/MM/YYYY HH:mm")}</li>
           </ul>
         </ResultDate>
         <ButtonContainer>

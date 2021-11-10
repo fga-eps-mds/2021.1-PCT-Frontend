@@ -45,10 +45,10 @@ const ExecutionDetailItem: React.FC<ExecutionDetailItemProps> = ({ item }) => {
             <br />
           </MonitoringInfo>
           <MonitoringInfo>
-            {moment(item.start_datetime).format("DD/MM/YYYY hh:mm")}
+            {moment(item.start_datetime).format("DD/MM/YYYY HH:mm")}
           </MonitoringInfo>
           <MonitoringInfo>
-            {moment(item.finish_datetime).format("DD/MM/YYYY hh:mm")}
+            {moment(item.finish_datetime).format("DD/MM/YYYY HH:mm")}
           </MonitoringInfo>
           <MonitoringInfo>
             {item?.saved_records ? item?.saved_records : 0}
