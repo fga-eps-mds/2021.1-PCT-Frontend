@@ -4,7 +4,7 @@ services:
     build: .
     container_name: pcts-front
     image: pcts-front
-    env_file: dev-env
+    env_file: env
     restart: unless-stopped
     ports:
         - 3000:3000
